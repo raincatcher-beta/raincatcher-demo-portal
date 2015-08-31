@@ -16,15 +16,15 @@ angular.module('app.workflow', [
       controller: 'WorkflowController as workflowController'
     })
     .state('app.workflow.person', {
-      url: '/workorder/:workorderId/workflow/person',
+      url: '/person',
       template: '<person-form></person-form>'
     })
     .state('app.workflow.address', {
-      url: '/workorder/:workorderId/workflow/address',
+      url: '/address',
       template: '<address-form></address-form>'
     })
     .state('app.workflow.location', {
-      url: '/workorder/:workorderId/workflow/location',
+      url: '/location',
       template: '<google-maps-form></google-maps-form>'
     });
 })
