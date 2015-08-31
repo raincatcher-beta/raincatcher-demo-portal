@@ -28,8 +28,7 @@ angular.module('app.workorder-list', [
   var self = this;
 
   mediator.publish('workorders:load');
-  var subscriptionLoaded = mediator.subscribe('workorders:loaded', function(workorders) {
-    subscriptionLoaded.unsubscribe();
+  mediator.once('workorders:loaded', function(workorders) {
     self.workorders = workorders;
   });
 })
