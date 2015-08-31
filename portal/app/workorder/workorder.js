@@ -28,7 +28,7 @@ angular.module('app.workorder', [
   var self = this;
 
   Mediator.publish('workorder:load', self, $stateParams.workorderId);
-  Mediator.subscribeOnce('workorder:loaded', self, function(workorder) {
+  Mediator.once('workorder:loaded', self, function(workorder) {
     self.workorder = workorder;
   });
 

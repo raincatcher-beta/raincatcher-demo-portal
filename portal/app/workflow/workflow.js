@@ -41,30 +41,30 @@ angular.module('app.workflow', [
   var self = this;
 
   Mediator.publish('workorder:load', self, $stateParams.workorderId);
-  Mediator.subscribeOnce('workorder:loaded', self, function(workorder) {
+  Mediator.once('workorder:loaded', self, function(workorder) {
     self.workorder = workorder;
   });
 
-  Mediator.subscribeOnce('workflow:person:next', self, function(person) {
+  Mediator.once('workflow:person:next', self, function(person) {
     self.workorder.person = person;
     Mediator.publish('workorder:save', self, self.workorder);
-    Mediator.subscribeOnce('workorder:saved', self, function(workorder) {
+    Mediator.once('workorder:saved', self, function(workorder) {
       $state.go('app.workflow.address', { workorderId: workorder.id });
     });
   });
 
-  Mediator.subscribeOnce('workflow:address:next', self, function(address) {
+  Mediator.once('workflow:address:next', self, function(address) {
     self.workorder.address = address;
     Mediator.publish('workorder:save', self, self.workorder);
-    Mediator.subscribeOnce('workorder:saved', self, function(workorder) {
+    Mediator.once('workorder:saved', self, function(workorder) {
       $state.go('app.workflow.location', { workorderId: workorder.id });
     });
   });
 
-  Mediator.subscribeOnce('workflow:google-maps:next', self, function(location) {
+  Mediator.once('workflow:google-maps:next', self, function(location) {
     self.workorder.location = location;
     Mediator.publish('workorder:save', self, self.workorder);
-    Mediator.subscribeOnce('workorder:saved', self, function(workorder) {
+    Mediator.once('workorder:saved', self, function(workorder) {
       $state.go('app.workorder', { workorderId: workorder.id });
     });
   });
