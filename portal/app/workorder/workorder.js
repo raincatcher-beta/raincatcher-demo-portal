@@ -16,24 +16,24 @@ angular.module('app.workorder', [
     });
 })
 
-.run(function($state, Mediator) {
-  Mediator.subscribe('workorder:selected', self, function(workorder) {
+.run(function($state, mediator) {
+  mediator.subscribe('workorder:selected', self, function(workorder) {
     $state.go('app.workorder', {
       workorderId: workorder.id
     });
   });
 })
 
-.controller('WorkorderController', function ($stateParams, Mediator) {
+.controller('WorkorderController', function ($stateParams, mediator) {
   var self = this;
 
-  Mediator.publish('workorder:load', self, $stateParams.workorderId);
-  Mediator.once('workorder:loaded', self, function(workorder) {
+  mediator.publish('workorder:load', self, $stateParams.workorderId);
+  mediator.once('workorder:loaded', self, function(workorder) {
     self.workorder = workorder;
   });
 
   self.beginWorkflow = function(event, workorder) {
-    Mediator.publish('workflow:begin', self, workorder.id);
+    mediator.publish('workflow:begin', self, workorder.id);
     event.preventDefault();
   };
 })

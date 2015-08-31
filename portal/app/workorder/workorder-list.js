@@ -16,19 +16,19 @@ angular.module('app.workorder-list', [
     });
 })
 
-.run(function($state, Mediator) {
-  Mediator.subscribe('workorder:selected', self, function(workorder) {
+.run(function($state, mediator) {
+  mediator.subscribe('workorder:selected', self, function(workorder) {
     $state.go('app.workorder', {
       workorderId: workorder.id
     });
   });
 })
 
-.controller('WorkorderListController', function ($state, Mediator) {
+.controller('WorkorderListController', function ($state, mediator) {
   var self = this;
 
-  Mediator.publish('workorders:load');
-  var subscriptionLoaded = Mediator.subscribe('workorders:loaded', self, function(workorders) {
+  mediator.publish('workorders:load');
+  var subscriptionLoaded = mediator.subscribe('workorders:loaded', self, function(workorders) {
     subscriptionLoaded.unsubscribe();
     self.workorders = workorders;
   });
