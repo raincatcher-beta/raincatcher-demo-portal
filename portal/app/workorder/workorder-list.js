@@ -17,7 +17,7 @@ angular.module('app.workorder-list', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('workorder:selected', self, function(workorder) {
+  mediator.subscribe('workorder:selected', function(workorder) {
     $state.go('app.workorder', {
       workorderId: workorder.id
     });
@@ -28,7 +28,7 @@ angular.module('app.workorder-list', [
   var self = this;
 
   mediator.publish('workorders:load');
-  var subscriptionLoaded = mediator.subscribe('workorders:loaded', self, function(workorders) {
+  var subscriptionLoaded = mediator.subscribe('workorders:loaded', function(workorders) {
     subscriptionLoaded.unsubscribe();
     self.workorders = workorders;
   });

@@ -17,7 +17,7 @@ angular.module('app.workorder', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('workorder:selected', self, function(workorder) {
+  mediator.subscribe('workorder:selected', function(workorder) {
     $state.go('app.workorder', {
       workorderId: workorder.id
     });
@@ -27,13 +27,13 @@ angular.module('app.workorder', [
 .controller('WorkorderController', function ($stateParams, mediator) {
   var self = this;
 
-  mediator.publish('workorder:load', self, $stateParams.workorderId);
-  mediator.once('workorder:loaded', self, function(workorder) {
+  mediator.publish('workorder:load', $stateParams.workorderId);
+  mediator.once('workorder:loaded', function(workorder) {
     self.workorder = workorder;
   });
 
   self.beginWorkflow = function(event, workorder) {
-    mediator.publish('workflow:begin', self, workorder.id);
+    mediator.publish('workflow:begin', workorder.id);
     event.preventDefault();
   };
 })

@@ -30,7 +30,7 @@ angular.module('app.workflow', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('workflow:begin', self, function(data) {
+  mediator.subscribe('workflow:begin', function(data) {
     $state.go('app.workflow.person', {
       workorderId: data
     });
@@ -40,31 +40,31 @@ angular.module('app.workflow', [
 .controller('WorkflowController', function ($state, $stateParams, mediator) {
   var self = this;
 
-  mediator.publish('workorder:load', self, $stateParams.workorderId);
-  mediator.once('workorder:loaded', self, function(workorder) {
+  mediator.publish('workorder:load', $stateParams.workorderId);
+  mediator.once('workorder:loaded', function(workorder) {
     self.workorder = workorder;
   });
 
-  mediator.once('workflow:person:next', self, function(person) {
+  mediator.once('workflow:person:next', function(person) {
     self.workorder.person = person;
-    mediator.publish('workorder:save', self, self.workorder);
-    mediator.once('workorder:saved', self, function(workorder) {
+    mediator.publish('workorder:save', self.workorder);
+    mediator.once('workorder:saved', function(workorder) {
       $state.go('app.workflow.address', { workorderId: workorder.id });
     });
   });
 
-  mediator.once('workflow:address:next', self, function(address) {
+  mediator.once('workflow:address:next', function(address) {
     self.workorder.address = address;
-    mediator.publish('workorder:save', self, self.workorder);
-    mediator.once('workorder:saved', self, function(workorder) {
+    mediator.publish('workorder:save', self.workorder);
+    mediator.once('workorder:saved', function(workorder) {
       $state.go('app.workflow.location', { workorderId: workorder.id });
     });
   });
 
-  mediator.once('workflow:google-maps:next', self, function(location) {
+  mediator.once('workflow:google-maps:next', function(location) {
     self.workorder.location = location;
-    mediator.publish('workorder:save', self, self.workorder);
-    mediator.once('workorder:saved', self, function(workorder) {
+    mediator.publish('workorder:save', self.workorder);
+    mediator.once('workorder:saved', function(workorder) {
       $state.go('app.workorder', { workorderId: workorder.id });
     });
   });
