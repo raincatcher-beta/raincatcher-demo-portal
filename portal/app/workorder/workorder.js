@@ -16,6 +16,19 @@ angular.module('app.workorder', [
     });
 })
 
+.run(function(mediator, steps) {
+  mediator.publish('workflow:steps:load');
+  mediator.once('workflow:steps:loaded', function(_steps) {
+    Array.prototype.push.apply(steps, _steps);
+  });
+})
+
+.factory('steps', function() {
+  var steps = [];
+
+  return steps;
+})
+
 .run(function($state, mediator) {
   mediator.subscribe('workorder:selected', function(workorder) {
     $state.go('app.workorder', {
@@ -24,8 +37,10 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderController', function ($stateParams, mediator) {
+.controller('WorkorderController', function ($stateParams, mediator, steps) {
   var self = this;
+
+  self.steps = steps;
 
   mediator.publish('workorder:load', $stateParams.workorderId);
   mediator.once('workorder:loaded', function(workorder) {

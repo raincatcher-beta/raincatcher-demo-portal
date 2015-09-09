@@ -7,6 +7,9 @@ angular.module('app', [
 , require('wfm-mediator')
 , require('wfm-workorder')
 , require('wfm-workflow')
+, require('wfm-risk-assessment')
+, require('wfm-vehicle-inspection')
+
 , require('./home/home')
 , require('./workorder/workorder')
 , require('./workorder/workorder-list')
