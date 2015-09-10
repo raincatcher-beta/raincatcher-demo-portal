@@ -13,6 +13,11 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId',
       templateUrl: '/app/workorder/workorder.tpl.html',
       controller: 'WorkorderController as ctrl'
+    })
+    .state('app.workorder-edit', {
+      url: '/workorder/:workorderId/edit',
+      templateUrl: '/app/workorder/workorder-form.tpl.html',
+      controller: 'WorkorderFormController as ctrl'
     });
 })
 
@@ -52,6 +57,29 @@ angular.module('app.workorder', [
     event.preventDefault();
   };
 })
+
+.controller('WorkorderFormController', function ($stateParams, mediator, steps) {
+  var self = this;
+
+  if ($stateParams.workorderId === 'new') {
+    self.workorder = {type: 'Job Order'};
+  } else {
+    mediator.publish('workorder:load', $stateParams.workorderId);
+    mediator.once('workorder:loaded', function(workorder) {
+      self.workorder = workorder;
+    });
+  }
+
+  mediator.subscribe('workorder:edited', function(workorder) {
+    if (!workorder.id && workorder.id !== 0) {
+      mediator.publish('workorder:create', workorder);
+      mediator.once('workorder:created', function(workorder) {
+        mediator.publish('workorder:selected', workorder);
+      })
+    }
+  });
+})
+
 ;
 
 module.exports = 'app.workorder';

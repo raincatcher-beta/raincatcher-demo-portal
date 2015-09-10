@@ -11,7 +11,7 @@ angular.module('app.workorder-list', [
   $stateProvider
     .state('app.workorder-list', {
       url: '/workorders/list',
-      template: '<workorder-table list="workorderListController.workorders"></workorder-list list="workorderListController.workorders">',
+      templateUrl: '/app/workorder/workorder-table.tpl.html',
       controller: 'WorkorderListController as workorderListController'
     });
 })
