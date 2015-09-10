@@ -12,26 +12,23 @@ angular.module('app.workorder', [
     .state('app.workorder', {
       url: '/workorder/:workorderId',
       templateUrl: '/app/workorder/workorder.tpl.html',
-      controller: 'WorkorderController as ctrl'
+      controller: 'WorkorderController as ctrl',
+      resolve: {
+        initialData: function($q, mediator) {
+          var deferred = $q.defer();
+          mediator.publish('workflow:init');
+          mediator.once('workflow:init:done', function(data) {
+            deferred.resolve(data);
+          });
+          return deferred.promise;
+        }
+      }
     })
     .state('app.workorder-edit', {
       url: '/workorder/:workorderId/edit',
       templateUrl: '/app/workorder/workorder-form.tpl.html',
       controller: 'WorkorderFormController as ctrl'
     });
-})
-
-.run(function(mediator, steps) {
-  mediator.publish('workflow:steps:load');
-  mediator.once('workflow:steps:loaded', function(_steps) {
-    Array.prototype.push.apply(steps, _steps);
-  });
-})
-
-.factory('steps', function() {
-  var steps = [];
-
-  return steps;
 })
 
 .run(function($state, mediator) {
@@ -42,10 +39,10 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderController', function ($stateParams, mediator, steps) {
+.controller('WorkorderController', function ($stateParams, mediator, initialData) {
   var self = this;
 
-  self.steps = steps;
+  self.steps = initialData.steps;
 
   mediator.publish('workorder:load', $stateParams.workorderId);
   mediator.once('workorder:loaded', function(workorder) {
@@ -58,7 +55,7 @@ angular.module('app.workorder', [
   };
 })
 
-.controller('WorkorderFormController', function ($stateParams, mediator, steps) {
+.controller('WorkorderFormController', function ($stateParams, mediator) {
   var self = this;
 
   if ($stateParams.workorderId === 'new') {
