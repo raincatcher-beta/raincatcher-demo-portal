@@ -9,6 +9,22 @@ angular.module('app.workorder', [
 
 .config(function($stateProvider) {
   $stateProvider
+    .state('app.workorder-new', {
+      url: '/workorder/new',
+      templateUrl: '/app/workorder/workorder-form.tpl.html',
+      controller: 'WorkorderNewController as ctrl',
+      resolve: {
+        workorder: function($q, mediator) {
+          var deferred =  $q.defer();
+          mediator.publish('workorder:new');
+          mediator.once('workorder:new:done', function(workorder) {
+            console.log(workorder);
+            deferred.resolve(workorder);
+          });
+          return deferred.promise;
+        }
+      }
+    })
     .state('app.workorder', {
       url: '/workorder/:workorderId',
       templateUrl: '/app/workorder/workorder.tpl.html',
@@ -55,17 +71,10 @@ angular.module('app.workorder', [
   };
 })
 
-.controller('WorkorderFormController', function ($stateParams, mediator) {
+.controller('WorkorderNewController', function(workorder, mediator) {
   var self = this;
 
-  if ($stateParams.workorderId === 'new') {
-    self.workorder = {type: 'Job Order'};
-  } else {
-    mediator.publish('workorder:load', $stateParams.workorderId);
-    mediator.once('workorder:loaded', function(workorder) {
-      self.workorder = workorder;
-    });
-  }
+  self.workorder = workorder;
 
   mediator.subscribe('workorder:edited', function(workorder) {
     if (!workorder.id && workorder.id !== 0) {
@@ -74,6 +83,19 @@ angular.module('app.workorder', [
         mediator.publish('workorder:selected', workorder);
       })
     }
+  });
+})
+
+.controller('WorkorderFormController', function ($stateParams, mediator) {
+  var self = this;
+
+  mediator.publish('workorder:load', $stateParams.workorderId);
+  mediator.once('workorder:loaded', function(workorder) {
+    self.workorder = workorder;
+  });
+
+  mediator.subscribe('workorder:edited', function(workorder) {
+    // save the workorder
   });
 })
 
