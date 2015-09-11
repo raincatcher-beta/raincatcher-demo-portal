@@ -12,7 +12,13 @@ angular.module('app.workorder-list', [
     .state('app.workorder-list', {
       url: '/workorders/list',
       templateUrl: '/app/workorder/workorder-table.tpl.html',
-      controller: 'WorkorderListController as workorderListController'
+      controller: 'WorkorderListController as workorderListController',
+      resolve: {
+        workorders: function(mediator) {
+          mediator.publish('workorders:load');
+          return mediator.promise('workorders:loaded');
+        }
+      }
     });
 })
 
@@ -24,13 +30,9 @@ angular.module('app.workorder-list', [
   });
 })
 
-.controller('WorkorderListController', function ($state, mediator) {
+.controller('WorkorderListController', function (mediator, workorders) {
   var self = this;
-
-  mediator.publish('workorders:load');
-  mediator.once('workorders:loaded', function(workorders) {
-    self.workorders = workorders;
-  });
+  self.workorders = workorders;
 })
 ;
 
