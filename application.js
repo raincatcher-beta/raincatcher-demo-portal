@@ -9,11 +9,11 @@ app.use(cors());
 
 app.use(express.static(__dirname + '/public'));
 
-app.options("*", function (req, res) {
-  // CORS
-  res.writeHead(204);
-  res.end();
-});
+// app.options("*", function (req, res) {
+//   // CORS
+//   res.writeHead(204);
+//   res.end();
+// });
 
 // Used for App health checking
 app.get('/sys/info/ping', function(req, res, next) {
