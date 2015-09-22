@@ -34,6 +34,7 @@
     "async": "^1.4.2",
     "body-parser": "^1.13.3",
     "config-chain": "^1.1.9",
+    "cors": "^2.7.1",
     "express": "^4.13.2",
     "fh-js-sdk": "git+https://github.com/feedhenry/fh-js-sdk.git",
     "fh-wfm-mediator": "~0.0.4",
