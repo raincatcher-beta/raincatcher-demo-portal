@@ -26,6 +26,17 @@ module.exports = function (grunt) {
       default_local_server_url: 'http://localhost:8001'
     },
 
+    sass: {
+        options: {
+            sourceMap: true
+        },
+        dist: {
+            files: {
+                'www/css/portal.css': 'www/sass/portal.scss'
+            }
+        }
+    },
+
     browserify: {
       options: {
         browserifyOptions: {
@@ -48,7 +59,7 @@ module.exports = function (grunt) {
         files: ['<%= app.app %>/scripts/{,*/}*.js'],
         tasks: ['newer:jshint:all'],
         options: {
-          livereload: 35730
+          livereload: 35731
         }
       },
       styles: {
@@ -111,6 +122,7 @@ module.exports = function (grunt) {
     grunt.task.run([
       'clean:server',
       'connect:livereload',
+      'sass',
       'browserify',
       'watch'
     ]);

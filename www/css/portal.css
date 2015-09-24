@@ -82,3 +82,8 @@
 
 .vehicle-inspection-portal dd {
   margin-left: 180px; }
+
+.appform-list tbody tr {
+  cursor: pointer; }
+
+/*# sourceMappingURL=portal.css.map */
