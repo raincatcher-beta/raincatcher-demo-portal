@@ -27,7 +27,7 @@
     "cors": "^2.7.1",
     "express": "^4.13.2",
     "fh-js-sdk": "git+https://github.com/feedhenry/fh-js-sdk.git",
-    "fh-wfm-appform": "~0.0.1",
+    "fh-wfm-appform": "~0.0.2",
     "fh-wfm-mediator": "~0.0.4",
     "fh-wfm-risk-assessment": "~0.0.1",
     "fh-wfm-vehicle-inspection": "~0.0.1",
