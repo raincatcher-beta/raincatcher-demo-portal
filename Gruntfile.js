@@ -110,8 +110,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('serve', function (target) {
     if (target === 'local') {
-      var conn = 'http://' + grunt.config.get('connect.options.hostname') + ':' +
-        grunt.config.get('connect.options.port');
+      var conn = 'http://' + grunt.config.get('connect.options.hostname') + ':' + grunt.config.get('connect.options.port');
       var url = grunt.option('url') || grunt.config.get('app.default_local_server_url');
       grunt.config.set('app.url', conn + '/?url=' + url);
     } else {
