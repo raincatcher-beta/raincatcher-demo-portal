@@ -19,7 +19,7 @@ md-sidenav md-list {
 md-list-item button {
   border-radius: 0 !important; }
 
-md-list-item.list-header .md-button {
+md-list-item.list-header {
   min-height: 64px;
   color: #fff;
   background: #3F51B5; }
@@ -27,7 +27,7 @@ md-list-item.list-header .md-button {
 md-list-item.active .md-button {
   background: lightblue; }
 
-md-toolbar {
+.main-toolbar {
   z-index: 99999999; }
 
 .dividerdemoBasicUsage .face {
@@ -43,10 +43,10 @@ md-toolbar {
 .inner-column md-list-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
 
-.jobs-list md-list-item.list-header .md-button {
+.jobs-list md-list-item.list-header {
   background: rgba(0, 0, 0, 0.56); }
 
-.workers-list md-list-item.list-header .md-button {
+.workers-list md-list-item.list-header {
   background: rgba(0, 0, 0, 0.56); }
 
 /* FAB =========================== */

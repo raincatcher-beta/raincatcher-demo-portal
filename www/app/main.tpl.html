@@ -1,4 +1,4 @@
-<md-toolbar layout="row" class="md-primary md-hue-2 md-whiteframe-z1">
+<md-toolbar layout="row" class="md-primary md-hue-2 md-whiteframe-z1 main-toolbar">
   <div class="md-toolbar-tools">
     <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
       <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
@@ -8,21 +8,21 @@
 </md-toolbar>
 
 
+  <div layout="row" flex>
 
-<div layout="row">
+    <md-sidenav layout="column red" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
 
-  <md-sidenav layout="column" flex="10" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+<!--     <ui-view name="column1"></ui-view> -->
 
-    <ui-view name="column1"></ui-view>
       <md-list>
 
+<!--
         <md-list-item ng-click="navigateTo('app.home')" class="list-header">
           <img alt="Queen" ng-src="https://dl.dropboxusercontent.com/u/4371641/queen.jpg" class="md-avatar" />
           <p>Elizabeth Alexandra Mary</p>
         </md-list-item>
-
         <md-divider></md-divider>
-
+-->
         <md-list-item ng-click="navigateTo()">
           <md-icon md-font-set="material-icons">event</md-icon>
           <p>Scheduler</p>
@@ -51,31 +51,43 @@
           <md-icon md-font-set="material-icons">content_copy</md-icon>
           <p>Forms</p>
         </md-list-item>
+      
         <md-divider></md-divider>
+      
         <md-list-item ng-click="navigateTo()">
           <md-icon md-font-set="material-icons">settings</md-icon>
           <p>Settings</p>
         </md-list-item>
+      
       </md-list>
-    </ui-view>
-  </md-sidenav>
 
+    </md-sidenav>
 
+<!--
   <md-button class="md-fab" aria-label="Eat cake">
         <md-icon md-font-set="material-icons">add</md-icon>
   </md-button>
+-->
 
+    <md-content id="content" layout="row" flex>
+    
 
-
-  <div layout="row" id="content">
-    <ui-view name="column2"></ui-view>
-    <ui-view name="column3"></ui-view>
-
-    <md-content layout="column" flex class="md-padding">
-      <!-- template loaded here -->
-      <ui-view ngcloak name="content"></ui-view>
+    
+      <div flex="33">
+         <ui-view name="column2"></ui-view>
+      </div>
+      <!--template loaded here -->
+      <div flex>
+        <ui-view ngcloak name="content"></ui-view>
+      </div>
+    
+    
+    
     </md-content>
 
 
+</div> <!-- main row -->
 
-</div> <!-- container layout:row -->
+
+
+

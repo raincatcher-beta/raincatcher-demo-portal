@@ -4,6 +4,9 @@
 // @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
 // @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
+
+
+
 .appform-list tbody tr {
   cursor: pointer;
 }
@@ -31,7 +34,7 @@ md-list-item button{
   border-radius: 0!important;
 }
 
-md-list-item.list-header .md-button{
+md-list-item.list-header{
   min-height: 64px;
   color: #fff;
   background: #3F51B5;
@@ -41,10 +44,10 @@ md-list-item.active .md-button{
   background: lightblue;
 }
 
-
-md-toolbar{
+.main-toolbar{
   z-index: 99999999;
 }
+
 .dividerdemoBasicUsage .face {
   border-radius: 30px;
   border: 1px solid #ddd;
@@ -59,10 +62,10 @@ md-toolbar{
   border-bottom: 1px solid rgba(0,0,0,.12);
    }
 
-.jobs-list md-list-item.list-header .md-button{
+.jobs-list md-list-item.list-header{
   background: rgba(0,0,0,.56);
 }
-.workers-list md-list-item.list-header .md-button{
+.workers-list md-list-item.list-header{
   background: rgba(0,0,0,.56);
 }
 
