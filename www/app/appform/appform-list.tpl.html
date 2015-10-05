@@ -1,22 +1,14 @@
-<div class="panel panel-default appform-list">
-  <div class="panel-heading"><h3>Available app forms:</h3></div>
-  <div class="panel-body">
-    <h4>App forms associated with this project</h4>
-  </div>
-
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="form in ctrl.forms" ui-sref="app.appform({formId: form._id})">
-        <td>{{form.name}}</td>
-        <td>{{form._id}}</td>
-        <td>{{form.description}}</td>
-      </tr>
-    </tbody>
+<div layout="column" class="inner-column">
+  <md-list class="jobs-list">
+    <md-list-item ng-click="" class="list-header">
+      <p>AppForms</p>
+    </md-list-item>
+    <md-list-item  ng-repeat="form in ctrl.forms" ng-click="navigateTo('app.appform.detail', {formId: form._id})" class="md-3-line" >
+      <div class="md-list-item-text">
+        <h3>{{form.name}}</h3>
+        <h4>{{form._id}}</h4>
+        <p>{{form.description}}</p>
+      </div>
+    </md-list-item>
+  </md-list>
 </div>

@@ -6,27 +6,35 @@ angular.module('app.appform', ['ui.router'])
 
 .config(function ($stateProvider) {
   $stateProvider
-    .state('app.appform', {
+    .state('app.appform.detail', {
       url: '/appform/:formId',
-      templateUrl: 'app/appform/appform.tpl.html',
-      controller: 'AppformController',
-      controllerAs: 'ctrl',
-      resolve: {
-        form: function($stateParams, mediator) {
-          mediator.publish('wfm:appform:form:load', $stateParams.formId);
-          return mediator.promise('wfm:appform:form:loaded');
+      views: {
+        'content@app': {
+          templateUrl: 'app/appform/appform.tpl.html',
+          controller: 'AppformController',
+          controllerAs: 'ctrl',
+          resolve: {
+            form: function($stateParams, mediator) {
+              mediator.publish('wfm:appform:form:load', $stateParams.formId);
+              return mediator.promise('wfm:appform:form:loaded');
+            }
+          }
         }
       }
     })
-    .state('app.appform-list', {
+    .state('app.appform', {
       url: '/appforms',
-      templateUrl: 'app/appform/appform-list.tpl.html',
-      controller: 'AppformListController',
-      controllerAs: 'ctrl',
-      resolve: {
-        forms: function(mediator) {
-          mediator.publish('wfm:appform:forms:load');
-          return mediator.promise('wfm:appform:forms:loaded');
+      views: {
+        column2: {
+          templateUrl: 'app/appform/appform-list.tpl.html',
+          controller: 'AppformListController',
+          controllerAs: 'ctrl',
+          resolve: {
+            forms: function(mediator) {
+              mediator.publish('wfm:appform:forms:load');
+              return mediator.promise('wfm:appform:forms:loaded');
+            }
+          }
         }
       }
     });

@@ -1,30 +1,81 @@
-<!-- nav bar for entire app -->
-<header>
-  <nav class='navbar navbar-default' role='navigation'>
-    <div class='container'>
-      <div class='navbar-header'>
-        <a class='navbar-brand' ui-sref='app.home'>WFM</a>
-      </div>
-      <ul class='nav navbar-nav'>
-        <li>
-          <a ui-sref='app.workorder-list'>Work Orders</a>
-        </li>
-      </ul>
-      <ul class='nav navbar-nav'>
-        <li>
-          <a ui-sref='app.appform-list'>App forms</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
-</header>
+<md-toolbar layout="row" class="md-primary md-hue-2 md-whiteframe-z1">
+  <div class="md-toolbar-tools">
+    <md-button ng-click="toggleSidenav('left')" hide-gt-sm class="md-icon-button">
+      <md-icon aria-label="Menu" md-svg-icon="https://s3-us-west-2.amazonaws.com/s.cdpn.io/68133/menu.svg"></md-icon>
+    </md-button>
+    <h1 ng-click="navigateTo('app.home')">FeedHenry Work Force Management</h1>
+  </div>
+</md-toolbar>
 
-<!-- template loaded here -->
-<main>
-  <div class="container" ui-view></div>
-</main>
 
-<!-- footer for the whole app -->
-<footer>
 
-</footer>
+<div layout="row">
+
+  <md-sidenav layout="column" flex="10" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+
+    <ui-view name="column1"></ui-view>
+      <md-list>
+
+        <md-list-item ng-click="navigateTo('app.home')" class="list-header">
+          <img alt="Queen" ng-src="https://dl.dropboxusercontent.com/u/4371641/queen.jpg" class="md-avatar" />
+          <p>Elizabeth Alexandra Mary</p>
+        </md-list-item>
+
+        <md-divider></md-divider>
+
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">event</md-icon>
+          <p>Scheduler</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo('app.workorder')" ng-class="{active: $state.includes('app.workorder')}">
+          <md-icon md-font-set="material-icons">assignment</md-icon>
+          <p>Jobs</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">person</md-icon>
+          <p>Workers</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">map</md-icon>
+          <p>Maps</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">mail</md-icon>
+          <p>Messages</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">insert_chart</md-icon>
+          <p>Analytics</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo('app.appform')" ng-class="{active: $state.includes('app.appform')}">
+          <md-icon md-font-set="material-icons">content_copy</md-icon>
+          <p>Forms</p>
+        </md-list-item>
+        <md-divider></md-divider>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">settings</md-icon>
+          <p>Settings</p>
+        </md-list-item>
+      </md-list>
+    </ui-view>
+  </md-sidenav>
+
+
+  <md-button class="md-fab" aria-label="Eat cake">
+        <md-icon md-font-set="material-icons">add</md-icon>
+  </md-button>
+
+
+
+  <div layout="row" id="content">
+    <ui-view name="column2"></ui-view>
+    <ui-view name="column3"></ui-view>
+
+    <md-content layout="column" flex class="md-padding">
+      <!-- template loaded here -->
+      <ui-view ngcloak name="content"></ui-view>
+    </md-content>
+
+
+
+</div> <!-- container layout:row -->

@@ -9,40 +9,70 @@ angular.module('app.workorder', [
 
 .config(function($stateProvider) {
   $stateProvider
-    .state('app.workorder-new', {
-      url: '/workorder/new',
-      templateUrl: '/app/workorder/workorder-form.tpl.html',
-      controller: 'WorkorderNewController as ctrl',
-      resolve: {
-        workorder: function(mediator) {
-          mediator.publish('workorder:new');
-          return mediator.promise('workorder:new:done');
-        }
-      }
-    })
     .state('app.workorder', {
-      url: '/workorder/:workorderId',
-      templateUrl: '/app/workorder/workorder.tpl.html',
-      controller: 'WorkorderController as ctrl',
-      resolve: {
-        steps: function(mediator) {
-          mediator.publish('workflow:steps:load');
-          return mediator.promise('workflow:steps:loaded');
+      url: '/workorders/list',
+      views: {
+        column2: {
+          template: '<div layout="column" class="inner-column"><workorder-portal-list list="workorderListController.workorders"></workorder-portal-list></div>',
+          controller: 'WorkorderListController as workorderListController',
+          resolve: {
+            workorders: function(mediator) {
+              mediator.publish('workorders:load');
+              return mediator.promise('workorders:loaded');
+            }
+          }
         },
-        workorder: function(mediator, $stateParams) {
-          mediator.publish('workorder:load', $stateParams.workorderId);
-          return mediator.promise('workorder:loaded');
+        'content': {
+          template: '<button class="btn" ui-sref="app.workorder.new">New Workorder</button>',
         }
       }
     })
-    .state('app.workorder-edit', {
+    .state('app.workorder.new', {
+      url: '/new',
+      views: {
+        'content@app': {
+          template: '<workorder-form value="ctrl.workorder"></workorder-form>',
+          controller: 'WorkorderNewController as ctrl',
+          resolve: {
+            workorder: function(mediator) {
+              mediator.publish('workorder:new');
+              return mediator.promise('workorder:new:done');
+            }
+          }
+        }
+      }
+    })
+    .state('app.workorder.detail', {
+      url: '/workorder/:workorderId',
+      views: {
+        'content@app': {
+          templateUrl: '/app/workorder/workorder.tpl.html',
+          controller: 'WorkorderController as ctrl',
+          resolve: {
+            steps: function(mediator) {
+              mediator.publish('workflow:steps:load');
+              return mediator.promise('workflow:steps:loaded');
+            },
+            workorder: function(mediator, $stateParams) {
+              mediator.publish('workorder:load', $stateParams.workorderId);
+              return mediator.promise('workorder:loaded');
+            }
+          }
+        }
+      }
+    })
+    .state('app.workorder.edit', {
       url: '/workorder/:workorderId/edit',
-      templateUrl: '/app/workorder/workorder-form.tpl.html',
-      controller: 'WorkorderFormController as ctrl',
-      resolve: {
-        workorder: function(mediator, $stateParams) {
-          mediator.publish('workorder:load', $stateParams.workorderId);
-          return mediator.promise('workorder:loaded');
+      views: {
+        'content@app': {
+          template: '<workorder-form value="ctrl.workorder"></workorder-form>',
+          controller: 'WorkorderFormController as ctrl',
+          resolve: {
+            workorder: function(mediator, $stateParams) {
+              mediator.publish('workorder:load', $stateParams.workorderId);
+              return mediator.promise('workorder:loaded');
+            }
+          }
         }
       }
     });
@@ -50,10 +80,15 @@ angular.module('app.workorder', [
 
 .run(function($state, mediator) {
   mediator.subscribe('workorder:selected', function(workorder) {
-    $state.go('app.workorder', {
+    $state.go('app.workorder.detail', {
       workorderId: workorder.id
     });
   });
+})
+
+.controller('WorkorderListController', function (mediator, workorders) {
+  var self = this;
+  self.workorders = workorders;
 })
 
 .controller('WorkorderController', function (mediator, steps, workorder) {

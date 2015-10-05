@@ -5,6 +5,7 @@ require('../lib/feedhenry');
 
 angular.module('app', [
   require('angular-ui-router')
+, require('angular-material')
 , require('fh-wfm-mediator')
 , require('fh-wfm-workorder')
 , require('fh-wfm-workflow')
@@ -15,7 +16,6 @@ angular.module('app', [
 , require('./home/home')
 , require('./appform/appform')
 , require('./workorder/workorder')
-, require('./workorder/workorder-list')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -24,6 +24,14 @@ angular.module('app', [
   $stateProvider
     .state('app', {
       abstract: true,
-      templateUrl: 'app/main.tpl.html'
+      templateUrl: 'app/main.tpl.html',
+      controller: function($state, $scope) {
+        $scope.$state = $state;
+        $scope.navigateTo = function(state, params) {
+          if (state) {
+            $state.go(state, params);
+          }
+        }
+      }
     });
 });

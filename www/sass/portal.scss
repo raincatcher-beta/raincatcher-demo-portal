@@ -1,9 +1,120 @@
-@import 'node_modules/fh-wfm-workorder/sass/workorder.scss';
-@import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
-@import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
-@import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
-@import 'node_modules/fh-wfm-appform/sass/appform.scss';
+// @import 'node_modules/fh-wfm-workorder/sass/workorder.scss';
+// @import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
+// @import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
+// @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
+// @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
 .appform-list tbody tr {
   cursor: pointer;
+}
+
+.md-toolbar-tools h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit;
+}
+
+md-list{
+  margin: 0;
+  padding: 0;
+}
+
+/* Sidenav area */
+
+md-sidenav md-list{
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+md-list-item button{
+  border-radius: 0!important;
+}
+
+md-list-item.list-header .md-button{
+  min-height: 64px;
+  color: #fff;
+  background: #3F51B5;
+}
+
+md-list-item.active .md-button{
+  background: lightblue;
+}
+
+
+md-toolbar{
+  z-index: 99999999;
+}
+.dividerdemoBasicUsage .face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px; }
+
+
+/* Jobs list =========================== */
+.inner-column{ border-right: 1px solid rgba(0,0,0,.12)}
+
+.inner-column md-list-item {
+  border-bottom: 1px solid rgba(0,0,0,.12);
+   }
+
+.jobs-list md-list-item.list-header .md-button{
+  background: rgba(0,0,0,.56);
+}
+.workers-list md-list-item.list-header .md-button{
+  background: rgba(0,0,0,.56);
+}
+
+/* FAB =========================== */
+.md-fab{
+  background: red;
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+
+/* Spinner ================ */
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  position: absolute;
+  top:50%;
+  left:50%;
+  animation: rotator $duration linear infinite;
+
+  .path {
+    stroke-dasharray: $offset;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation:
+      dash $duration ease-in-out infinite,
+      colors ($duration*4) ease-in-out infinite;
+  }
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
 }
