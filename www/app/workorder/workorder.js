@@ -31,7 +31,7 @@ angular.module('app.workorder', [
       url: '/new',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/empty.tpl.html',
+          template: '<workorder-form value="ctrl.workorder"></workorder-form>',
           controller: 'WorkorderNewController as ctrl',
           resolve: {
             workorder: function(mediator) {
