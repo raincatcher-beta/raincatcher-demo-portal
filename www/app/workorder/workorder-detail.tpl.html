@@ -1,9 +1,56 @@
-
 <md-toolbar class="content-toolbar md-primary">
   <div class="md-toolbar-tools">
     <h3>
       Work order ID {{ctrl.workorder.id}} 
     </h3>
+    
+    <md-button class="md-icon-button" aria-label="In Progress">
+      <md-tooltip>
+        In Progress
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">autorenew</md-icon>
+    </md-button>
+
+<!--
+    <md-button class="md-icon-button" aria-label="Complete">
+      <md-tooltip>
+        Complete
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">assignment_turned_in</md-icon>
+    </md-button>
+
+
+    <md-button class="md-icon-button" aria-label="Aborted">
+      <md-tooltip>
+        Aborted
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">assignment_late</md-icon>
+    </md-button>
+
+
+    <md-button class="md-icon-button" aria-label="Unassigned">
+      <md-tooltip>
+        Unassigned
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">assignment_ind</md-icon>
+    </md-button>
+
+
+    <md-button class="md-icon-button" aria-label="On Hold">
+      <md-tooltip>
+        On Hold
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">pause</md-icon>
+    </md-button>
+
+    <md-button class="md-icon-button" aria-label="New">
+      <md-tooltip>
+        New
+      </md-tooltip>
+      <md-icon md-font-set="material-icons">new_releases</md-icon>
+    </md-button>
+-->    
+    
     <span flex></span>
     <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.workorder.edit({workorderId: ctrl.workorder.id})">
       <md-icon md-font-set="material-icons">edit</md-icon>
@@ -12,3 +59,8 @@
 </md-toolbar>
 
 <workflow-step-summary workorder="ctrl.workorder" portal="true" steps="ctrl.steps"></workflow-step-summary>
+
+
+<md-button class="md-fab" aria-label="New Workorder" ui-sref="app.workorder.new">
+  <md-icon md-font-set="material-icons">add</md-icon>
+</md-button>

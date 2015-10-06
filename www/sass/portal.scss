@@ -5,8 +5,6 @@
 // @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
 
-
-
 .appform-list tbody tr {
   cursor: pointer;
 }
@@ -40,8 +38,9 @@ md-list-item.list-header{
   background: #3F51B5;
 }
 
-md-list-item.active .md-button{
-  background: lightblue;
+md-list-item.active .md-button, md-list-item.active .md-button:hover{
+  background: #E8EAF6!important;
+  cursor: default;
 }
 
 .main-toolbar{
@@ -53,6 +52,13 @@ md-list-item.active .md-button{
   border: 1px solid #ddd;
   width: 48px;
   margin: 16px; }
+
+
+//empty state =======
+.empty-state{
+  text-align: center;
+  color: rgba(0,0,0,.54);
+}
 
 
 /* Jobs list =========================== */
@@ -71,7 +77,6 @@ md-list-item.active .md-button{
 
 /* FAB =========================== */
 .md-fab{
-  background: red;
   position: absolute;
   bottom: 16px;
   right: 16px;
