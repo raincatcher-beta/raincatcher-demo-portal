@@ -8,13 +8,7 @@ angular.module('app.home', ['ui.router'])
     .state('app.home', {
       url: '/home',
       views: {
-        column2: {
-          templateUrl: 'app/home/nav1.tpl.html'
-        }
-      , column3: {
-        templateUrl: 'app/home/nav2.tpl.html'
-      }
-      , content: {
+        content: {
           templateUrl: 'app/home/home.tpl.html'
         }
       }

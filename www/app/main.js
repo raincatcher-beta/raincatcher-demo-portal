@@ -19,7 +19,7 @@ angular.module('app', [
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/home');
+  $urlRouterProvider.otherwise('/workorders/list');
 
   $stateProvider
     .state('app', {
