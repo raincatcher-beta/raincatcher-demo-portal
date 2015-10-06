@@ -23,7 +23,7 @@ angular.module('app.workorder', [
           }
         },
         'content': {
-          template: '<button class="btn" ui-sref="app.workorder.new">New Workorder</button>',
+          templateUrl: '/app/workorder/empty.tpl.html',
         }
       }
     })
@@ -31,7 +31,7 @@ angular.module('app.workorder', [
       url: '/new',
       views: {
         'content@app': {
-          template: '<workorder-form value="ctrl.workorder"></workorder-form>',
+          templateUrl: '/app/workorder/workorder-new.tpl.html',
           controller: 'WorkorderNewController as ctrl',
           resolve: {
             workorder: function(mediator) {
@@ -46,7 +46,7 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/workorder.tpl.html',
+          templateUrl: '/app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderController as ctrl',
           resolve: {
             steps: function(mediator) {
