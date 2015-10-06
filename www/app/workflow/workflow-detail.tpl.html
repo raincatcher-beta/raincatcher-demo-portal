@@ -1,0 +1,8 @@
+<p>id: {{ctrl.workflow.id}}</p>
+<p>title: {{ctrl.workflow.title}}</p>
+<md-list>
+  <md-list-item ng-repeat="step in ctrl.workflow.steps">
+    Step:
+    <pre>{{step | json}}</pre>
+  </md-list-item>
+</md-list>

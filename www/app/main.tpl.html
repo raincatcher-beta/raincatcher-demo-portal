@@ -21,6 +21,10 @@
           <md-icon md-font-set="material-icons">assignment</md-icon>
           <p>Jobs</p>
         </md-list-item>
+        <md-list-item ng-click="navigateTo('app.workflow')" ng-class="{active: $state.includes('app.workflow')}">
+          <md-icon md-font-set="material-icons">assignment</md-icon>
+          <p>Workflows</p>
+        </md-list-item>
         <md-list-item ng-click="navigateTo()">
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Workers</p>

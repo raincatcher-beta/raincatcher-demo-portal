@@ -1,0 +1,18 @@
+<div layout="column" class="inner-column">
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h3>
+        <span>Workflows</span>
+      </h3>
+    </div>
+  </md-toolbar>
+
+  <md-list class="jobs-list">
+    <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" class="md-3-line" ng-class="{active: ctrl.selectedWorkflowId === workflow.id}" >
+      <div class="md-list-item-text">
+        <h3>{{workflow.id}} - {{workflow.title}}</h3>
+      </div>
+    </md-list-item>
+  </md-list>
+
+</div>
