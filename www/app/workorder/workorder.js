@@ -49,7 +49,7 @@ angular.module('app.workorder', [
       views: {
         'content@app': {
           templateUrl: '/app/workorder/workorder-detail.tpl.html',
-          controller: 'WorkorderController as ctrl',
+          controller: 'WorkorderDetailController as ctrl',
           resolve: {
             steps: function(mediator) {
               mediator.publish('workflow:steps:load');
@@ -93,11 +93,37 @@ angular.module('app.workorder', [
   self.workorders = workorders;
 })
 
-.controller('WorkorderController', function (mediator, steps, workorder) {
+.controller('WorkorderDetailController', function (mediator, steps, workorder) {
   var self = this;
 
   self.steps = steps;
   self.workorder = workorder;
+  self.getStatusIcon = function() {
+    var statusIcon;
+    switch(self.workorder.status) {
+      case 'In Progress':
+        statusIcon = 'autorenew';
+        break;
+      case 'Complete':
+        statusIcon = 'assignment_turned_in';
+        break;
+      case 'Aborted':
+        statusIcon = 'assignment_late';
+        break;
+      case 'On Hold':
+        statusIcon = 'pause';
+        break;
+      case 'Unassigned':
+        statusIcon = 'assignment_ind';
+        break;
+      case 'New':
+        statusIcon = 'new_releases';
+        break;
+      default:
+        statusIcon = 'radio_button_unchecked';
+    }
+    return statusIcon;
+  }
 
   self.beginWorkflow = function(event, workorder) {
     mediator.publish('workflow:begin', workorder.id);
