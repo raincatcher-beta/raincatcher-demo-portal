@@ -1,0 +1,14 @@
+
+<md-toolbar class="content-toolbar md-primary">
+  <div class="md-toolbar-tools">
+    <h3>
+      Work order ID {{ctrl.workorder.id}} 
+    </h3>
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.workorder.edit({workorderId: ctrl.workorder.id})">
+      <md-icon md-font-set="material-icons">edit</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+
+<workflow-step-summary workorder="ctrl.workorder" portal="true" steps="ctrl.steps"></workflow-step-summary>

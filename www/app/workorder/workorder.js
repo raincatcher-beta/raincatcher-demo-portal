@@ -46,7 +46,7 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/workorder-edit.tpl.html',
+          templateUrl: '/app/workorder/workorder-detail.tpl.html',
           controller: 'WorkorderController as ctrl',
           resolve: {
             steps: function(mediator) {
@@ -65,7 +65,7 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId/edit',
       views: {
         'content@app': {
-          template: '<workorder-form value="ctrl.workorder"></workorder-form>',
+          templateUrl: '/app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderFormController as ctrl',
           resolve: {
             workorder: function(mediator, $stateParams) {
