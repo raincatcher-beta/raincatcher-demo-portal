@@ -1,10 +1,12 @@
 'use strict';
 
 var angular = require('angular');
+require('angular-messages');
 
 angular.module('app.workorder', [
   'ui.router'
 , 'wfm.core.mediator'
+, 'ngMessages'
 ])
 
 .config(function($stateProvider) {
