@@ -70,6 +70,10 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderFormController as ctrl',
           resolve: {
+            workflows: function(mediator) {
+              mediator.publish('workflows:load');
+              return mediator.promise('workflows:loaded');
+            },
             workorder: function(mediator, $stateParams) {
               mediator.publish('workorder:load', $stateParams.workorderId);
               return mediator.promise('workorder:loaded');
@@ -147,10 +151,11 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderFormController', function ($state, mediator, workorder) {
+.controller('WorkorderFormController', function ($state, mediator, workorder, workflows) {
   var self = this;
 
   self.workorder = workorder;
+  self.workflows = workflows;
 
   mediator.subscribe('workorder:edited', function(workorder) {
     mediator.publish('workorder:save', workorder);
