@@ -56,7 +56,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover {
 
 /* FAB =========================== */
 .md-fab {
-  position: absolute;
+  position: fixed;
   bottom: 16px;
   right: 16px; }
 
@@ -100,11 +100,6 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover {
     stroke-dashoffset: 187;
     transform: rotate(450deg); } }
 
-html, body, .full {
-  margin: 0;
-  padding: 0;
-  height: 100%; }
-
 /* ************************************** */
 /* Mandatory CSS required for ng-sortable */
 /* ************************************** */
@@ -113,7 +108,8 @@ html, body, .full {
 
 .as-sortable-item {
   -ms-touch-action: none;
-  touch-action: none; }
+  touch-action: none;
+  overflow: hidden; }
 
 .as-sortable-item-handle {
   cursor: move;
@@ -142,12 +138,10 @@ html, body, .full {
 /* ******************************************* */
 .as-sortable-item, .as-sortable-placeholder {
   min-height: 20px;
-  margin: 1px 2px 5px 1px;
-  border-radius: 10px; }
+  margin-bottom: 10px; }
 
 .as-sortable-item {
-  border: solid 1px darkgrey;
-  background-color: #ffffff; }
+  padding: 0 16px; }
 
 .as-sortable-placeholder {
   border: 1px dashed darkgrey;

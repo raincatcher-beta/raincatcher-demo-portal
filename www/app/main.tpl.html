@@ -8,9 +8,9 @@
 </md-toolbar>
 
 
-  <div layout="row" class="full" flex>
+  <div layout="row" layout-fill class="fulssl">
 
-    <md-sidenav layout="column red" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
+    <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
       <md-list>
 
         <md-list-item ng-click="navigateTo()">
@@ -22,7 +22,7 @@
           <p>Jobs</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo('app.workflow')" ng-class="{active: $state.includes('app.workflow')}">
-          <md-icon md-font-set="material-icons">assignment</md-icon>
+          <md-icon md-font-set="material-icons">cached</md-icon>
           <p>Workflows</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo()">

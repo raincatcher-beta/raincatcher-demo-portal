@@ -8,9 +8,9 @@
   </md-toolbar>
 
   <md-list class="jobs-list">
-    <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" class="md-3-line" ng-class="{active: ctrl.selectedWorkflowId === workflow.id}" >
+    <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" ng-class="{active: ctrl.selectedWorkflowId === workflow.id}" >
       <div class="md-list-item-text">
-        <h3>{{workflow.id}} - {{workflow.title}}</h3>
+        <p>{{workflow.id}} - {{workflow.title}}</p>
       </div>
     </md-list-item>
   </md-list>
