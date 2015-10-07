@@ -1,8 +1,20 @@
-<appform-portal form="ctrl.form"></appform-portal>
-<md-divider></md-divider>
-<div class="panel panel-default">
-  <div class="panel-heading"><h3>App form dev info</h3></div>
-  <div class="panel-body">
+<md-card>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Appform Preview:</h2>
+    </div>
+  </md-toolbar>
+  <md-card-content>
+    <appform-portal form="ctrl.form"></appform-portal>
+  </md-card-content>
+</md-card>
+<md-card>
+  <md-toolbar>
+    <div class="md-toolbar-tools">
+      <h2>Appform dev info:</h2>
+    </div>
+  </md-toolbar>
+  <md-card-content>
     <table class="table">
       <thead>
         <th>Name (code)<br>Id<br>Type</th>
@@ -15,5 +27,5 @@
         </tr>
       </tbody>
     </table>
-  </div>
-</div>
+  </md-card-content>
+</md-card>
