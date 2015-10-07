@@ -45,9 +45,12 @@ angular.module('app.appform', ['ui.router'])
   self.form = form;
 })
 
-.controller('AppformListController', function($q, forms) {
+.controller('AppformListController', function($q, $state, forms) {
   var self = this;
   self.forms = forms;
+  self.selectForm = function(event, form) {
+    $state.go('app.appform.detail', {formId: form._id});
+  };
 })
 
 ;
