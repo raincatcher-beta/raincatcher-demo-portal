@@ -96,8 +96,9 @@ angular.module('app.workorder', [
 .controller('WorkorderDetailController', function (mediator, workflows, workorder) {
   var self = this;
 
-  self.steps = workflows[2].steps;
   self.workorder = workorder;
+  self.workflow = workflows[workorder.workflowId];
+  self.steps = self.workflow.steps;
   self.getStatusIcon = function() {
     var statusIcon;
     switch(self.workorder.status) {
