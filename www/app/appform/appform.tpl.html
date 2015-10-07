@@ -1,10 +1,14 @@
 <md-toolbar class="content-toolbar">
   <div class="md-toolbar-tools">
     <h3>
-      NAME OF THE FORM Preview
+      {{ctrl.form.props.name}} Preview
     </h3>
   </div>
 </md-toolbar>
+
+<md-content>
+  {{ctrl.form.props.description}}
+</md-content>
 
 <div layout-padding layout-margin>
   <appform-portal form="ctrl.form"></appform-portal>
