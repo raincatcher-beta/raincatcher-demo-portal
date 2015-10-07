@@ -6,11 +6,13 @@
   </div>
 </md-toolbar>
 
-<md-content>
-  {{ctrl.form.props.description}}
-</md-content>
-
 <div layout-padding layout-margin>
+
+  <p class="md-body-1">
+  {{ctrl.form.props.description}}
+  </p>
+  <md-divider></md-divider>
+
   <appform-portal form="ctrl.form"></appform-portal>
 </div>
 
