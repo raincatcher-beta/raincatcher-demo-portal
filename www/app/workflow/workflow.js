@@ -20,14 +20,8 @@ angular.module('app.workflow', [
           controller: 'WorkflowListController as ctrl',
           resolve: {
             workflows: function(mediator) {
-              mediator.publish('workflow:steps:load');
-              return mediator.promise('workflow:steps:loaded').then(function(steps) {
-                return [{
-                  id: 0,
-                  steps: steps,
-                  title: 'First workflow'
-                }];
-              });
+              mediator.publish('workflows:load');
+              return mediator.promise('workflows:loaded');
             }
           }
         },
@@ -43,15 +37,9 @@ angular.module('app.workflow', [
           templateUrl: '/app/workflow/workflow-detail.tpl.html',
           controller: 'WorkflowDetailController as ctrl',
           resolve: {
-            workflow: function(mediator) {
-              mediator.publish('workflow:steps:load');
-              return mediator.promise('workflow:steps:loaded').then(function(steps) {
-                return {
-                  id: 0,
-                  steps: steps,
-                  title: 'First workflow'
-                };
-              });
+            workflow: function($stateParams, mediator) {
+              mediator.publish('workflow:load', $stateParams.workflowId);
+              return mediator.promise('workflow:loaded');
             }
           }
         }
@@ -65,14 +53,8 @@ angular.module('app.workflow', [
           controller: 'WorkflowFormController as ctrl',
           resolve: {
             workflows: function(mediator) {
-              mediator.publish('workflow:steps:load');
-              return mediator.promise('workflow:steps:loaded').then(function(steps) {
-                return [{
-                  id: 0,
-                  steps: steps,
-                  title: 'First workflow'
-                }];
-              });
+              mediator.publish('workflows:load');
+              return mediator.promise('workflows:loaded');
             }
           }
         }
@@ -88,11 +70,12 @@ angular.module('app.workflow', [
   });
 })
 
-.controller('WorkflowListController', function (mediator, workflows) {
+.controller('WorkflowListController', function (mediator, workflows, $stateParams) {
   var self = this;
   self.workflows = workflows;
+  self.selectedWorkflowId = $stateParams.workflowId;
   self.selectWorkflow = function(event, workflow) {
-    self.selectedWorkflow = workflow;
+    self.selectedWorkflowId = workflow.id;
     mediator.publish('workflow:selected', workflow);
   };
 })

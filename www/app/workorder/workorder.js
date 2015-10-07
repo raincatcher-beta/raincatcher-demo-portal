@@ -51,9 +51,9 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-detail.tpl.html',
           controller: 'WorkorderDetailController as ctrl',
           resolve: {
-            steps: function(mediator) {
-              mediator.publish('workflow:steps:load');
-              return mediator.promise('workflow:steps:loaded');
+            workflows: function(mediator) {
+              mediator.publish('workflows:load');
+              return mediator.promise('workflows:loaded');
             },
             workorder: function(mediator, $stateParams) {
               mediator.publish('workorder:load', $stateParams.workorderId);
@@ -93,10 +93,10 @@ angular.module('app.workorder', [
   self.workorders = workorders;
 })
 
-.controller('WorkorderDetailController', function (mediator, steps, workorder) {
+.controller('WorkorderDetailController', function (mediator, workflows, workorder) {
   var self = this;
 
-  self.steps = steps;
+  self.steps = workflows[2].steps;
   self.workorder = workorder;
   self.getStatusIcon = function() {
     var statusIcon;
