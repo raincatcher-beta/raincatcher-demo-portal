@@ -7,8 +7,7 @@
   </div>
 </md-toolbar>
 
-
-  <div layout="row" layout-fill class="fulssl">
+  <div layout="row" flex>
 
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
       <md-list>
@@ -57,7 +56,7 @@
     </md-sidenav>
 
     <md-content id="content" layout="row" flex>
-      <div flex="33" ui-view name="column2"></div>
+      <div flex="33" ui-view name="column2" class="inner-column"></div>
       <!--template loaded here -->
       <div flex ui-view name="content"></div>
     </md-content>

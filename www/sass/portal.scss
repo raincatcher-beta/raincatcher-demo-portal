@@ -9,6 +9,7 @@
   cursor: pointer;
 }
 
+// Header styles 
 .md-toolbar-tools h1 {
   font-size: inherit;
   font-weight: inherit;
@@ -20,7 +21,8 @@ md-list{
   padding: 0;
 }
 
-/* Sidenav area */
+
+// Sidenav area
 
 md-sidenav md-list{
   padding: 0;
@@ -54,35 +56,34 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
   margin: 16px; }
 
 
-//empty state =======
+//empty state 
 .empty-state{
   text-align: center;
   color: rgba(0,0,0,.54);
 }
 
 
-/* Jobs list =========================== */
-.inner-column{ border-right: 1px solid rgba(0,0,0,.12)}
-
-.inner-column md-list-item {
-  border-bottom: 1px solid rgba(0,0,0,.12);
-   }
-
-.jobs-list md-list-item.list-header{
-  background: rgba(0,0,0,.56);
-}
-.workers-list md-list-item.list-header{
-  background: rgba(0,0,0,.56);
+// Inner column
+.inner-column{ 
+  md-toolbar{
+    border-right: 1px solid rgba(0,0,0,.24)
+  }
+  background: rgba(0,0,0,.05);
+  md-list-item.active .md-button, md-list-item.active .md-button:hover{
+  background: #fff!important;
+  }
 }
 
-/* FAB =========================== */
+
+// FAB 
+
 .md-fab{
   position: fixed;
   bottom: 16px;
   right: 16px;
 }
 
-/* Spinner ================ */
+// Spinner 
 $offset: 187;
 $duration: 1.4s;
 
@@ -176,15 +177,12 @@ $duration: 1.4s;
 /* ******************************************* */
 
 .as-sortable-item, .as-sortable-placeholder {
-    min-height: 20px;
-    margin-bottom: 10px;
-//    margin: 1px 2px 5px 1px;
-//    border-radius: 10px;
+  min-height: 20px;
+  margin-bottom: 10px;
+  border-radius: 2px;
 }
 
 .as-sortable-item {
-//    border: solid 1px rgba(0,0,0,.12);
-//    background-color: #ffffff;
   padding: 0 16px;
 }
 
@@ -192,13 +190,13 @@ $duration: 1.4s;
 }
 
 .as-sortable-placeholder {
-    border: 1px dashed darkgrey;
-    box-sizing: border-box;
-    background-color: #dbdbdb;
+  border: 1px dashed darkgrey;
+  box-sizing: border-box;
+  background-color: #dbdbdb;
 }
 
 .as-sortable-drag {
-    opacity: .8;
+  opacity: .8;
 }
 
 .as-sortable-hidden {

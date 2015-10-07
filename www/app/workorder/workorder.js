@@ -15,7 +15,7 @@ angular.module('app.workorder', [
       url: '/workorders/list',
       views: {
         column2: {
-          template: '<div layout="column" class="inner-column"><workorder-portal-list list="workorderListController.workorders"></workorder-portal-list></div>',
+          templateUrl: '/app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
           resolve: {
             workorders: function(mediator) {
