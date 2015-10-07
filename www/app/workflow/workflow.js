@@ -7,6 +7,7 @@ angular.module('app.workflow', [
   'ui.router'
 , 'wfm.core.mediator'
 , 'ngMessages'
+, require('ng-sortable')
 ])
 
 .config(function($stateProvider) {
@@ -96,9 +97,11 @@ angular.module('app.workflow', [
   };
 })
 
-.controller('WorkflowDetailController', function (mediator, workflow) {
+.controller('WorkflowDetailController', function ($scope, mediator, workflow) {
   var self = this;
-
+  $scope.dragControlListeners = {
+    containment: '#stepList'
+  }
   self.workflow = workflow;
 })
 
