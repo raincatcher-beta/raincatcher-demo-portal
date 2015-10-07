@@ -1,20 +1,21 @@
-<md-card>
-  <md-toolbar>
-    <div class="md-toolbar-tools">
-      <h2>Appform Preview:</h2>
-    </div>
-  </md-toolbar>
-  <md-card-content>
-    <appform-portal form="ctrl.form"></appform-portal>
-  </md-card-content>
-</md-card>
-<md-card>
+<md-toolbar class="content-toolbar">
+  <div class="md-toolbar-tools">
+    <h3>
+      NAME OF THE FORM Preview
+    </h3>
+  </div>
+</md-toolbar>
+
+<div layout-padding layout-margin>
+  <appform-portal form="ctrl.form"></appform-portal>
+</div>
+
   <md-toolbar>
     <div class="md-toolbar-tools">
       <h2>Appform dev info:</h2>
     </div>
   </md-toolbar>
-  <md-card-content>
+<div layout-padding layout-margin>
     <table class="table">
       <thead>
         <th>Name (code)<br>Id<br>Type</th>
@@ -27,5 +28,4 @@
         </tr>
       </tbody>
     </table>
-  </md-card-content>
-</md-card>
+</div>
