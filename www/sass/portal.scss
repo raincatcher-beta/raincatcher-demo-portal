@@ -126,3 +126,9 @@ $duration: 1.4s;
    transform:rotate(450deg);
  }
 }
+
+html, body, .full {
+  margin:0;
+  padding:0;
+  height:100%;
+}
