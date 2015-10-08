@@ -94,6 +94,11 @@ angular.module('app.workorder', [
       workorderId: workorder.id
     });
   });
+  mediator.subscribe('workflow:selected', function(workflow) {
+    $state.go('app.workflow.detail', {
+      workflowId: workflow.id
+    });
+  });
 })
 
 .controller('WorkorderListController', function (mediator, workorders) {
