@@ -7,7 +7,7 @@
     </div>
   </md-toolbar>
   <md-list>
-    <md-list-item  ng-repeat="form in ctrl.forms" ng-click="ctrl.selectForm($event, form)" class="md-3-line" ng-class="{active: ctrl.selectedFormId === form.id}">
+    <md-list-item  ng-repeat="form in ctrl.forms" ng-click="ctrl.selectForm($event, form)" class="md-3-line" ng-class="{active: ctrl.selectedFormId === form._id}">
       <div class="md-list-item-text">
         <h3>{{form.name}}</h3>
         <h4>{{form._id}}</h4>
