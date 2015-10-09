@@ -9,14 +9,14 @@ angular.module('app', [
 , require('fh-wfm-mediator')
 , require('fh-wfm-workorder')
 , require('fh-wfm-workflow')
+, require('fh-wfm-appform')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
-, require('fh-wfm-appform')
 
-, require('./home/home')
-, require('./appform/appform')
 , require('./workorder/workorder')
 , require('./workflow/workflow')
+, require('./home/home')
+, require('./appform/appform')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
