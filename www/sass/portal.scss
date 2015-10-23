@@ -18,7 +18,7 @@ $danger: #F44336; //red 500
 .success{ color: $success;}
 .danger{ color: $danger;}
 
-// @import 'node_modules/fh-wfm-workorder/sass/workorder.scss';
+@import 'node_modules/fh-wfm-workorder/sass/workorder.scss';
 @import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
 @import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
 @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
