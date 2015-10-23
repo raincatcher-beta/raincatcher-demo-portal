@@ -1,7 +1,27 @@
+$secondary-text-color: rgba(0,0,0,.54);
+$divider-text-color: rgba(0,0,0,.12);
+
+$white-text-color: rgba(255,255,255,1);
+$white-secondary-text-color: rgba(255,255,255,.7);
+
+$primary-color: #3F51B5;
+$secondary-color: #303F9F;
+
+$accent-color-1: #a63db8;
+$accent-color-2: #4d5bb3;
+$accent-color-3: #1aa094;
+$accent-color-4: #283593;
+
+$success: #388E3C;//green700
+$danger: #F44336; //red 500
+
+.success{ color: $success;}
+.danger{ color: $danger;}
+
 // @import 'node_modules/fh-wfm-workorder/sass/workorder.scss';
-// @import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
-// @import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
-// @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
+@import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
+@import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
+@import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
 // @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
 
@@ -9,7 +29,7 @@
   cursor: pointer;
 }
 
-// Header styles 
+// Header styles
 .md-toolbar-tools h1 {
   font-size: inherit;
   font-weight: inherit;
@@ -56,7 +76,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
   margin: 16px; }
 
 
-//empty state 
+//empty state
 .empty-state{
   text-align: center;
   color: rgba(0,0,0,.54);
@@ -64,7 +84,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
 
 
 // Inner column
-.inner-column{ 
+.inner-column{
   md-toolbar{
     border-right: 1px solid rgba(0,0,0,.24)
   }
@@ -75,7 +95,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
 }
 
 
-// FAB 
+// FAB
 
 .md-fab{
   position: fixed;
@@ -83,7 +103,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
   right: 16px;
 }
 
-// Spinner 
+// Spinner
 $offset: 187;
 $duration: 1.4s;
 
