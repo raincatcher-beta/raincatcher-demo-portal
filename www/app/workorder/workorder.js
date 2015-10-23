@@ -112,32 +112,6 @@ angular.module('app.workorder', [
   self.workorder = workorder;
   self.workflow = workflows[workorder.workflowId];
   self.steps = self.workflow.steps;
-  self.getStatusIcon = function() {
-    var statusIcon;
-    switch(self.workorder.status) {
-      case 'In Progress':
-        statusIcon = 'autorenew';
-        break;
-      case 'Complete':
-        statusIcon = 'assignment_turned_in';
-        break;
-      case 'Aborted':
-        statusIcon = 'assignment_late';
-        break;
-      case 'On Hold':
-        statusIcon = 'pause';
-        break;
-      case 'Unassigned':
-        statusIcon = 'assignment_ind';
-        break;
-      case 'New':
-        statusIcon = 'new_releases';
-        break;
-      default:
-        statusIcon = 'radio_button_unchecked';
-    }
-    return statusIcon;
-  }
 
   self.beginWorkflow = function(event, workorder) {
     mediator.publish('workflow:begin', workorder.id);
