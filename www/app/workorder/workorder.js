@@ -20,7 +20,7 @@ angular.module('app.workorder', [
           resolve: {
             workorders: function(mediator) {
               mediator.publish('workorders:load');
-              return mediator.promise('workorders:loaded');
+              return mediator.promise('done:workorders:load');
             }
           }
         },
@@ -61,7 +61,7 @@ angular.module('app.workorder', [
             },
             workorder: function(mediator, $stateParams) {
               mediator.publish('workorder:load', $stateParams.workorderId);
-              return mediator.promise('workorder:loaded');
+              return mediator.promise('done:workorder:load');
             }
           }
         }
@@ -80,7 +80,7 @@ angular.module('app.workorder', [
             },
             workorder: function(mediator, $stateParams) {
               mediator.publish('workorder:load', $stateParams.workorderId);
-              return mediator.promise('workorder:loaded');
+              return mediator.promise('done:workorder:load');
             }
           }
         }
@@ -143,7 +143,7 @@ angular.module('app.workorder', [
 
   mediator.subscribe('workorder:edited', function(workorder) {
     mediator.publish('workorder:save', workorder);
-    mediator.once('workorder:saved', function(workorder) {
+    mediator.once('done:workorder:save', function(workorder) {
       $state.go('app.workorder', {
         workorderId: workorder.id
       });
