@@ -19,8 +19,7 @@ angular.module('app.workorder', [
           controller: 'WorkorderListController as workorderListController',
           resolve: {
             workorders: function(mediator) {
-              mediator.publish('workorders:load');
-              return mediator.promise('done:workorders:load');
+              return mediator.request('workorders:load');
             }
           }
         },
@@ -41,8 +40,7 @@ angular.module('app.workorder', [
               return mediator.promise('workflows:loaded');
             },
             workorder: function(mediator) {
-              mediator.publish('workorder:new');
-              return mediator.promise('workorder:new:done');
+              return mediator.publish('workorder:new');
             }
           }
         }
@@ -60,8 +58,7 @@ angular.module('app.workorder', [
               return mediator.promise('workflows:loaded');
             },
             workorder: function(mediator, $stateParams) {
-              mediator.publish('workorder:load', $stateParams.workorderId);
-              return mediator.promise('done:workorder:load');
+              return mediator.request('workorder:load', $stateParams.workorderId);
             }
           }
         }
@@ -79,8 +76,7 @@ angular.module('app.workorder', [
               return mediator.promise('workflows:loaded');
             },
             workorder: function(mediator, $stateParams) {
-              mediator.publish('workorder:load', $stateParams.workorderId);
-              return mediator.promise('done:workorder:load');
+              return mediator.request('workorder:load', $stateParams.workorderId);
             }
           }
         }
@@ -127,10 +123,9 @@ angular.module('app.workorder', [
 
   mediator.subscribe('workorder:edited', function(workorder) {
     if (!workorder.id && workorder.id !== 0) {
-      mediator.publish('workorder:create', workorder);
-      mediator.once('done:workorder:create', function(workorder) {
+      mediator.request('workorder:create', workorder).then(function() {
         mediator.publish('workorder:selected', workorder);
-      })
+      });
     }
   });
 })
@@ -142,8 +137,7 @@ angular.module('app.workorder', [
   self.workflows = workflows;
 
   mediator.subscribe('workorder:edited', function(workorder) {
-    mediator.publish('workorder:save', workorder);
-    mediator.once('done:workorder:save', function(workorder) {
+    return mediator.request('workorders:save', workorder).then(function() {
       $state.go('app.workorder', {
         workorderId: workorder.id
       });
