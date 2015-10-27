@@ -128,7 +128,7 @@ angular.module('app.workorder', [
   mediator.subscribe('workorder:edited', function(workorder) {
     if (!workorder.id && workorder.id !== 0) {
       mediator.publish('workorder:create', workorder);
-      mediator.once('workorder:created', function(workorder) {
+      mediator.once('done:workorder:create', function(workorder) {
         mediator.publish('workorder:selected', workorder);
       })
     }
