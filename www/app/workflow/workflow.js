@@ -39,7 +39,7 @@ angular.module('app.workflow', [
           resolve: {
             workflow: function($stateParams, mediator) {
               mediator.publish('workflow:load', $stateParams.workflowId);
-              return mediator.promise('workflow:loaded');
+              return mediator.promise('done:workflow:load');
             }
           }
         }
