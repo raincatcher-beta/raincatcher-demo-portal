@@ -94,11 +94,12 @@ angular.module('app.workflow', [
   self.workflow = workflow;
 
   mediator.subscribe('workflow:edited', function(workflow) {
-    mediator.publish('workflow:save', workflow);
-    mediator.once('workflow:saved', function(workflow) {
+    mediator.request('workflow:save', workflow, {uid: workflow.id}).then(function(workflow) {
       $state.go('app.workflow', {
         workflowId: workflow.id
       });
+    }, function(error) {
+      console.log(error);
     })
   });
 })
