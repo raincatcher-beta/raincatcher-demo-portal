@@ -37,7 +37,7 @@ angular.module('app.workorder', [
           resolve: {
             workflows: function(mediator) {
               mediator.publish('workflows:load');
-              return mediator.promise('workflows:loaded');
+              return mediator.promise('done:workflows:load');
             },
             workorder: function(mediator) {
               return mediator.publish('workorder:new');
@@ -55,7 +55,7 @@ angular.module('app.workorder', [
           resolve: {
             workflows: function(mediator) {
               mediator.publish('workflows:load');
-              return mediator.promise('workflows:loaded');
+              return mediator.promise('done:workflows:load');
             },
             workorder: function(mediator, $stateParams) {
               return mediator.request('workorder:load', $stateParams.workorderId);
@@ -73,7 +73,7 @@ angular.module('app.workorder', [
           resolve: {
             workflows: function(mediator) {
               mediator.publish('workflows:load');
-              return mediator.promise('workflows:loaded');
+              return mediator.promise('done:workflows:load');
             },
             workorder: function(mediator, $stateParams) {
               return mediator.request('workorder:load', $stateParams.workorderId);

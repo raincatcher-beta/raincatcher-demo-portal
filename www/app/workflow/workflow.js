@@ -21,7 +21,7 @@ angular.module('app.workflow', [
           resolve: {
             workflows: function(mediator) {
               mediator.publish('workflows:load');
-              return mediator.promise('workflows:loaded');
+              return mediator.promise('done:workflows:load');
             }
           }
         },
@@ -54,7 +54,7 @@ angular.module('app.workflow', [
           resolve: {
             workflows: function(mediator) {
               mediator.publish('workflows:load');
-              return mediator.promise('workflows:loaded');
+              return mediator.promise('done:workflows:load');
             }
           }
         }
