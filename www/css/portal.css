@@ -54,11 +54,25 @@
     background: #46b3e7;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2); }
 
+.workflow {
+  margin-bottom: 64px; }
+
+.workflow-actions {
+  background: #fff;
+  position: fixed;
+  text-align: right;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99; }
+
 risk-assessment-signature canvas {
   border: 1px solid rgba(0, 0, 0, 0.12); }
 
 risk-assessment .with-image {
   height: auto; }
+  risk-assessment .with-image p {
+    padding-bottom: 20px; }
   risk-assessment .with-image img {
     margin-top: 16px;
     width: 100%;
@@ -82,8 +96,48 @@ risk-assessment .with-image {
 .vehicle-inspection-portal dd {
   margin-left: 180px; }
 
+.loading {
+  font-style: italic;
+  color: gray; }
+
+p.md-caption {
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 5px; }
+
+appform-field-signature canvas {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  width: 99%; }
+
+.with-image {
+  height: auto; }
+  .with-image p {
+    padding-bottom: 20px; }
+  .with-image img {
+    margin-top: 16px;
+    width: 100%;
+    display: inline-block; }
+
 .appform-list tbody tr {
   cursor: pointer; }
+
+.phone-display {
+  background: url(https://dl.dropboxusercontent.com/u/4371641/iPhone-6.png) no-repeat 0 0;
+  width: 485px;
+  height: 891px; }
+  .phone-display .app-form {
+    width: 342px;
+    height: 598px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: none;
+    position: relative;
+    position: relative;
+    top: 120px;
+    left: 51px;
+    overflow: auto; }
+    .phone-display .app-form .workflow-actions {
+      position: absolute;
+      right: 0;
+      left: 0; }
 
 .md-toolbar-tools h1 {
   font-size: inherit;

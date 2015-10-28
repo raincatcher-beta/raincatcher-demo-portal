@@ -22,11 +22,36 @@ $danger: #F44336; //red 500
 @import 'node_modules/fh-wfm-workflow/sass/workflow.scss';
 @import 'node_modules/fh-wfm-risk-assessment/sass/risk-assessment.scss';
 @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
-// @import 'node_modules/fh-wfm-appform/sass/appform.scss';
+@import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
 
 .appform-list tbody tr {
   cursor: pointer;
+}
+
+// appform phone
+
+.phone-display{
+ // TODO add this image to the project
+  background: url(https://dl.dropboxusercontent.com/u/4371641/iPhone-6.png) no-repeat 0 0;
+  width: 485px;
+  height: 891px;
+  .app-form{
+    width: 342px;
+    height: 598px;
+    border: 1px solid $divider-text-color;
+    border-top: none;
+    position: relative;
+    position:relative;
+    top: 120px;
+    left: 51px;
+    overflow: auto;
+    .workflow-actions{
+      position: absolute;
+      right: 0;
+      left: 0;
+    }
+  }
 }
 
 // Header styles
