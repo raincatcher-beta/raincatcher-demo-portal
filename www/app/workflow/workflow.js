@@ -20,8 +20,7 @@ angular.module('app.workflow', [
           controller: 'WorkflowListController as ctrl',
           resolve: {
             workflows: function(mediator) {
-              mediator.publish('workflows:load');
-              return mediator.promise('done:workflows:load');
+              return mediator.request('workflows:load');
             }
           }
         },
@@ -38,8 +37,7 @@ angular.module('app.workflow', [
           controller: 'WorkflowDetailController as ctrl',
           resolve: {
             workflow: function($stateParams, mediator) {
-              mediator.publish('workflow:load', $stateParams.workflowId);
-              return mediator.promise('done:workflow:load');
+              return mediator.request('workflow:load', $stateParams.workflowId);
             }
           }
         }
@@ -53,8 +51,7 @@ angular.module('app.workflow', [
           controller: 'WorkflowFormController as ctrl',
           resolve: {
             workflows: function(mediator) {
-              mediator.publish('workflows:load');
-              return mediator.promise('done:workflows:load');
+              return mediator.request('workflows:load');
             }
           }
         }
