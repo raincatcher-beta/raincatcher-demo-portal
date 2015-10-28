@@ -15,8 +15,7 @@ angular.module('app.appform', ['ui.router'])
           controllerAs: 'ctrl',
           resolve: {
             form: function($stateParams, mediator) {
-              mediator.publish('wfm:appform:form:load', $stateParams.formId);
-              return mediator.promise('wfm:appform:form:loaded');
+              return mediator.request('wfm:appform:form:load', $stateParams.formId);
             }
           }
         }
@@ -31,8 +30,7 @@ angular.module('app.appform', ['ui.router'])
           controllerAs: 'ctrl',
           resolve: {
             forms: function(mediator) {
-              mediator.publish('wfm:appform:forms:load');
-              return mediator.promise('wfm:appform:forms:loaded');
+              return mediator.request('wfm:appform:forms:load');
             }
           }
         }
