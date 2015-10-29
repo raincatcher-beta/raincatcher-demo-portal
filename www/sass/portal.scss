@@ -42,14 +42,14 @@ $danger: #F44336; //red 500
     border: 1px solid $divider-text-color;
     border-top: none;
     position: relative;
-    position:relative;
     top: 120px;
     left: 51px;
     overflow: auto;
     .workflow-actions{
-      position: absolute;
-      right: 0;
-      left: 0;
+      margin-top: 40px;
+      position: static;
+      box-shadow: none;
+      border-top: 1px solid $divider-text-color;
     }
   }
 }
