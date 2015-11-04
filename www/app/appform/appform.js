@@ -15,7 +15,7 @@ angular.module('app.appform', ['ui.router'])
           controllerAs: 'ctrl',
           resolve: {
             form: function($stateParams, mediator) {
-              return mediator.request('wfm:appform:form:load', $stateParams.formId);
+              return mediator.request('appform:form:load', $stateParams.formId);
             }
           }
         }
@@ -30,7 +30,7 @@ angular.module('app.appform', ['ui.router'])
           controllerAs: 'ctrl',
           resolve: {
             forms: function(mediator) {
-              return mediator.request('wfm:appform:forms:load');
+              return mediator.request('appform:form:list');
             }
           }
         }
