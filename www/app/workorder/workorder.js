@@ -18,7 +18,7 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
           resolve: {
-            workorders: function(mediator) {
+            workorders: function(mediator, workorderModuleInit) {
               return mediator.request('workorders:load');
             }
           }
@@ -38,7 +38,7 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator) {
+            workorder: function(mediator, workorderModuleInit) {
               return mediator.publish('workorder:new');
             }
           }
@@ -55,7 +55,7 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator, $stateParams) {
+            workorder: function(mediator, $stateParams, workorderModuleInit) {
               return mediator.request('workorder:load', $stateParams.workorderId);
             }
           }
@@ -72,7 +72,7 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator, $stateParams) {
+            workorder: function(mediator, $stateParams, workorderModuleInit) {
               return mediator.request('workorder:load', $stateParams.workorderId);
             }
           }

@@ -26,6 +26,11 @@ angular.module('app', [
     .state('app', {
       abstract: true,
       templateUrl: 'app/main.tpl.html',
+      resolve: {
+        workorderModuleInit: function(mediator) {
+          return mediator.request('module:init:workorder')
+        }
+      },
       controller: function($state, $scope) {
         $scope.$state = $state;
         $scope.navigateTo = function(state, params) {
