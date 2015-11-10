@@ -17,6 +17,7 @@ angular.module('app', [
 , require('./workflow/workflow')
 , require('./home/home')
 , require('./appform/appform')
+, require('./worker/worker')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

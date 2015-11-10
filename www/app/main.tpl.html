@@ -24,7 +24,7 @@
           <md-icon md-font-set="material-icons">cached</md-icon>
           <p>Workflows</p>
         </md-list-item>
-        <md-list-item ng-click="navigateTo()">
+        <md-list-item ng-click="navigateTo('app.worker')" ng-class="{active: $state.includes('app.worker')}">
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Workers</p>
         </md-list-item>
