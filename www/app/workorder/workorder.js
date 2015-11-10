@@ -1,6 +1,7 @@
 'use strict';
 
 var angular = require('angular');
+var _ = require('lodash');
 require('angular-messages');
 
 angular.module('app.workorder', [
@@ -56,7 +57,30 @@ angular.module('app.workorder', [
               return mediator.request('workflows:load');
             },
             workorder: function(mediator, $stateParams, workorderModuleInit) {
-              return mediator.request('workorder:load', $stateParams.workorderId);
+              return mediator.request('workorder:load', $stateParams.workorderId).then(function(workorder) {
+                if (workorder.steps) { // TODO: re-factor this logic into the appropriate WFM module
+                  var appformSteps = _.filter(workorder.steps, function(appformStep) {
+                    return !! appformStep.workflowStep.formId;
+                  });
+                  var submissionIds = _.map(appformSteps, function(step) {
+                    return step.submission.submissionId;
+                  });
+                  return mediator.request('appform:submission:list:remote:load', [submissionIds, workorder.id], {uid: workorder.id})
+                  .then(function(results) {
+                    results.forEach(function(result) {
+                      var submission = result.value;
+                      appformSteps.filter(function(appformStep) {
+                        return appformStep.submission.submissionId === submission.props._id;
+                      }).forEach(function(appformStep) {
+                        appformStep.submission._submission = submission;
+                      });
+                    });
+                    return workorder;
+                  });
+                } else {
+                  return workorder;
+                }
+              });
             }
           }
         }
