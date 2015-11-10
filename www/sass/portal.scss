@@ -25,6 +25,7 @@ $danger: #F44336; //red 500
 @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
 
+
 .appform-list tbody tr {
   cursor: pointer;
 }
@@ -66,6 +67,27 @@ md-list{
   padding: 0;
 }
 
+// Search
+
+.persistent-search{
+  background: red;
+  position: relative;
+  label{ position: absolute;
+    left: 16px;
+    top: 13px;
+    color: $secondary-text-color;
+  }
+  input{
+    font-size: 16px;
+    display: block;
+    border: none;
+    width: calc(100% - 89px);
+    padding: 16px 16px 16px 72px;
+ //   background: tan ;
+    border-bottom: 1px solid $divider-text-color;
+    border-right: 1px solid $divider-text-color;
+  }   
+}
 
 // Sidenav area
 
