@@ -143,6 +143,21 @@ appform-field-signature canvas {
     width: 100%;
     display: inline-block; }
 
+md-tabs md-tab-item {
+  color: rgba(0, 0, 0, 0.54) !important; }
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+  color: #3F51B5 !important; }
+
+.user-info-header {
+  background-size: cover;
+  background-position: center center; }
+  .user-info-header h1 {
+    margin: 0;
+    padding: 180px 16px 16px;
+    color: #fff;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent 60%); }
+
 .appform-list tbody tr {
   cursor: pointer; }
 
@@ -187,7 +202,7 @@ md-list {
     display: block;
     border: none;
     width: calc(100% - 89px);
-    padding: 16px 16px 16px 72px;
+    padding: 15px 16px 14px 72px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     border-right: 1px solid rgba(0, 0, 0, 0.12); }
 

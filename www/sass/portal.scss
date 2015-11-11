@@ -26,6 +26,28 @@ $danger: #F44336; //red 500
 
 
 
+// tabs 
+md-tabs md-tab-item{
+  color: $secondary-text-color !important;
+}
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused{
+  color: $primary-color !important;
+}
+
+.user-info-header{
+  background-size: cover;
+  background-position: center center;
+  h1{
+    margin: 0;
+    padding: 180px 16px 16px;
+    color: #fff;
+    background-image: linear-gradient(to top,rgba(0,0,0,.6) 10%, transparent 60%);
+  }
+}
+
+
+// appform
 .appform-list tbody tr {
   cursor: pointer;
 }
@@ -82,7 +104,7 @@ md-list{
     display: block;
     border: none;
     width: calc(100% - 89px);
-    padding: 16px 16px 16px 72px;
+    padding: 15px 16px 14px 72px;
  //   background: tan ;
     border-bottom: 1px solid $divider-text-color;
     border-right: 1px solid $divider-text-color;

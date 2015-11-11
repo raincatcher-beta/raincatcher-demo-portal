@@ -16,13 +16,113 @@
 
 
 
-worker detail
+ <md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="Information">
+    <md-content>
+      <div class="user-info-header" style="background-image: url('http://web18.streamhoster.com/pentonmedia/beefmagazine.com/TreverStockyards_38371.jpg')">
+        <h1 class="md-display-1">Trever Smith</h1>
+      </div>
+        
+      <md-list>
+        <md-list-item class="md-2-line" >
+          <md-icon md-font-set="material-icons">phone</md-icon>
+          <div class="md-list-item-text">
+            <h3>(265) 725 8272</h3>
+            <p>Phone Number</p>
+          </div>
+        <md-divider></md-divider>
+        </md-list-item>
+        
+        <md-list-item class="md-2-line" >
+          <md-icon md-font-set="material-icons">email</md-icon>
+          <div class="md-list-item-text">
+            <h3>trever@trucker.com</h3>
+            <p>Email</p>
+          </div>
+        <md-divider></md-divider>
+        </md-list-item>
+      
+        <md-list-item class="md-2-line" >
+          <md-icon md-font-set="material-icons">portrait</md-icon>
+          <div class="md-list-item-text">
+            <h3>Senior Trucker</h3>
+            <p>Role/position</p>
+          </div>
+        <md-divider></md-divider>
+        </md-list-item>
+        
+        <md-subheader class="md-no-sticky">Notes</md-subheader>
+        <p class="md-body-1" layout-padding layout-margin>Trever doesn't work during the weekends.</p>
+        
+        
+      </md-content>
+    </md-tab>
+      
+    <md-tab label="Workorders">
+      <md-content>
 
-avatar
-First name
-Last name
-Role/position
-Email
-Phone No
-workorders assigned
-messages
+        <md-list>
+          <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
+          <workorder-status class="" status="workorder.status"></workorder-status>
+            <div class="md-list-item-text">
+              <h3>Job Order - 5247825</h3>
+              <h4>Door in dispair</h4>
+              <p>524 Ferry Rd. @N Chicago, IL</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        
+          <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
+          <workorder-status class="" status="workorder.status"></workorder-status>
+            <div class="md-list-item-text">
+              <h3>Job Order - 5247825</h3>
+              <h4>Door in dispair</h4>
+              <p>524 Ferry Rd. @N Chicago, IL</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        
+          <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
+          <workorder-status class="" status="workorder.status"></workorder-status>
+            <div class="md-list-item-text">
+              <h3>Job Order - 5247825</h3>
+              <h4>Door in dispair</h4>
+              <p>524 Ferry Rd. @N Chicago, IL</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        
+          <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
+          <workorder-status class="" status="workorder.status"></workorder-status>
+            <div class="md-list-item-text">
+              <h3>Job Order - 5247825</h3>
+              <h4>Door in dispair</h4>
+              <p>524 Ferry Rd. @N Chicago, IL</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        
+          <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
+          <workorder-status class="" status="workorder.status"></workorder-status>
+            <div class="md-list-item-text">
+              <h3>Job Order - 5247825</h3>
+              <h4>Door in dispair</h4>
+              <p>524 Ferry Rd. @N Chicago, IL</p>
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+          
+        </md-list>
+      </md-content>
+    </md-tab>
+    
+    <md-tab label="Messages">
+      <md-content class="md-padding">
+        <h1 class="md-display-2">Messages</h1>
+        <p>Integer turpis erat, porttitor vitae mi faucibus, laoreet interdum tellus. Curabitur posuere molestie dictum. Morbi eget congue risus, quis rhoncus quam. Suspendisse vitae hendrerit erat, at posuere mi. Cras eu fermentum nunc. Sed id ante eu orci commodo volutpat non ac est. Praesent ligula diam, congue eu enim scelerisque, finibus commodo lectus.</p>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+    
+
+
