@@ -24,8 +24,6 @@ $danger: #F44336; //red 500
 @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
 @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
-
-
 // tabs 
 md-tabs md-tab-item{
   color: $secondary-text-color !important;
@@ -38,12 +36,38 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 .user-info-header{
   background-size: cover;
   background-position: center center;
+  background-color: #333;
   h1{
     margin: 0;
     padding: 180px 16px 16px;
     color: #fff;
     background-image: linear-gradient(to top,rgba(0,0,0,.6) 10%, transparent 60%);
   }
+}
+
+// messages screen ==========
+
+.messages{
+  .md-list-item-text{
+    position: relative;
+  }
+  .new{
+    h3{
+      font-weight: bold!important;
+    }
+  }
+  .time-stamp{
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: $secondary-text-color;
+  }
+  
+  md-list-item md-divider[md-inset] {
+    left: 72px;
+    width: calc(100% - 72px);
+  }
+  
 }
 
 

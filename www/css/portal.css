@@ -151,12 +151,29 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 
 .user-info-header {
   background-size: cover;
-  background-position: center center; }
+  background-position: center center;
+  background-color: #333; }
   .user-info-header h1 {
     margin: 0;
     padding: 180px 16px 16px;
     color: #fff;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent 60%); }
+
+.messages .md-list-item-text {
+  position: relative; }
+
+.messages .new h3 {
+  font-weight: bold !important; }
+
+.messages .time-stamp {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: rgba(0, 0, 0, 0.54); }
+
+.messages md-list-item md-divider[md-inset] {
+  left: 72px;
+  width: calc(100% - 72px); }
 
 .appform-list tbody tr {
   cursor: pointer; }
