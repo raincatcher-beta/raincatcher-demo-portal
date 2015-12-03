@@ -158,7 +158,7 @@ angular.module('app.workorder', [
   self.workflows = workflows;
 
   mediator.subscribe('workorder:edited', function(workorder) {
-    return mediator.request('workorders:save', workorder).then(function() {
+    return mediator.request('workorder:save', workorder).then(function() {
       $state.go('app.workorder', {
         workorderId: workorder.id
       });
