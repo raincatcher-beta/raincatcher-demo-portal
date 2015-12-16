@@ -74,8 +74,8 @@ angular.module('app.worker', [
   var bannerUrl = worker.banner || worker.avatar;
   this.style = {
     'background-image': 'url(' + bannerUrl + ')',
-    'background-position': 'top center',
-    'background-size': worker.banner ? 'cover' : 'contain',
+    'background-position': worker.banner ? 'center center' : 'top center',
+    'background-size': worker.banner ? 'auto' : 'contain',
     'background-repeat': 'no-repeat'
   }
   console.log('style', this.style);
