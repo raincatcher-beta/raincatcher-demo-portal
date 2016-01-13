@@ -19,8 +19,8 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
           resolve: {
-            workorders: function(mediator, workorderModuleInit) {
-              return mediator.request('workorders:load');
+            workorders: function(mediator, workorderManager) {
+              return workorderManager.list();
             }
           }
         },
@@ -39,8 +39,8 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator, workorderModuleInit) {
-              return mediator.publish('workorder:new');
+            workorder: function(mediator, workorderManager) {
+              return workorderManager.new();
             }
           }
         }
@@ -56,8 +56,9 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator, $stateParams, workorderModuleInit) {
-              return mediator.request('workorder:load', $stateParams.workorderId).then(function(workorder) {
+            workorder: function(mediator, $stateParams, appformClient, workorderManager) {
+              return workorderManager.read($stateParams.workorderId)
+              .then(function(workorder) {
                 if (workorder.steps) { // TODO: re-factor this logic into the appropriate WFM module
                   var appformSteps = _.filter(workorder.steps, function(appformStep) {
                     return !! appformStep.workflowStep.formId;
@@ -96,8 +97,8 @@ angular.module('app.workorder', [
             workflows: function(mediator) {
               return mediator.request('workflows:load');
             },
-            workorder: function(mediator, $stateParams, workorderModuleInit) {
-              return mediator.request('workorder:load', $stateParams.workorderId);
+            workorder: function($stateParams, workorderManager) {
+              return workorderManager.read($stateParams.workorderId);
             }
           }
         }
@@ -136,7 +137,7 @@ angular.module('app.workorder', [
   };
 })
 
-.controller('WorkorderNewController', function(workorder, workflows, mediator) {
+.controller('WorkorderNewController', function(workorder, workflows, mediator, workorderManager) {
   var self = this;
 
   self.workorder = workorder;
@@ -144,7 +145,7 @@ angular.module('app.workorder', [
 
   mediator.subscribe('workorder:edited', function(workorder) {
     if (!workorder.id && workorder.id !== 0) {
-      mediator.request('workorder:create', workorder).then(function() {
+      workorderManager.create(workorder).then(function() {
         mediator.publish('workorder:selected', workorder);
       });
     }
@@ -158,7 +159,7 @@ angular.module('app.workorder', [
   self.workflows = workflows;
 
   mediator.subscribe('workorder:edited', function(workorder) {
-    return mediator.request('workorder:save', workorder).then(function() {
+    return workorderManager.update(workorder).then(function() {
       $state.go('app.workorder', {
         workorderId: workorder.id
       });
