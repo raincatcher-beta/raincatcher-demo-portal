@@ -19,8 +19,8 @@ angular.module('app.workflow', [
           templateUrl: '/app/workflow/workflow-list.tpl.html',
           controller: 'WorkflowListController as ctrl',
           resolve: {
-            workflows: function(mediator) {
-              return mediator.request('workflows:load');
+            workflows: function(workflowManager) {
+              return workflowManager.list();
             }
           }
         },
@@ -36,8 +36,8 @@ angular.module('app.workflow', [
           templateUrl: '/app/workflow/workflow-detail.tpl.html',
           controller: 'WorkflowDetailController as ctrl',
           resolve: {
-            workflow: function($stateParams, mediator) {
-              return mediator.request('workflow:load', $stateParams.workflowId);
+            workflow: function($stateParams, workflowManager) {
+              return workflowManager.read($stateParams.workflowId);
             }
           }
         }
@@ -50,8 +50,8 @@ angular.module('app.workflow', [
           templateUrl: '/app/workflow/workflow-edit.tpl.html',
           controller: 'WorkflowFormController as ctrl',
           resolve: {
-            workflows: function(mediator) {
-              return mediator.request('workflows:load');
+            workflows: function(workflowManager) {
+              return workflowManager.list();
             }
           }
         }
@@ -77,7 +77,7 @@ angular.module('app.workflow', [
   };
 })
 
-.controller('WorkflowDetailController', function ($scope, mediator, workflow) {
+.controller('WorkflowDetailController', function ($scope, workflow) {
   var self = this;
   $scope.dragControlListeners = {
     containment: '#stepList'
@@ -85,15 +85,15 @@ angular.module('app.workflow', [
   self.workflow = workflow;
 })
 
-.controller('WorkflowFormController', function ($state, mediator, workflow) {
+.controller('WorkflowFormController', function ($state, mediator, workflow, workflowManager) {
   var self = this;
 
   self.workflow = workflow;
 
   mediator.subscribe('workflow:edited', function(workflow) {
-    mediator.request('workflow:save', workflow, {uid: workflow.id}).then(function(workflow) {
+    workflowManager.update(workflow).then(function(_workflow) {
       $state.go('app.workflow', {
-        workflowId: workflow.id
+        workflowId: _workflow.id
       });
     }, function(error) {
       console.log(error);

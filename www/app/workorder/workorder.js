@@ -19,7 +19,7 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
           resolve: {
-            workorders: function(mediator, workorderManager) {
+            workorders: function(workorderManager) {
               return workorderManager.list();
             }
           }
@@ -36,10 +36,10 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-new.tpl.html',
           controller: 'WorkorderNewController as ctrl',
           resolve: {
-            workflows: function(mediator) {
-              return mediator.request('workflows:load');
+            workflows: function(workflowManager) {
+              return workflowManager.list();
             },
-            workorder: function(mediator, workorderManager) {
+            workorder: function(workorderManager) {
               return workorderManager.new();
             }
           }
@@ -53,10 +53,10 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-detail.tpl.html',
           controller: 'WorkorderDetailController as ctrl',
           resolve: {
-            workflows: function(mediator) {
-              return mediator.request('workflows:load');
+            workflows: function(workflowManager) {
+              return workflowManager.list();
             },
-            workorder: function(mediator, $stateParams, appformClient, workorderManager) {
+            workorder: function($stateParams, appformClient, workorderManager) {
               return workorderManager.read($stateParams.workorderId)
               .then(function(workorder) {
                 if (workorder.steps) { // TODO: re-factor this logic into the appropriate WFM module
@@ -66,7 +66,7 @@ angular.module('app.workorder', [
                   var submissionIds = _.map(appformSteps, function(step) {
                     return step.submission.submissionId;
                   });
-                  return mediator.request('appform:submission:list:remote:load', [submissionIds, workorder.id], {uid: workorder.id})
+                  return appformClient.getSubmissions(submissionIds)
                   .then(function(results) {
                     results.forEach(function(result) {
                       var submission = result.value;
@@ -94,8 +94,8 @@ angular.module('app.workorder', [
           templateUrl: '/app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderFormController as ctrl',
           resolve: {
-            workflows: function(mediator) {
-              return mediator.request('workflows:load');
+            workflows: function(workflowManager) {
+              return workflowManager.list();
             },
             workorder: function($stateParams, workorderManager) {
               return workorderManager.read($stateParams.workorderId);
@@ -119,7 +119,7 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderListController', function (mediator, workorders) {
+.controller('WorkorderListController', function (workorders) {
   var self = this;
   self.workorders = workorders;
 })
