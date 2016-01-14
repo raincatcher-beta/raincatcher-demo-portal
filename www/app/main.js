@@ -10,6 +10,7 @@ angular.module('app', [
 , require('fh-wfm-workorder')
 , require('fh-wfm-workflow')
 , require('fh-wfm-appform')
+, require('fh-wfm-user')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
 
