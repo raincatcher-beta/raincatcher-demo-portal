@@ -17,7 +17,7 @@ angular.module('app.worker', [
       url: '/workers/list',
       views: {
         column2: {
-          templateUrl: '/app/worker/worker-list.tpl.html',
+          templateUrl: 'app/worker/worker-list.tpl.html',
           controller: 'WorkerListController as ctrl',
           resolve: {
             workers: function(userClient) {
@@ -26,7 +26,7 @@ angular.module('app.worker', [
           }
         },
         'content': {
-          templateUrl: '/app/worker/empty.tpl.html',
+          templateUrl: 'app/worker/empty.tpl.html',
         }
       }
     })
@@ -34,7 +34,7 @@ angular.module('app.worker', [
       url: '/worker/:workerId',
       views: {
         'content@app': {
-          templateUrl: '/app/worker/worker-detail.tpl.html',
+          templateUrl: 'app/worker/worker-detail.tpl.html',
           controller: 'WorkerDetailController as ctrl',
           resolve: {
             worker: function($stateParams, userClient) {
@@ -48,7 +48,7 @@ angular.module('app.worker', [
       url: '/worker/:workerId/edit',
       views: {
         'content@app': {
-          templateUrl: '/app/worker/worker-edit.tpl.html',
+          templateUrl: 'app/worker/worker-edit.tpl.html',
           controller: 'WorkerFormController as ctrl',
         }
       }

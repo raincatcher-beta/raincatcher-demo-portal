@@ -16,7 +16,7 @@ angular.module('app.workflow', [
       url: '/workflows/list',
       views: {
         column2: {
-          templateUrl: '/app/workflow/workflow-list.tpl.html',
+          templateUrl: 'app/workflow/workflow-list.tpl.html',
           controller: 'WorkflowListController as ctrl',
           resolve: {
             workflows: function(workflowManager) {
@@ -25,7 +25,7 @@ angular.module('app.workflow', [
           }
         },
         'content': {
-          templateUrl: '/app/workflow/empty.tpl.html',
+          templateUrl: 'app/workflow/empty.tpl.html',
         }
       }
     })
@@ -33,7 +33,7 @@ angular.module('app.workflow', [
       url: '/workflow/:workflowId',
       views: {
         'content@app': {
-          templateUrl: '/app/workflow/workflow-detail.tpl.html',
+          templateUrl: 'app/workflow/workflow-detail.tpl.html',
           controller: 'WorkflowDetailController as ctrl',
           resolve: {
             workflow: function($stateParams, workflowManager) {
@@ -47,7 +47,7 @@ angular.module('app.workflow', [
       url: '/workflow/:workflowId/edit',
       views: {
         'content@app': {
-          templateUrl: '/app/workflow/workflow-edit.tpl.html',
+          templateUrl: 'app/workflow/workflow-edit.tpl.html',
           controller: 'WorkflowFormController as ctrl',
           resolve: {
             workflows: function(workflowManager) {

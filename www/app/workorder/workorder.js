@@ -16,7 +16,7 @@ angular.module('app.workorder', [
       url: '/workorders/list',
       views: {
         column2: {
-          templateUrl: '/app/workorder/workorder-list.tpl.html',
+          templateUrl: 'app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
           resolve: {
             workorders: function(workorderManager) {
@@ -25,7 +25,7 @@ angular.module('app.workorder', [
           }
         },
         'content': {
-          templateUrl: '/app/workorder/empty.tpl.html',
+          templateUrl: 'app/workorder/empty.tpl.html',
         }
       }
     })
@@ -33,7 +33,7 @@ angular.module('app.workorder', [
       url: '/new',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/workorder-new.tpl.html',
+          templateUrl: 'app/workorder/workorder-new.tpl.html',
           controller: 'WorkorderNewController as ctrl',
           resolve: {
             workflows: function(workflowManager) {
@@ -50,7 +50,7 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/workorder-detail.tpl.html',
+          templateUrl: 'app/workorder/workorder-detail.tpl.html',
           controller: 'WorkorderDetailController as ctrl',
           resolve: {
             workflows: function(workflowManager) {
@@ -91,7 +91,7 @@ angular.module('app.workorder', [
       url: '/workorder/:workorderId/edit',
       views: {
         'content@app': {
-          templateUrl: '/app/workorder/workorder-edit.tpl.html',
+          templateUrl: 'app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderFormController as ctrl',
           resolve: {
             workflows: function(workflowManager) {
