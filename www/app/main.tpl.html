@@ -32,7 +32,7 @@
           <md-icon md-font-set="material-icons">map</md-icon>
           <p>Maps</p>
         </md-list-item>
-        <md-list-item ng-click="navigateTo()">
+        <md-list-item ng-click="navigateTo('app.message')" ng-class="{active: $state.includes('app.message')}">
           <md-icon md-font-set="material-icons">mail</md-icon>
           <p>Messages</p>
         </md-list-item>

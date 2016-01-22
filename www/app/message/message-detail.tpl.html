@@ -1,0 +1,26 @@
+<md-toolbar class="content-toolbar">
+  <div class="md-toolbar-tools">
+    <h3>
+      Message ID {{ctrl.message.id}}
+    </h3>
+
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.message.edit({messageId: ctrl.message.id})">
+      <md-icon md-font-set="material-icons">edit</md-icon>
+    </md-button>
+  </div>
+</md-toolbar>
+<md-button class="md-fab" aria-label="New Message" ui-sref="app.message.new">
+  <md-icon md-font-set="material-icons">add</md-icon>
+</md-button>
+
+ <md-tabs md-dynamic-height md-border-bottom>
+  <md-tab label="Information">
+    <md-content>
+      <div class="user-info-header" ng-style="ctrl.style">
+        <h1 class="md-display-1">{{ctrl.message.title}}</h1>
+      </div>
+
+    </md-content>
+  </md-tab>
+</md-tabs>
