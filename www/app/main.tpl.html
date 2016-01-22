@@ -28,6 +28,10 @@
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Workers</p>
         </md-list-item>
+        <md-list-item ng-click="navigateTo('app.schedule')" ng-class="{active: $state.includes('app.schedule')}">
+          <md-icon md-font-set="material-icons">mail</md-icon>
+          <p>Scheduler</p>
+        </md-list-item>
         <md-list-item ng-click="navigateTo()">
           <md-icon md-font-set="material-icons">map</md-icon>
           <p>Maps</p>

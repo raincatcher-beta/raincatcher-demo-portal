@@ -20,6 +20,7 @@ angular.module('app', [
 , require('./appform/appform')
 , require('./worker/worker')
 , require('./message/message')
+, require('./schedule/schedule')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
