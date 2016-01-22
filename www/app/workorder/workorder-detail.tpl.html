@@ -19,6 +19,13 @@
 </md-toolbar>
 
 <workorder workorder="ctrl.workorder"></workorder>
+
+<md-toolbar class="content-toolbar">
+  <div class="md-toolbar-tools">
+    <i>{{ctrl.workflow.title}} workflow</i>
+  </div>
+</md-toolbar>
+
 <workflow-results workorder="ctrl.workorder" workflow="ctrl.workflow" steps="ctrl.steps"></workflow-results>
 
 <md-button class="md-fab" aria-label="New Workorder" ui-sref="app.workorder.new">
