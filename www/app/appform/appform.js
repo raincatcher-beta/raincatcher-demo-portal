@@ -29,7 +29,7 @@ angular.module('app.appform', ['ui.router'])
           controller: 'AppformListController',
           controllerAs: 'ctrl',
           resolve: {
-            forms: function(mediator) {
+            forms: function(appformClient) {
               return appformClient.list();
             }
           }
