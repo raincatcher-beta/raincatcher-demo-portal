@@ -63,6 +63,10 @@
           <md-icon md-font-set="material-icons">settings</md-icon>
           <p>Settings</p>
         </md-list-item>
+        <md-list-item ng-click="navigateTo('app.login')">
+          <md-icon md-font-set="material-icons">settings</md-icon>
+          <p>{{profileData ? 'Logout' : 'Login'}}</p>
+        </md-list-item>
 
       </md-list>
     </md-sidenav>

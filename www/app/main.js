@@ -14,6 +14,7 @@ angular.module('app', [
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
 
+, require('./auth/auth')
 , require('./workorder/workorder')
 , require('./workflow/workflow')
 , require('./home/home')
@@ -34,9 +35,17 @@ angular.module('app', [
       resolve: {
         workorderManager: function(workorderSync) {
           return workorderSync.managerPromise;
+        },
+        profileData: function(userClient) {
+          return userClient.getProfile();
         }
       },
-      controller: function($state, $scope) {
+      controller: function($scope, $state, mediator, profileData){
+        console.log('profileData', profileData);
+        $scope.profileData = profileData;
+        mediator.subscribe('wfm:auth:profile:change', function(_profileData) {
+          $scope.profileData = _profileData;
+        });
         $scope.$state = $state;
         $scope.navigateTo = function(state, params) {
           if (state) {
@@ -47,7 +56,19 @@ angular.module('app', [
     });
 })
 
-.run(function($rootScope) {
+.run(function($rootScope, $state, userClient) {
+  $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
+    if(toState.name !== "app.login"){
+      userClient.hasSession().then(function(hasSession) {
+        if(!hasSession) {
+          e.preventDefault();
+          $rootScope.toState = toState;
+          $rootScope.toParams = toParams;
+          $state.go('app.login');
+        }
+      });
+    };
+  });
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     console.error('State change error: ', error, {
       event: event,
