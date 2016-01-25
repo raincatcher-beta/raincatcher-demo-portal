@@ -19,6 +19,7 @@ angular.module('app', [
 , require('./home/home')
 , require('./appform/appform')
 , require('./worker/worker')
+, require('./group/group')
 , require('./message/message')
 , require('./schedule/schedule')
 ])
