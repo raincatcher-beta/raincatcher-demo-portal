@@ -24,7 +24,7 @@ $danger: #F44336; //red 500
 @import 'node_modules/fh-wfm-vehicle-inspection/sass/vehicle-inspection.scss';
 @import 'node_modules/fh-wfm-appform/sass/appform.scss';
 
-// tabs 
+// tabs
 md-tabs md-tab-item{
   color: $secondary-text-color !important;
 }
@@ -48,6 +48,9 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 // messages screen ==========
 
 .messages{
+  .md-avatar{
+    margin-top: 0!important;
+  }
   .md-list-item-text{
     position: relative;
   }
@@ -57,19 +60,27 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     }
   }
   .time-stamp{
+    line-height: normal;
     position: absolute;
     right: 0;
     top: 0;
     color: $secondary-text-color;
   }
-  
+
   md-list-item md-divider[md-inset] {
     left: 72px;
     width: calc(100% - 72px);
   }
-  
 }
 
+.message-body{
+  h3{
+  margin-bottom: 5px;
+  }
+  .md-caption{
+    margin: 0;
+  }
+}
 
 // appform
 .appform-list tbody tr {
@@ -132,7 +143,7 @@ md-list{
  //   background: tan ;
     border-bottom: 1px solid $divider-text-color;
     border-right: 1px solid $divider-text-color;
-  }   
+  }
 }
 
 // Sidenav area

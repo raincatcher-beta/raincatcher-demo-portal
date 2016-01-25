@@ -92,18 +92,6 @@
   right: 0;
   z-index: 99; }
 
-risk-assessment-signature canvas {
-  border: 1px solid rgba(0, 0, 0, 0.12); }
-
-risk-assessment .with-image {
-  height: auto; }
-  risk-assessment .with-image p {
-    padding-bottom: 20px; }
-  risk-assessment .with-image img {
-    margin-top: 16px;
-    width: 100%;
-    display: inline-block; }
-
 .vehicle-inspection-form md-radio-button {
   display: inline; }
 
@@ -159,6 +147,9 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     color: #fff;
     background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent 60%); }
 
+.messages .md-avatar {
+  margin-top: 0 !important; }
+
 .messages .md-list-item-text {
   position: relative; }
 
@@ -166,6 +157,7 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   font-weight: bold !important; }
 
 .messages .time-stamp {
+  line-height: normal;
   position: absolute;
   right: 0;
   top: 0;
@@ -174,6 +166,12 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 .messages md-list-item md-divider[md-inset] {
   left: 72px;
   width: calc(100% - 72px); }
+
+.message-body h3 {
+  margin-bottom: 5px; }
+
+.message-body .md-caption {
+  margin: 0; }
 
 .appform-list tbody tr {
   cursor: pointer; }
