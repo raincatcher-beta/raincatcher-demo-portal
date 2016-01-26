@@ -99,6 +99,9 @@ angular.module('app.workorder', [
             },
             workorder: function($stateParams, workorderManager) {
               return workorderManager.read($stateParams.workorderId);
+            },
+            workers: function(userClient) {
+              return userClient.list();
             }
           }
         }
@@ -152,11 +155,12 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderFormController', function ($state, mediator, workorder, workflows) {
+.controller('WorkorderFormController', function ($state, mediator, workorderManager, workorder, workflows, workers) {
   var self = this;
 
   self.workorder = workorder;
   self.workflows = workflows;
+  self.workers = workers;
 
   mediator.subscribe('workorder:edited', function(workorder) {
     return workorderManager.update(workorder).then(function() {
