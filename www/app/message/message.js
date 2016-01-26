@@ -57,6 +57,7 @@ angular.module('app.message', [
 })
 
 .controller('messageDetailController', function (mediator) {
+  this.toNames = ['Trever']
 })
 
 .controller('messageFormController', function (mediator) {
