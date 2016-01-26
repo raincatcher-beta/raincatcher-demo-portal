@@ -1,2 +1,5 @@
 node_modules
 npm-debug.log
+www/app/bundle.js
+www/css/app.css
+www/css/app.css.map
