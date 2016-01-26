@@ -23,6 +23,7 @@ angular.module('app', [
 , require('./group/group')
 , require('./message/message')
 , require('./schedule/schedule')
+, require('./permission/permission')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
