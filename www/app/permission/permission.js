@@ -14,6 +14,9 @@ angular.module('app.permission', [
   $stateProvider
     .state('app.permission', {
       url: '/permission',
+      data: {
+        columns: 2
+      },
       views: {
         content: {
           templateUrl: 'app/permission/permission.tpl.html',

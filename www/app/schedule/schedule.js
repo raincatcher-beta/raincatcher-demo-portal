@@ -14,6 +14,9 @@ angular.module('app.schedule', [
   $stateProvider
     .state('app.schedule', {
       url: '/schedule',
+      data: {
+        columns: 2
+      },
       views: {
         content: {
           templateUrl: 'app/schedule/schedule.tpl.html',

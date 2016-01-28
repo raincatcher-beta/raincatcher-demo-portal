@@ -11,6 +11,9 @@ angular.module('app.auth', [
   $stateProvider
     .state('app.login', {
       url: '/login',
+      data: {
+        columns: 2
+      },
       views: {
         'content@app': {
           templateUrl: 'app/auth/login.tpl.html',

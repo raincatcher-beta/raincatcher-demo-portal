@@ -33,6 +33,9 @@ angular.module('app', [
     .state('app', {
       abstract: true,
       templateUrl: 'app/main.tpl.html',
+      data: {
+        columns: 3
+      },
       resolve: {
         workorderManager: function(workorderSync) {
           return workorderSync.managerPromise;
