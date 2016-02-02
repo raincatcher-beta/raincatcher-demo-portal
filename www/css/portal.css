@@ -170,11 +170,30 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 .message-header {
   position: relative;
   margin: 10px 0;
-  color: rgba(0, 0, 0, 0.54); }
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px; }
   .message-header .time-stamp {
     position: absolute;
     right: 0;
     top: 0; }
+
+.wfm-chip {
+  background-color: rgba(0, 0, 0, 0.12);
+  display: inline-block;
+  margin-left: 8px;
+  border-radius: 16px; }
+
+.wfm-chip-picture {
+  float: left; }
+  .wfm-chip-picture img {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: block; }
+
+.wfm-chip-name {
+  display: inline-block;
+  margin: 0 12px 0 8px; }
 
 .appform-list tbody tr {
   cursor: pointer; }

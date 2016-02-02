@@ -77,12 +77,36 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   position: relative;
   margin: 10px 0;
   color: $secondary-text-color;
+  line-height: 32px;
   .time-stamp{
     position: absolute;
     right: 0;
     top: 0;
   }
 }
+
+.wfm-chip{
+  background-color: $divider-text-color;
+  display: inline-block;
+  margin-left: 8px;
+  border-radius: 16px;
+}
+
+.wfm-chip-picture{
+  float: left;
+  img{
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: block;
+  }
+}
+
+.wfm-chip-name{
+  display: inline-block;
+  margin: 0 12px 0 8px;
+}
+
 
 // appform
 .appform-list tbody tr {
