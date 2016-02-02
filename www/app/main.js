@@ -38,7 +38,7 @@ angular.module('app', [
       },
       resolve: {
         workorderManager: function(workorderSync) {
-          return workorderSync.managerPromise;
+          return workorderSync.createManager();
         },
         profileData: function(userClient) {
           return userClient.getProfile();
