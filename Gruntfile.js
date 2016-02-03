@@ -77,6 +77,7 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
+<<<<<<< HEAD
         files: ['<%= app.dist %>/app/bundle.js'],
         options: {
           livereload: '<%= connect.options.livereload %>'
