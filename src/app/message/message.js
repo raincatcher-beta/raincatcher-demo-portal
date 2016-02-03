@@ -17,12 +17,17 @@ angular.module('app.message', [
 
 .config(function($stateProvider) {
   $stateProvider
-    .state('app.message', {
-      url: '/messages/list',
+     .state('app.message', {
+      url: '/message/list',
       views: {
         column2: {
           templateUrl: 'app/message/message-list.tpl.html',
-          controller: 'messageListController as ctrl'
+          controller: 'MessageListController as messageListController',
+          resolve: {
+            messages: function(messageManager) {
+              return messageManager.list();
+            }
+          }
         },
         'content': {
           templateUrl: 'app/message/empty.tpl.html',
@@ -57,7 +62,9 @@ angular.module('app.message', [
   });
 })
 
-.controller('messageListController', function (mediator) {
+.controller('MessageListController', function (messages) {
+  var self = this;
+  self.messages = messages;
 })
 
 .controller('messageDetailController', function (mediator) {
