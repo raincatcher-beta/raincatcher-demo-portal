@@ -1,7 +1,7 @@
 <md-toolbar class="content-toolbar">
   <div class="md-toolbar-tools">
     <h3>
-      Group {{ctrl.group.name}}
+      {{ctrl.group.name}} Group
     </h3>
 
     <span flex></span>
@@ -14,4 +14,37 @@
   <md-icon md-font-set="material-icons">add</md-icon>
 </md-button>
 
-<h1 class="md-display-1">{{ctrl.group.name}}</h1>
+<md-list>
+  <md-list-item class="md-2-line" >
+    <md-icon md-font-set="material-icons">group</md-icon>
+    <div class="md-list-item-text">
+      <h3>{{ctrl.group.id}}</h3>
+      <p>Group id</p>
+    </div>
+    <md-divider></md-divider>
+  </md-list-item>
+
+  <md-list-item class="md-2-line" >
+    <md-icon md-font-set="material-icons">group</md-icon>
+    <div class="md-list-item-text">
+      <h3>{{ctrl.group.name}}</h3>
+      <p>Group name</p>
+    </div>
+    <md-divider></md-divider>
+  </md-list-item>
+
+  <md-list-item class="md-2-line" >
+    <md-icon md-font-set="material-icons">group</md-icon>
+    <div class="md-list-item-text">
+      <h3>{{ctrl.group.role}}</h3>
+      <p>Role</p>
+    </div>
+    <md-divider></md-divider>
+  </md-list-item>
+</md-list>
+
+<ul>
+  <li ng-repeat="member in ctrl.members">
+    {{member.name}}
+  </li>
+</ul>

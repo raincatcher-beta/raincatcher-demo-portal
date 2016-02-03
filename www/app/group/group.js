@@ -14,6 +14,30 @@ angular.module('app.group', [
   $stateProvider
     .state('app.group', {
       url: '/groups/list',
+      resolve: {
+        groups: function() {
+          return [
+            {id: 0, name: 'Drivers', role: 'worker'},
+            {id: 1, name: 'Back Office', role: 'manager'},
+            {id: 2, name: 'Management', role: 'admin'}
+          ];
+        },
+        users: function(userClient) {
+          return userClient.list();
+        },
+        membership: function() {
+          return [
+            {group: 0, user: 156340},
+            {group: 0, user: 373479},
+            {group: 0, user: 235843},
+            {group: 0, user: 754282},
+            {group: 0, user: 994878},
+            {group: 1, user: 546834},
+            {group: 1, user: 865435},
+            {group: 2, user: 122334}
+          ];
+        }
+      },
       views: {
         column2: {
           templateUrl: 'app/group/group-list.tpl.html',
@@ -26,6 +50,11 @@ angular.module('app.group', [
     })
     .state('app.group.detail', {
       url: '/group/:groupId',
+      resolve: {
+        group: function($stateParams, groups) {
+          return groups[$stateParams.groupId];
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/group/group-detail.tpl.html',
@@ -35,6 +64,11 @@ angular.module('app.group', [
     })
     .state('app.group.edit', {
       url: '/group/:groupId/edit',
+      resolve: {
+        group: function($stateParams, groups) {
+          return groups[$stateParams.groupId];
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/group/group-edit.tpl.html',
@@ -52,15 +86,24 @@ angular.module('app.group', [
   });
 })
 
-.controller('groupListController', function (mediator) {
-  this.groups = [{id: 0, name: 'Group A'}];
+.controller('groupListController', function (mediator, groups) {
+  this.groups = groups;
 })
 
-.controller('groupDetailController', function (mediator) {
-  this.group = {id: 0, name: 'Group A'};
+.controller('groupDetailController', function (mediator, group, users, membership) {
+  this.group = group;
+  var groupMembership = membership.filter(function(_membership) {
+    return _membership.group == group.id
+  })
+  this.members = users.filter(function(user) {
+    return _.some(groupMembership, function(_membership) {
+      return _membership.user == user.id;
+    })
+  })
 })
 
-.controller('groupFormController', function (mediator) {
+.controller('groupFormController', function (mediator, group) {
+  this.group = group;
 })
 
 ;
