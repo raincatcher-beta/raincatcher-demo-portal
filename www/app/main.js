@@ -8,6 +8,7 @@ angular.module('app', [
 , require('angular-material')
 , require('fh-wfm-mediator')
 , require('fh-wfm-workorder')
+, require('fh-wfm-result')
 , require('fh-wfm-workflow')
 , require('fh-wfm-appform')
 , require('fh-wfm-user')

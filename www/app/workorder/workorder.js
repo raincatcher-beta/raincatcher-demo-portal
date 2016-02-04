@@ -14,15 +14,21 @@ angular.module('app.workorder', [
   $stateProvider
     .state('app.workorder', {
       url: '/workorders/list',
+      resolve: {
+        workorders: function(workorderManager) {
+          return workorderManager.list();
+        },
+        workflows: function(workflowManager) {
+          return workflowManager.list();
+        },
+        resultManager: function(resultSync) {
+          return resultSync.managerPromise;
+        },
+      },
       views: {
         column2: {
           templateUrl: 'app/workorder/workorder-list.tpl.html',
           controller: 'WorkorderListController as workorderListController',
-          resolve: {
-            workorders: function(workorderManager) {
-              return workorderManager.list();
-            }
-          }
         },
         'content': {
           templateUrl: 'app/workorder/empty.tpl.html',
@@ -36,9 +42,6 @@ angular.module('app.workorder', [
           templateUrl: 'app/workorder/workorder-new.tpl.html',
           controller: 'WorkorderNewController as ctrl',
           resolve: {
-            workflows: function(workflowManager) {
-              return workflowManager.list();
-            },
             workorder: function(workorderManager) {
               return workorderManager.new();
             }
@@ -53,34 +56,41 @@ angular.module('app.workorder', [
           templateUrl: 'app/workorder/workorder-detail.tpl.html',
           controller: 'WorkorderDetailController as ctrl',
           resolve: {
-            workflows: function(workflowManager) {
-              return workflowManager.list();
-            },
             workorder: function($stateParams, appformClient, workorderManager) {
               return workorderManager.read($stateParams.workorderId)
-              .then(function(workorder) {
-                if (workorder.steps) { // TODO: re-factor this logic into the appropriate WFM module
-                  var appformSteps = _.filter(workorder.steps, function(appformStep) {
-                    return !! appformStep.workflowStep.formId;
-                  });
-                  var submissionIds = _.map(appformSteps, function(step) {
-                    return step.submission.submissionId;
-                  });
-                  return appformClient.getSubmissions(submissionIds)
-                  .then(function(results) {
-                    results.forEach(function(result) {
-                      var submission = result.value;
-                      appformSteps.filter(function(appformStep) {
-                        return appformStep.submission.submissionId === submission.props._id;
-                      }).forEach(function(appformStep) {
-                        appformStep.submission._submission = submission;
+            },
+            results: function($stateParams, appformClient, resultManager) {
+              return resultManager.list()
+              .then(function(results) {
+                return resultManager.filter(results, $stateParams.workorderId);
+              })
+              .then(function(results) {
+                if (_.isEmpty(results)) {
+                  return results;
+                }
+                var appformResults = _.filter(results, function(result) {
+                  return !! result.step.formId;
+                });
+                if (_.isEmpty(appformResults)) {
+                  return results;
+                }
+                var submissionIds = _.map(appformResults, function(result) {
+                  return result.submission.submissionId;
+                });
+                return appformClient.getSubmissions(submissionIds)
+                  .then(function(responses) {
+                    responses.forEach(function(response) {
+                      var submission = response.value;
+                      appformResults.filter(function(result) {
+                        return result.submission.submissionId === submission.props._id;
+                      }).forEach(function(result) {
+                        result.submission._submission = submission;
                       });
                     });
-                    return workorder;
-                  });
-                } else {
-                  return workorder;
-                }
+                  })
+                  .then(function() {
+                    return results;
+                  })
               });
             }
           }
@@ -94,9 +104,6 @@ angular.module('app.workorder', [
           templateUrl: 'app/workorder/workorder-edit.tpl.html',
           controller: 'WorkorderFormController as ctrl',
           resolve: {
-            workflows: function(workflowManager) {
-              return workflowManager.list();
-            },
             workorder: function($stateParams, workorderManager) {
               return workorderManager.read($stateParams.workorderId);
             },
@@ -127,11 +134,12 @@ angular.module('app.workorder', [
   self.workorders = workorders;
 })
 
-.controller('WorkorderDetailController', function (mediator, workflows, workorder) {
+.controller('WorkorderDetailController', function (mediator, workflows, workorder, results) {
   var self = this;
 
   self.workorder = workorder;
   self.workflow = workflows[workorder.workflowId];
+  self.results = results;
   self.steps = self.workflow.steps;
 
   self.beginWorkflow = function(event, workorder) {
