@@ -1,7 +1,7 @@
 <md-toolbar class="content-toolbar">
   <div class="md-toolbar-tools">
     <h3>
-      Work order ID {{ctrl.workorder.id}}
+      Work order ID: {{ctrl.workorder.id}}
     </h3>
 
     <md-button class="md-icon-button" aria-label="{{ctrl.workorder.status}}">
@@ -22,11 +22,17 @@
 
 <md-toolbar class="content-toolbar">
   <div class="md-toolbar-tools">
-    <i>{{ctrl.workflow.title}} workflow</i>
+    Workflow: {{ctrl.workflow.title}}
   </div>
 </md-toolbar>
 
-<workflow-results workorder="ctrl.workorder" workflow="ctrl.workflow" steps="ctrl.steps"></workflow-results>
+<md-list ng-if="!(ctrl.results && ctrl.results.length)">
+  <md-list-item>
+    <span style="font-style: italic">No workflow submissions.</span>
+  </md-list-item>
+</md-list>
+
+<workflow-results workorder="ctrl.workorder" results="ctrl.results" workflow="ctrl.workflow" steps="ctrl.workflow.steps"></workflow-results>
 
 <md-button class="md-fab" aria-label="New Workorder" ui-sref="app.workorder.new">
   <md-icon md-font-set="material-icons">add</md-icon>
