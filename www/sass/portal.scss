@@ -1,3 +1,4 @@
+$primary-text-color: rgba(0,0,0,.87);
 $secondary-text-color: rgba(0,0,0,.54);
 $divider-text-color: rgba(0,0,0,.12);
 
@@ -107,6 +108,68 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   margin: 0 12px 0 8px;
 }
 
+.wfm-chip-no-picture{
+  line-height: 32px;
+  background-color: $primary-color;
+  color: #fff;
+  .wfm-chip-name{
+    margin: 0 12px;
+  }
+}
+
+
+// Schueduler styles
+
+.wfm-scheduler{
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid $divider-text-color;
+  border-right: 1px solid $divider-text-color;
+  td, th, tr{
+//    border: 1px solid red;
+    vertical-align: top;
+  }
+  md-toolbar{
+    background: #fff;
+    color:$primary-text-color;
+    border-bottom: 1px solid $divider-text-color;
+  }
+}
+
+.wfm-scheduler-worker{
+  border-right: 1px solid $divider-text-color;
+}
+.wfm-scheduler-calendar{
+  overflow-x: scroll;
+  table{
+    width: 600px;
+    border-collapse: collapse;
+    th, td{
+      vertical-align: middle;
+      border: 1px solid $divider-text-color;
+    }
+    th{
+      height: 62px;
+    }
+    td{
+      height: 54px;
+      position: relative;
+      .wfm-chip{
+        position: absolute;
+        top:50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+// 48 8 8
 
 // appform
 .appform-list tbody tr {
@@ -153,7 +216,6 @@ md-list{
 // Search
 
 .persistent-search{
-  background: red;
   position: relative;
   label{ position: absolute;
     left: 16px;

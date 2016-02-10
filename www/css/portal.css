@@ -195,6 +195,52 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   display: inline-block;
   margin: 0 12px 0 8px; }
 
+.wfm-chip-no-picture {
+  line-height: 32px;
+  background-color: #3F51B5;
+  color: #fff; }
+  .wfm-chip-no-picture .wfm-chip-name {
+    margin: 0 12px; }
+
+.wfm-scheduler {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler td, .wfm-scheduler th, .wfm-scheduler tr {
+    vertical-align: top; }
+  .wfm-scheduler md-toolbar {
+    background: #fff;
+    color: rgba(0, 0, 0, 0.87);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+
+.wfm-scheduler-worker {
+  border-right: 1px solid rgba(0, 0, 0, 0.12); }
+
+.wfm-scheduler-calendar {
+  overflow-x: scroll; }
+  .wfm-scheduler-calendar table {
+    width: 600px;
+    border-collapse: collapse; }
+    .wfm-scheduler-calendar table th, .wfm-scheduler-calendar table td {
+      vertical-align: middle;
+      border: 1px solid rgba(0, 0, 0, 0.12); }
+    .wfm-scheduler-calendar table th {
+      height: 62px; }
+    .wfm-scheduler-calendar table td {
+      height: 54px;
+      position: relative; }
+      .wfm-scheduler-calendar table td .wfm-chip {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+
 .appform-list tbody tr {
   cursor: pointer; }
 
@@ -227,7 +273,6 @@ md-list {
   padding: 0; }
 
 .persistent-search {
-  background: red;
   position: relative; }
   .persistent-search label {
     position: absolute;
