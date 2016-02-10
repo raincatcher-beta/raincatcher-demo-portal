@@ -26,7 +26,7 @@
   </div>
 </md-toolbar>
 
-<md-list ng-if="!(ctrl.results && ctrl.results.length)">
+<md-list ng-if="ctrl.results | isEmpty">
   <md-list-item>
     <span style="font-style: italic">No workflow submissions.</span>
   </md-list-item>
