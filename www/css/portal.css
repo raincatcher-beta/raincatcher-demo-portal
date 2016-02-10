@@ -421,4 +421,8 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover {
 .as-sortable-drag {
   opacity: .8; }
 
+#gmap_canvas img {
+  max-width: none !important;
+  background: none !important; }
+
 /*# sourceMappingURL=portal.css.map */

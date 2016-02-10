@@ -25,6 +25,7 @@ angular.module('app', [
 , require('./message/message')
 , require('./schedule/schedule')
 , require('./permission/permission')
+, require('./map/map')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

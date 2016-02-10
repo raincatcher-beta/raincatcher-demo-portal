@@ -413,3 +413,8 @@ $duration: 1.4s;
 
 .as-sortable-hidden {
 }
+
+#gmap_canvas img {
+  max-width: none!important;
+  background: none!important;
+}

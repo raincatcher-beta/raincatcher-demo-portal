@@ -36,9 +36,9 @@
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Permissions</p>
         </md-list-item>
-        <md-list-item ng-click="navigateTo()">
+        <md-list-item ng-click="navigateTo('app.map')" ng-class="{active: $state.includes('app.map')}">
           <md-icon md-font-set="material-icons">map</md-icon>
-          <p>Maps</p>
+          <p>Map</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo('app.message')" ng-class="{active: $state.includes('app.message')}">
           <md-icon md-font-set="material-icons">mail</md-icon>
