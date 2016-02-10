@@ -30,17 +30,18 @@ angular.module('app.map', [
 })
 
 .controller('mapController', function ($window, $document, $timeout, workorders) {
+  var lat0 = 49.2275439, long0 = -123.1108627;
   function initMap() {
     var myOptions = {
-      zoom:11,
-      center:new google.maps.LatLng(49.2075439,-123.1108627),
+      zoom:12,
+      center:new google.maps.LatLng(lat0, long0),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
     workorders.forEach(function(workorder) {
-      var x = 49.2075439 + (Math.random() - 0.5) * 0.1;
-      var y =-123.1108627 + (Math.random() - 0.5) * 0.1;
-      var marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(x, y)});
+      var lat = lat0 + (Math.random() - 0.5) * 0.05;
+      var long = long0 + (Math.random() - 0.5) * 0.2;
+      var marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(lat, long)});
       var infowindow = new google.maps.InfoWindow({content:'<strong>Workorder #'+workorder.id+'</strong><br>Vancouver, BC<br>'});
       google.maps.event.addListener(marker, 'click', function(){
         infowindow.open(map,marker);
