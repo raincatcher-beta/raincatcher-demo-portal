@@ -78,19 +78,9 @@ angular.module('app.workorder', [
                   return result.submission.submissionId;
                 });
                 return appformClient.getSubmissions(submissionIds)
-                  .then(function(responses) {
-                    responses.forEach(function(response) {
-                      var submission = response.value;
-                      appformResults.filter(function(result) {
-                        return result.submission.submissionId === submission.props._id;
-                      }).forEach(function(result) {
-                        result.submission._submission = submission;
-                      });
-                    });
-                  })
-                  .then(function() {
-                    return results;
-                  })
+                .then(function() {
+                  return results;
+                })
               });
             }
           }
