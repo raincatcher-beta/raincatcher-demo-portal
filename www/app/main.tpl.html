@@ -12,7 +12,7 @@
     <md-sidenav layout="column" class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
       <md-list>
 
-        <md-list-item ng-click="navigateTo()">
+        <md-list-item ng-click="navigateTo('app.schedule')" ng-class="{active: $state.includes('app.schedule')}">
           <md-icon md-font-set="material-icons">event</md-icon>
           <p>Scheduler</p>
         </md-list-item>
@@ -35,10 +35,6 @@
         <md-list-item ng-click="navigateTo('app.permission')" ng-class="{active: $state.includes('app.permission')}">
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Permissions</p>
-        </md-list-item>
-        <md-list-item ng-click="navigateTo('app.schedule')" ng-class="{active: $state.includes('app.schedule')}">
-          <md-icon md-font-set="material-icons">mail</md-icon>
-          <p>Scheduler</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo()">
           <md-icon md-font-set="material-icons">map</md-icon>
