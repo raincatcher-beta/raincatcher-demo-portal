@@ -20,10 +20,6 @@
           <md-icon md-font-set="material-icons">assignment</md-icon>
           <p>Workorders</p>
         </md-list-item>
-        <md-list-item ng-click="navigateTo('app.workflow')" ng-class="{active: $state.includes('app.workflow')}">
-          <md-icon md-font-set="material-icons">cached</md-icon>
-          <p>Workflows</p>
-        </md-list-item>
         <md-list-item ng-click="navigateTo('app.worker')" ng-class="{active: $state.includes('app.worker')}">
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Workers</p>
@@ -31,10 +27,6 @@
         <md-list-item ng-click="navigateTo('app.group')" ng-class="{active: $state.includes('app.group')}">
           <md-icon md-font-set="material-icons">person</md-icon>
           <p>Groups</p>
-        </md-list-item>
-        <md-list-item ng-click="navigateTo('app.permission')" ng-class="{active: $state.includes('app.permission')}">
-          <md-icon md-font-set="material-icons">person</md-icon>
-          <p>Permissions</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo('app.map')" ng-class="{active: $state.includes('app.map')}">
           <md-icon md-font-set="material-icons">map</md-icon>
@@ -44,13 +36,17 @@
           <md-icon md-font-set="material-icons">mail</md-icon>
           <p>Messages</p>
         </md-list-item>
-        <md-list-item ng-click="navigateTo()">
-          <md-icon md-font-set="material-icons">insert_chart</md-icon>
-          <p>Analytics</p>
+        <md-list-item ng-click="navigateTo('app.workflow')" ng-class="{active: $state.includes('app.workflow')}">
+          <md-icon md-font-set="material-icons">cached</md-icon>
+          <p>Workflows</p>
         </md-list-item>
         <md-list-item ng-click="navigateTo('app.appform')" ng-class="{active: $state.includes('app.appform')}">
           <md-icon md-font-set="material-icons">content_copy</md-icon>
           <p>Forms</p>
+        </md-list-item>
+        <md-list-item ng-click="navigateTo()">
+          <md-icon md-font-set="material-icons">insert_chart</md-icon>
+          <p>Analytics</p>
         </md-list-item>
 
         <md-divider></md-divider>

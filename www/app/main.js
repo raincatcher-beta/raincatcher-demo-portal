@@ -24,7 +24,6 @@ angular.module('app', [
 , require('./group/group')
 , require('./message/message')
 , require('./schedule/schedule')
-, require('./permission/permission')
 , require('./map/map')
 ])
 
