@@ -210,36 +210,62 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   border-right: 1px solid rgba(0, 0, 0, 0.12); }
   .wfm-scheduler td, .wfm-scheduler th, .wfm-scheduler tr {
     vertical-align: top; }
-  .wfm-scheduler md-toolbar {
-    background: #fff;
-    color: rgba(0, 0, 0, 0.87);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+
+.wfm-scheduler-toolbar md-datepicker {
+  background: transparent; }
 
 .wfm-scheduler-worker {
   border-right: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-worker md-list-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-worker p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
 
 .wfm-scheduler-calendar {
   overflow-x: scroll; }
   .wfm-scheduler-calendar table {
-    width: 600px;
+    table-layout: fixed;
+    width: 700px;
     border-collapse: collapse; }
     .wfm-scheduler-calendar table th, .wfm-scheduler-calendar table td {
-      vertical-align: middle;
-      border: 1px solid rgba(0, 0, 0, 0.12); }
+      vertical-align: middle; }
     .wfm-scheduler-calendar table th {
-      height: 62px; }
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 36px;
+      color: rgba(0, 0, 0, 0.54);
+      background: rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12); }
     .wfm-scheduler-calendar table td {
-      height: 54px;
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      height: 56px;
       position: relative; }
       .wfm-scheduler-calendar table td .wfm-chip {
         position: absolute;
         top: 50%;
         left: 0;
         transform: translateY(-50%);
-        width: 300px;
+        min-width: 100px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis; }
+
+.wfm-scheduler-workorders {
+  border-left: 1px solid rgba(0, 0, 0, 0.54); }
+
+.wfm-toolbar-sm {
+  color: rgba(0, 0, 0, 0.54);
+  background: rgba(0, 0, 0, 0.12);
+  padding: 0 16px; }
+  .wfm-toolbar-sm h3 {
+    margin: 0;
+    line-height: 36px; }
+  .wfm-scheduler-workorders .wfm-toolbar-sm {
+    background: rgba(0, 0, 0, 0.54);
+    color: rgba(255, 255, 255, 0.7); }
 
 .appform-list tbody tr {
   cursor: pointer; }

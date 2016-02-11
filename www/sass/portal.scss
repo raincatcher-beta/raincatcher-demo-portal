@@ -127,40 +127,56 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   border-bottom: 1px solid $divider-text-color;
   border-right: 1px solid $divider-text-color;
   td, th, tr{
-//    border: 1px solid red;
     vertical-align: top;
   }
-  md-toolbar{
-    background: #fff;
-    color:$primary-text-color;
-    border-bottom: 1px solid $divider-text-color;
+}
+
+.wfm-scheduler-toolbar{
+  md-datepicker{
+    background: transparent;
   }
 }
 
 .wfm-scheduler-worker{
   border-right: 1px solid $divider-text-color;
+  md-list-item{
+    border-bottom: 1px solid $divider-text-color;
+  }
+  p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }
 .wfm-scheduler-calendar{
   overflow-x: scroll;
   table{
-    width: 600px;
+    table-layout: fixed;
+    width: 700px;
     border-collapse: collapse;
     th, td{
       vertical-align: middle;
-      border: 1px solid $divider-text-color;
     }
     th{
-      height: 62px;
+//      height: 62px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 36px;
+      color: $secondary-text-color;
+      background: $divider-text-color;
+      border-right: 1px solid $divider-text-color;
     }
     td{
-      height: 54px;
+      border-right: 1px solid $divider-text-color;
+      border-bottom: 1px solid $divider-text-color;
+      height: 56px;
       position: relative;
       .wfm-chip{
         position: absolute;
         top:50%;
         left: 0;
         transform: translateY(-50%);
-        width: 300px;
+        min-width: 100px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -169,7 +185,23 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   }
 }
 
-// 48 8 8
+.wfm-scheduler-workorders{
+  border-left: 1px solid $secondary-text-color;
+}
+
+.wfm-toolbar-sm{
+  color: $secondary-text-color;
+  background: $divider-text-color;
+  padding: 0 16px;
+  h3{
+    margin: 0;
+    line-height: 36px;
+  }
+  .wfm-scheduler-workorders &{
+    background: $secondary-text-color;
+    color: $white-secondary-text-color;
+  }
+}
 
 // appform
 .appform-list tbody tr {
