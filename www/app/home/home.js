@@ -1,6 +1,4 @@
 'use strict';
-var angular = require('angular');
-
 angular.module('app.home', ['ui.router'])
 
 .config(function ($stateProvider) {

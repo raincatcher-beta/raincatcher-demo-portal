@@ -1,6 +1,5 @@
 'use strict';
 
-var angular = require('angular');
 require('angular-messages');
 
 angular.module('app.workflow', [

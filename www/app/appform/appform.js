@@ -1,5 +1,4 @@
 'use strict';
-var angular = require('angular');
 var _ = require('lodash');
 
 angular.module('app.appform', ['ui.router'])
