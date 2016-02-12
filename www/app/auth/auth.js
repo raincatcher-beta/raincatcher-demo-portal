@@ -42,9 +42,29 @@ angular.module('app.auth', [
 
   self.hasSession = hasSession;
 
-  self.login = function() {
+  self.login = function(valid) {
+    if (valid) {
+      userClient.auth(self.username, self.password)
+      .then(function() {
+        self.loginMessages.success = true;
+      }, function(err) {
+        console.log(err);
+        self.loginMessages.error = true;
+      });
+    }
+  }
+
+  self.loginMessages = {success: false, error: false};
+
+  self.login = function(valid) {
+    if (!valid) {
+      return
+    }
     userClient.auth(self.username, self.password)
-    .then(userClient.hasSession)
+    .then(function() {
+      self.loginMessages.success = true;
+      return userClient.hasSession();
+    })
     .then(function(hasSession) {
       self.hasSession = hasSession;
       if ($rootScope.toState) {
@@ -55,6 +75,7 @@ angular.module('app.auth', [
         $state.go('app.workorder');
       }
     }, function(err) {
+      self.loginMessages.error = true;
       console.error(err);
     });
   }
