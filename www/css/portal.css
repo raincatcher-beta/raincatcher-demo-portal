@@ -237,11 +237,12 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
       line-height: 36px;
       color: rgba(0, 0, 0, 0.54);
       background: rgba(0, 0, 0, 0.12);
-      border-right: 1px solid rgba(0, 0, 0, 0.12); }
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
     .wfm-scheduler-calendar table td {
       border-right: 1px solid rgba(0, 0, 0, 0.12);
       border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-      height: 56px;
+      height: 55px;
       position: relative; }
       .wfm-scheduler-calendar table td .wfm-chip {
         position: absolute;
@@ -254,7 +255,11 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
         text-overflow: ellipsis; }
 
 .wfm-scheduler-workorders {
-  border-left: 1px solid rgba(0, 0, 0, 0.54); }
+  border-left: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-workorders .wfm-chip {
+    display: block;
+    margin-top: 10px;
+    margin-right: 10px; }
 
 .wfm-toolbar-sm {
   color: rgba(0, 0, 0, 0.54);
@@ -264,8 +269,9 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     margin: 0;
     line-height: 36px; }
   .wfm-scheduler-workorders .wfm-toolbar-sm {
-    background: rgba(0, 0, 0, 0.54);
-    color: rgba(255, 255, 255, 0.7); }
+    background: #3F51B5;
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.12); }
 
 .appform-list tbody tr {
   cursor: pointer; }
