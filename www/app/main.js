@@ -26,7 +26,6 @@ angular.module('app', [
 , require('./schedule/schedule')
 , require('./map/map')
 , require('./analytics/analytics')
-, require('./settings/settings')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {

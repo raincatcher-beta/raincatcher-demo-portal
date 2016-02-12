@@ -51,10 +51,6 @@
 
         <md-divider></md-divider>
 
-        <md-list-item ng-click="navigateTo('app.settings')" ng-class="{active: $state.includes('app.settings')}">
-          <md-icon md-font-set="material-icons">settings</md-icon>
-          <p>Settings</p>
-        </md-list-item>
         <md-list-item ng-click="navigateTo('app.login')">
           <md-icon md-font-set="material-icons">exit_to_app</md-icon>
           <p>{{profileData ? 'Logout' : 'Login'}}</p>
