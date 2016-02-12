@@ -44,6 +44,9 @@ angular.module('app.workorder', [
           resolve: {
             workorder: function(workorderManager) {
               return workorderManager.new();
+            },
+            workers: function(userClient) {
+              return userClient.list();
             }
           }
         }
@@ -140,11 +143,12 @@ angular.module('app.workorder', [
   };
 })
 
-.controller('WorkorderNewController', function(workorder, workflows, mediator, workorderManager) {
+.controller('WorkorderNewController', function(workorder, workflows, mediator, workorderManager, workers) {
   var self = this;
 
   self.workorder = workorder;
   self.workflows = workflows;
+  self.workers = workers;
 
   mediator.subscribe('workorder:created', function(workorder) {
     workorderManager.create(workorder).then(function(_workorder) {
