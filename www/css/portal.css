@@ -1,9 +1,19 @@
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
 .success {
   color: #388E3C; }
 
 .danger {
   color: #F44336; }
 
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
 .workorder-item .md-list-item-inner {
   align-items: stretch !important; }
 
@@ -21,6 +31,11 @@
   .workorder-item workorder-status md-icon {
     vertical-align: top; }
 
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
 .workflow-progress {
   position: relative;
   background-color: #3F51B5;
@@ -92,6 +107,11 @@
   right: 0;
   z-index: 99; }
 
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
 .vehicle-inspection-form md-radio-button {
   display: inline; }
 
@@ -110,6 +130,11 @@
 .vehicle-inspection-portal dd {
   margin-left: 180px; }
 
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
 .loading {
   font-style: italic;
   color: gray; }
