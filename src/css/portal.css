@@ -1,0 +1,485 @@
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
+.success {
+  color: #388E3C; }
+
+.danger {
+  color: #F44336; }
+
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
+.workorder-item .md-list-item-inner {
+  align-items: stretch !important; }
+
+.workorder-item .md-list-item-text {
+  margin-left: 26px !important; }
+
+.workorder-item workorder-status {
+  width: 30px; }
+  .workorder-item workorder-status.success md-icon {
+    color: #388E3C; }
+  .workorder-item workorder-status.danger md-icon {
+    color: #F44336; }
+  .workorder-item workorder-status.warning md-icon {
+    color: #FFC107; }
+  .workorder-item workorder-status md-icon {
+    vertical-align: top; }
+
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
+.workflow-progress {
+  position: relative;
+  background-color: #3F51B5;
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 0.3) 0px, transparent 6px);
+  background-blend-mode: multiply; }
+  .workflow-progress .scroll-box {
+    padding: 24px 0;
+    max-height: 135px;
+    overflow: auto; }
+  .workflow-progress.close .scroll-box {
+    height: 24px;
+    overflow: hidden; }
+  .workflow-progress ol {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(to bottom, #3F51B5 27px, transparent 27px), linear-gradient(to right, rgba(255, 255, 255, 0.12) 0, rgba(255, 255, 255, 0.12) 4px, transparent 4px);
+    background-position: 0 0, left 26px bottom 27px;
+    background-repeat: no-repeat; }
+  .workflow-progress li {
+    line-height: 24px;
+    margin: 30px 0;
+    color: rgba(255, 255, 255, 0.7); }
+    .workflow-progress li span {
+      background: #b8c6d4;
+      border-radius: 50%;
+      display: inline-block;
+      line-height: 24px;
+      height: 24px;
+      width: 24px;
+      outline: 4px solid #3f51b5;
+      text-align: center;
+      margin: 0 32px 0 16px;
+      color: white;
+      z-index: 1;
+      position: relative; }
+      .workflow-progress li span .material-icons {
+        font-size: 18px;
+        line-height: 22px;
+        color: white; }
+    .workflow-progress li:first-child {
+      margin-top: 0; }
+    .workflow-progress li:last-child {
+      margin-bottom: 0; }
+    .workflow-progress li.active {
+      font-weight: bold;
+      color: white; }
+      .workflow-progress li.active span {
+        background: #46b3e7; }
+  .workflow-progress .expand-collapse {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    z-index: 2; }
+    .workflow-progress .expand-collapse md-icon {
+      fill: rgba(255, 255, 255, 0.7) !important;
+      color: rgba(255, 255, 255, 0.7) !important; }
+
+.workflow {
+  margin-bottom: 64px; }
+
+.workflow-actions {
+  background: #fff;
+  position: fixed;
+  text-align: right;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99; }
+
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
+.vehicle-inspection-form md-radio-button {
+  display: inline; }
+
+.vehicle-inspection-form .fuel md-radio-button {
+  margin: 5px; }
+
+.vehicle-inspection-portal dt {
+  float: left;
+  width: 160px;
+  clear: left;
+  text-align: right;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; }
+
+.vehicle-inspection-portal dd {
+  margin-left: 180px; }
+
+/**
+* CONFIDENTIAL
+* Copyright 2016 Red Hat, Inc. and/or its affiliates.
+* This is unpublished proprietary source code of Red Hat.
+**/
+.loading {
+  font-style: italic;
+  color: gray; }
+
+p.md-caption {
+  color: rgba(0, 0, 0, 0.54);
+  margin-bottom: 5px; }
+
+appform-field-signature canvas {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  width: 99%; }
+
+.with-image {
+  height: auto; }
+  .with-image p {
+    padding-bottom: 20px; }
+  .with-image img {
+    margin-top: 16px;
+    width: 100%;
+    display: inline-block; }
+
+md-tabs md-tab-item {
+  color: rgba(0, 0, 0, 0.54) !important; }
+
+md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-active, md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-tabs-canvas > md-pagination-wrapper > md-tab-item:not([disabled]).md-focused {
+  color: #3F51B5 !important; }
+
+.user-info-header {
+  background-size: cover;
+  background-position: center center;
+  background-color: #333; }
+  .user-info-header h1 {
+    margin: 0;
+    padding: 180px 16px 16px;
+    color: #fff;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.6) 10%, transparent 60%); }
+
+.messages .md-avatar {
+  margin-top: 0 !important; }
+
+.messages .md-list-item-text {
+  position: relative; }
+
+.messages .new h3 {
+  font-weight: bold !important; }
+
+.messages .time-stamp {
+  line-height: normal;
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: rgba(0, 0, 0, 0.54); }
+
+.messages md-list-item md-divider[md-inset] {
+  left: 72px;
+  width: calc(100% - 72px); }
+
+.message-header {
+  position: relative;
+  margin: 10px 0;
+  color: rgba(0, 0, 0, 0.54);
+  line-height: 32px; }
+  .message-header .time-stamp {
+    position: absolute;
+    right: 0;
+    top: 0; }
+
+.wfm-chip {
+  background-color: rgba(0, 0, 0, 0.12);
+  display: inline-block;
+  margin-left: 8px;
+  border-radius: 16px; }
+
+.wfm-chip-picture {
+  float: left; }
+  .wfm-chip-picture img {
+    border-radius: 50%;
+    height: 32px;
+    width: 32px;
+    display: block; }
+
+.wfm-chip-name {
+  display: inline-block;
+  margin: 0 12px 0 8px; }
+
+.wfm-chip-no-picture {
+  line-height: 32px;
+  background-color: #3F51B5;
+  color: #fff; }
+  .wfm-chip-no-picture .wfm-chip-name {
+    margin: 0 12px; }
+
+.wfm-scheduler {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  border-right: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler td, .wfm-scheduler th, .wfm-scheduler tr {
+    vertical-align: top; }
+
+.wfm-scheduler-toolbar md-datepicker {
+  background: transparent; }
+
+.wfm-scheduler-worker {
+  border-right: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-worker md-list-item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-worker p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; }
+
+.wfm-scheduler-calendar {
+  overflow-x: scroll; }
+  .wfm-scheduler-calendar table {
+    table-layout: fixed;
+    width: 700px;
+    border-collapse: collapse; }
+    .wfm-scheduler-calendar table th, .wfm-scheduler-calendar table td {
+      vertical-align: middle; }
+    .wfm-scheduler-calendar table th {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 36px;
+      color: rgba(0, 0, 0, 0.54);
+      background: rgba(0, 0, 0, 0.12);
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+    .wfm-scheduler-calendar table td {
+      border-right: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      height: 55px;
+      position: relative; }
+      .wfm-scheduler-calendar table td .wfm-chip {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        min-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; }
+
+.wfm-scheduler-workorders {
+  border-left: 1px solid rgba(0, 0, 0, 0.12); }
+  .wfm-scheduler-workorders .wfm-chip {
+    display: block;
+    margin-top: 10px;
+    margin-right: 10px; }
+
+.wfm-toolbar-sm {
+  color: rgba(0, 0, 0, 0.54);
+  background: rgba(0, 0, 0, 0.12);
+  padding: 0 16px; }
+  .wfm-toolbar-sm h3 {
+    margin: 0;
+    line-height: 36px; }
+  .wfm-scheduler-workorders .wfm-toolbar-sm {
+    background: #3F51B5;
+    color: rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.12); }
+
+.appform-list tbody tr {
+  cursor: pointer; }
+
+.phone-display {
+  background: url(https://dl.dropboxusercontent.com/u/4371641/iPhone-6.png) no-repeat 0 0;
+  width: 485px;
+  height: 891px; }
+  .phone-display .app-form {
+    width: 342px;
+    height: 598px;
+    border: 1px solid rgba(0, 0, 0, 0.12);
+    border-top: none;
+    position: relative;
+    top: 120px;
+    left: 51px;
+    overflow: auto; }
+    .phone-display .app-form .workflow-actions {
+      margin-top: 40px;
+      position: static;
+      box-shadow: none;
+      border-top: 1px solid rgba(0, 0, 0, 0.12); }
+
+.md-toolbar-tools h1 {
+  font-size: inherit;
+  font-weight: inherit;
+  margin: inherit; }
+
+md-list {
+  margin: 0;
+  padding: 0; }
+
+.persistent-search {
+  position: relative; }
+  .persistent-search label {
+    position: absolute;
+    left: 16px;
+    top: 13px;
+    color: rgba(0, 0, 0, 0.54); }
+  .persistent-search input {
+    font-size: 16px;
+    display: block;
+    border: none;
+    width: calc(100% - 89px);
+    padding: 15px 16px 14px 72px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+    border-right: 1px solid rgba(0, 0, 0, 0.12); }
+
+md-sidenav md-list {
+  padding: 0;
+  font-size: 14px;
+  font-weight: 500; }
+
+md-list-item button {
+  border-radius: 0 !important; }
+
+md-list-item.list-header {
+  min-height: 64px;
+  color: #fff;
+  background: #3F51B5; }
+
+md-list-item.active .md-button, md-list-item.active .md-button:hover {
+  background: #E8EAF6 !important;
+  cursor: default; }
+
+.main-toolbar {
+  z-index: 99999999; }
+
+.dividerdemoBasicUsage .face {
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  width: 48px;
+  margin: 16px; }
+
+.empty-state {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.54); }
+
+.inner-column {
+  background: rgba(0, 0, 0, 0.05); }
+  .inner-column md-toolbar {
+    border-right: 1px solid rgba(0, 0, 0, 0.24); }
+  .inner-column md-list-item.active .md-button, .inner-column md-list-item.active .md-button:hover {
+    background: #fff !important; }
+
+.md-fab {
+  position: fixed;
+  bottom: 16px;
+  right: 16px; }
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  animation: rotator 1.4s linear infinite; }
+  .spinner .path {
+    stroke-dasharray: 187;
+    stroke-dashoffset: 0;
+    transform-origin: center;
+    animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite; }
+
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg); }
+  100% {
+    transform: rotate(270deg); } }
+
+@keyframes colors {
+  0% {
+    stroke: #4285F4; }
+  25% {
+    stroke: #DE3E35; }
+  50% {
+    stroke: #F7C223; }
+  75% {
+    stroke: #1B9A59; }
+  100% {
+    stroke: #4285F4; } }
+
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187; }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg); }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg); } }
+
+/* ************************************** */
+/* Mandatory CSS required for ng-sortable */
+/* ************************************** */
+.as-sortable-item, .as-sortable-placeholder {
+  display: block; }
+
+.as-sortable-item {
+  -ms-touch-action: none;
+  touch-action: none;
+  overflow: hidden; }
+
+.as-sortable-item-handle {
+  cursor: move;
+  cursor: -webkit-grab;
+  cursor: -moz-grab; }
+
+.as-sortable-drag {
+  position: absolute;
+  left: inherit !important;
+  pointer-events: none;
+  z-index: 9999; }
+
+.as-sortable-hidden {
+  display: none !important; }
+
+.as-sortable-un-selectable {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none; }
+
+/* ******************************************* */
+/* Optional CSS, default style for ng-sortable */
+/* ******************************************* */
+.as-sortable-item, .as-sortable-placeholder {
+  min-height: 20px;
+  margin-bottom: 10px;
+  border-radius: 2px; }
+
+.as-sortable-item {
+  padding: 0 16px; }
+
+.as-sortable-placeholder {
+  border: 1px dashed darkgrey;
+  box-sizing: border-box;
+  background-color: #dbdbdb; }
+
+.as-sortable-drag {
+  opacity: .8; }
+
+#gmap_canvas img {
+  max-width: none !important;
+  background: none !important; }
+
+/*# sourceMappingURL=portal.css.map */

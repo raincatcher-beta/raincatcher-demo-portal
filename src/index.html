@@ -1,0 +1,31 @@
+<!--
+ CONFIDENTIAL
+ Copyright 2016 Red Hat, Inc. and/or its affiliates.
+ This is unpublished proprietary source code of Red Hat.
+-->
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <base href="./">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <link rel="stylesheet" href="css/angular-material.css">
+    <link rel="stylesheet" href="css/c3.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="css/patternfly.css"> -->
+    <link href="css/portal.css" rel="stylesheet">
+
+    <script defer src="app/bundle.js"></script>
+    <script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script>
+  </head>
+  <body layout="column">
+    <div ui-view layout="column" flex>
+      <svg class="spinner" width="65px" height="65px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+        <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+      </svg>
+    </div>
+  </body>
+</html>
