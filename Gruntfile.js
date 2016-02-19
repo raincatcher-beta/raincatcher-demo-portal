@@ -26,9 +26,25 @@ module.exports = function (grunt) {
     // Project settings
     app: {
       // configurable paths
-      app: 'www',
+      src: 'src',
+      dist: 'www',
       url: '',
       default_local_server_url: 'http://localhost:8001'
+    },
+
+    copy: {
+      static: {
+        files: [
+          {expand: true, cwd: '<%= app.src %>/', src: ['**/*.html'], dest: '<%= app.dist %>', filter: 'isFile'},
+          {expand: true, cwd: '<%= app.src %>/', src: ['**/*.json'], dest: '<%= app.dist %>', filter: 'isFile'},
+        ],
+      },
+      css: {
+        files: [
+          {cwd: 'node_modules/', src: ['angular-material/angular-material.css', 'patternfly/dist/css/patternfly.css', 'c3/c3.css'], dest: '<%= app.dist %>/css/', expand: true, flatten: true },
+          {cwd: 'node_modules/patternfly/dist/', src: 'fonts/**/*.*', dest: '<%= app.dist %>/', expand: true },
+        ]
+      }
     },
 
     sass: {
@@ -37,7 +53,7 @@ module.exports = function (grunt) {
         },
         dist: {
             files: {
-                'www/css/portal.css': 'www/sass/portal.scss'
+                '<%= app.dist %>/css/portal.css': '<%= app.src %>/sass/portal.scss'
             }
         }
     },
@@ -50,7 +66,7 @@ module.exports = function (grunt) {
       },
       all: {
         files: {
-          "www/app/bundle.js": ["www/app/main.js"]
+          "<%= app.dist %>/app/bundle.js": ["<%= app.src %>/app/main.js"]
         },
         options: {
           watch: true
@@ -61,13 +77,17 @@ module.exports = function (grunt) {
     // Watches files for changes and runs tasks based on the changed files
     watch: {
       js: {
-        files: ['<%= app.app %>/app/bundle.js'],
+        files: ['<%= app.dist %>/app/bundle.js'],
         options: {
-          livereload: 35731
+          livereload: '<%= connect.options.livereload %>'
         }
       },
+      html: {
+        files: ['<%= app.src %>/sass/{,*/}*.html'],
+        tasks: ['copy:static']
+      },
       sass: {
-        files: ['<%= app.app %>/sass/{,*/}*.scss'],
+        files: ['<%= app.src %>/sass/{,*/}*.scss'],
         tasks: ['sass']
       },
       gruntfile: {
@@ -78,9 +98,9 @@ module.exports = function (grunt) {
           livereload: '<%= connect.options.livereload %>'
         },
         files: [
-          '<%= app.app %>/**/*.html',
-          '<%= app.app %>/css/{,*/}*.css',
-          '<%= app.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+          '<%= app.dist %>/**/*.html',
+          '<%= app.dist %>/css/{,*/}*.css',
+          '<%= app.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
     },
@@ -100,7 +120,7 @@ module.exports = function (grunt) {
           },
           base: [
             '.tmp',
-            '<%= app.app %>'
+            '<%= app.dist %>'
           ]
         }
       }
@@ -108,13 +128,15 @@ module.exports = function (grunt) {
 
     // Empties folders to start fresh
     clean: {
+      dist: ['<%= app.dist %>'],
       server: '.tmp'
     }
   });
 
   grunt.registerTask('serve', function (target) {
     if (target === 'local') {
-      var conn = 'http://' + grunt.config.get('connect.options.hostname') + ':' + grunt.config.get('connect.options.port');
+      var conn = 'http://' + grunt.config.get('connect.options.hostname') + ':' +
+        grunt.config.get('connect.options.port');
       var url = grunt.option('url') || grunt.config.get('app.default_local_server_url');
       grunt.config.set('app.url', conn + '/?url=' + url);
     } else {
@@ -123,10 +145,11 @@ module.exports = function (grunt) {
     }
 
     grunt.task.run([
+      'clean:dist',
       'sass',
+      'copy',
       'clean:server',
       'connect:livereload',
-      'sass',
       'browserify',
       'watch'
     ]);
