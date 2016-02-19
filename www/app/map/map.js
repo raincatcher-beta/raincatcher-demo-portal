@@ -35,22 +35,27 @@ angular.module('app.map', [
 })
 
 .controller('mapController', function ($window, $document, $timeout, workorders) {
-  var lat0 = 49.2275439, long0 = -123.1108627;
+  var lat0 = 49.27, long0 = -123.08;
   function initMap() {
     var myOptions = {
-      zoom:12,
+      zoom:14,
       center:new google.maps.LatLng(lat0, long0),
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
     var map = new google.maps.Map(document.getElementById('gmap_canvas'), myOptions);
     workorders.forEach(function(workorder) {
-      var lat = lat0 + (Math.random() - 0.5) * 0.05;
-      var long = long0 + (Math.random() - 0.5) * 0.2;
-      var marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(lat, long)});
-      var infowindow = new google.maps.InfoWindow({content:'<strong>Workorder #'+workorder.id+'</strong><br>Vancouver, BC<br>'});
-      google.maps.event.addListener(marker, 'click', function(){
-        infowindow.open(map,marker);
-      });
+      console.log(workorder);
+      if (workorder.location) {
+        // var lat = lat0 + (Math.random() - 0.5) * 0.05;
+        // var long = long0 + (Math.random() - 0.5) * 0.2;
+        var lat = workorder.location[0];
+        var long = workorder.location[1];
+        var marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(lat, long)});
+        var infowindow = new google.maps.InfoWindow({content:'<strong>Workorder #'+workorder.id+'</strong><br>Vancouver, BC<br>'});
+        google.maps.event.addListener(marker, 'click', function(){
+          infowindow.open(map,marker);
+        });
+      }
     });
   };
 
