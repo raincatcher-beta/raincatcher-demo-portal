@@ -19,6 +19,7 @@ angular.module('app', [
 , require('fh-wfm-user')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
+, require('fh-wfm-map')
 
 , require('./auth/auth')
 , require('./workorder/workorder')
