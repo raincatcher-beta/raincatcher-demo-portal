@@ -81,7 +81,8 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 
 .message-header{
   position: relative;
-  margin: 10px 0;
+  margin: 10px;
+  padding: 0;
   color: $secondary-text-color;
   line-height: 32px;
   .time-stamp{
