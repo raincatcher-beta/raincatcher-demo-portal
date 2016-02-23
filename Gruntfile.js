@@ -83,7 +83,7 @@ module.exports = function (grunt) {
         }
       },
       html: {
-        files: ['<%= app.src %>/sass/{,*/}*.html'],
+        files: ['<%= app.src %>/{,*/}*.html'],
         tasks: ['copy:static']
       },
       sass: {
@@ -149,8 +149,8 @@ module.exports = function (grunt) {
       'sass',
       'copy',
       'clean:server',
-      'connect:livereload',
       'browserify',
+      'connect:livereload',
       'watch'
     ]);
   });
