@@ -66,6 +66,9 @@ angular.module('app.workorder', [
             workorder: function($stateParams, appformClient, workorderManager) {
               return workorderManager.read($stateParams.workorderId)
             },
+            workers: function(userClient) {
+              return userClient.list();
+            },
             results: function($stateParams, appformClient, resultManager) {
               return resultManager.list()
               .then(function(results) {
@@ -133,12 +136,18 @@ angular.module('app.workorder', [
   self.workorders = workorders;
 })
 
-.controller('WorkorderDetailController', function (mediator, workflows, workorder, results) {
+.controller('WorkorderDetailController', function (mediator, workflows, workorder, results, workers) {
   var self = this;
 
   self.workorder = workorder;
   self.workflow = workflows[workorder.workflowId];
   self.results = results;
+  var assignee = workers.filter(function(worker) {
+    return worker.id = workorder.assignee
+  })
+  if (assignee.length) {
+    self.assignee = assignee[0];
+  }
   self.steps = self.workflow.steps;
 
   self.beginWorkflow = function(event, workorder) {
