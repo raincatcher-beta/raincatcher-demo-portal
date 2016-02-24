@@ -19,27 +19,14 @@ angular.module('app.group', [
     .state('app.group', {
       url: '/groups/list',
       resolve: {
-        groups: function() {
-          return [
-            {id: 0, name: 'Drivers', role: 'worker'},
-            {id: 1, name: 'Back Office', role: 'manager'},
-            {id: 2, name: 'Management', role: 'admin'}
-          ];
+        groups: function(groupClient) {
+          return groupClient.list();
         },
         users: function(userClient) {
           return userClient.list();
         },
-        membership: function() {
-          return [
-            {group: 0, user: 156340},
-            {group: 0, user: 373479},
-            {group: 0, user: 235843},
-            {group: 0, user: 754282},
-            {group: 0, user: 994878},
-            {group: 1, user: 546834},
-            {group: 1, user: 865435},
-            {group: 2, user: 122334}
-          ];
+        membership: function(membershipClient) {
+          return membershipClient.list();
         }
       },
       views: {
