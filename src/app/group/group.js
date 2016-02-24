@@ -17,7 +17,7 @@ angular.module('app.group', [
 .config(function($stateProvider) {
   $stateProvider
     .state('app.group', {
-      url: '/groups/list',
+      url: '/groups',
       resolve: {
         groups: function(groupClient) {
           return groupClient.list();
@@ -66,6 +66,20 @@ angular.module('app.group', [
           controller: 'groupFormController as ctrl',
         }
       }
+    })
+    .state('app.group.new', {
+      url: '/new',
+      resolve: {
+        group: function() {
+          return {}
+        }
+      },
+      views: {
+        'content@app': {
+          templateUrl: 'app/group/group-edit.tpl.html',
+          controller: 'groupFormController as ctrl',
+        }
+      }
     });
 })
 
@@ -85,16 +99,32 @@ angular.module('app.group', [
   this.group = group;
   var groupMembership = membership.filter(function(_membership) {
     return _membership.group == group.id
-  })
+  });
   this.members = users.filter(function(user) {
     return _.some(groupMembership, function(_membership) {
       return _membership.user == user.id;
     })
-  })
+  });
 })
 
-.controller('groupFormController', function (mediator, group) {
-  this.group = group;
+.controller('groupFormController', function ($state, mediator, group, groupClient) {
+  var self = this;
+  self.group = angular.copy(group);
+  self.done = function(valid) {
+    if (valid) {
+      if (self.group.id || self.group.id === 0) {
+        groupClient.update(self.group)
+        .then(function() {
+          $state.go('app.group.detail', {groupId: self.group.id}, {reload: true});
+        })
+      } else {
+        groupClient.create(self.group)
+        .then(function(createdGroup) {
+          $state.go('app.group.detail', {groupId: createdGroup.id}, {reload: true});
+        })
+      }
+    }
+  }
 })
 
 ;
