@@ -10,7 +10,7 @@
     </h3>
 
     <span flex></span>
-    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.workorder.edit({workorderId: ctrl.workorder.id})">
+    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.worker.edit({workerId: ctrl.worker.id})">
       <md-icon md-font-set="material-icons">edit</md-icon>
     </md-button>
   </div>
@@ -28,9 +28,18 @@
 
       <md-list>
         <md-list-item class="md-2-line" >
+          <md-icon md-font-set="material-icons">person</md-icon>
+          <div class="md-list-item-text">
+            <h3>{{ctrl.worker.username}}</h3>
+            <p>Username</p>
+          </div>
+          <md-divider></md-divider>
+        </md-list-item>
+
+        <md-list-item class="md-2-line" >
           <md-icon md-font-set="material-icons">phone</md-icon>
           <div class="md-list-item-text">
-            <h3>{{ctrl.worker.name}}</h3>
+            <h3>{{ctrl.worker.phone}}</h3>
             <p>Phone Number</p>
           </div>
           <md-divider></md-divider>
@@ -49,7 +58,7 @@
           <md-icon md-font-set="material-icons">portrait</md-icon>
           <div class="md-list-item-text">
             <h3>{{ctrl.worker.position}}</h3>
-            <p>Role/position</p>
+            <p>Position</p>
           </div>
           <md-divider></md-divider>
         </md-list-item>

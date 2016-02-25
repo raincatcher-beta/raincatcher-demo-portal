@@ -18,16 +18,16 @@ angular.module('app.worker', [
 .config(function($stateProvider) {
   $stateProvider
     .state('app.worker', {
-      url: '/workers/list',
+      url: '/workers',
+      resolve: {
+        workers: function(userClient) {
+          return userClient.list();
+        }
+      },
       views: {
         column2: {
           templateUrl: 'app/worker/worker-list.tpl.html',
           controller: 'WorkerListController as ctrl',
-          resolve: {
-            workers: function(userClient) {
-              return userClient.list();
-            }
-          }
         },
         'content': {
           templateUrl: 'app/worker/empty.tpl.html',
@@ -36,20 +36,39 @@ angular.module('app.worker', [
     })
     .state('app.worker.detail', {
       url: '/worker/:workerId',
+      resolve: {
+        worker: function($stateParams, userClient) {
+          return userClient.read($stateParams.workerId);
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/worker/worker-detail.tpl.html',
-          controller: 'WorkerDetailController as ctrl',
-          resolve: {
-            worker: function($stateParams, userClient) {
-              return userClient.read($stateParams.workerId);
-            }
-          }
+          controller: 'WorkerDetailController as ctrl'
         }
       }
     })
     .state('app.worker.edit', {
       url: '/worker/:workerId/edit',
+      resolve: {
+        worker: function($stateParams, userClient) {
+          return userClient.read($stateParams.workerId);
+        }
+      },
+      views: {
+        'content@app': {
+          templateUrl: 'app/worker/worker-edit.tpl.html',
+          controller: 'WorkerFormController as ctrl',
+        }
+      }
+    })
+    .state('app.worker.new', {
+      url: '/new',
+      resolve: {
+        worker: function() {
+          return {};
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/worker/worker-edit.tpl.html',
@@ -83,7 +102,31 @@ angular.module('app.worker', [
   console.log('style', this.style);
 })
 
-.controller('WorkerFormController', function (mediator) {
+.controller('WorkerFormController', function ($state, mediator, worker, userClient) {
+  var self = this;
+  self.worker = worker;
+
+  self.done = function(valid) {
+    if (valid) {
+      if (self.worker.id || self.worker.id === 0) {
+        userClient.update(self.worker)
+        .then(function() {
+          $state.go('app.worker.detail', {workerId: self.worker.id}, {reload: true});
+        })
+      } else {
+        userClient.create(self.worker)
+        .then(function(createdWorker) {
+          $state.go('app.worker.detail', {workerId: createdWorker.id}, {reload: true});
+        })
+      }
+    }
+  }
+
+  self.delete = function() {
+    userClient.delete(self.worker).then(function() {
+      $state.go('app.worker', null, {reload: true});
+    })
+  }
 })
 
 ;
