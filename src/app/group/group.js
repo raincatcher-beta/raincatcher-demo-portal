@@ -124,6 +124,11 @@ angular.module('app.group', [
         })
       }
     }
+  };
+  self.delete = function() {
+    groupClient.delete(self.group).then(function() {
+      $state.go('app.group', null, {reload: true});
+    })
   }
 })
 
