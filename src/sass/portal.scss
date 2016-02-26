@@ -322,12 +322,16 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
 
 // Inner column
 .inner-column{
-  md-toolbar{
-    border-right: 1px solid rgba(0,0,0,.24)
+  md-list{
+    background: rgba(0,0,0,.05);
+    overflow-y: auto;
+    height: calc(100vh - 178px);
   }
-  background: rgba(0,0,0,.05);
   md-list-item.active .md-button, md-list-item.active .md-button:hover{
   background: #fff!important;
+    md-toolbar{
+      border-right: 1px solid rgba(0,0,0,.24)
+    }
   }
 }
 
