@@ -18,6 +18,14 @@ angular.module('app.schedule', [
   $stateProvider
     .state('app.schedule', {
       url: '/schedule',
+      resolve: {
+        workorders: function(workorderManager) {
+          return workorderManager.list();
+        },
+        workers: function(userClient) {
+          return userClient.list();
+        }
+      },
       data: {
         columns: 2
       },
@@ -30,7 +38,45 @@ angular.module('app.schedule', [
     })
 })
 
-.controller('scheduleController', function (mediator) {
+.controller('scheduleController', function (workorders, workers) {
+  var self = this;
+  self.workorders = workorders;
+  self.workers = workers;
+  var workordersOnDate = workorders.filter(function(workorder) {
+    return true; // TODO: apply a date selective filter here
+  });
+  var workordersByWorker = {};
+  workordersOnDate.forEach(function(workorder) {
+    workordersByWorker[workorder.assignee] = workordersByWorker[workorder.assignee] || [];
+    workordersByWorker[workorder.assignee].push(workorder);
+  });
+
+  self.timegrid = {};
+  self.workers.forEach(function(worker) {
+    self.timegrid[worker.id] = [];
+    for (var i = 0; i < 24; i++) {
+      self.timegrid[worker.id][i] = null;
+    }
+    var workorders = workordersByWorker[worker.id]
+    if (workorders) {
+      workorders.forEach(function(workorder) {
+        var duration = 3; // hours
+        var hour = new Date(workorder.finishTimestamp).getHours();
+        var timeslot = self.timegrid[workorder.assignee][hour];
+        if (timeslot) {
+          self.timegrid[workorder.assignee][hour] = {
+            title: 'conflict'
+          }
+        } else {
+          self.timegrid[workorder.assignee][hour] = {
+            title: workorder.type + ' #' + workorder.id
+          }
+        }
+      });
+    }
+  });
+
+  console.log(self.timegrid);
 })
 
 ;
