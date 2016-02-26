@@ -131,13 +131,15 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderListController', function (workorders) {
+.controller('WorkorderListController', function ($scope, workorders) {
   var self = this;
   self.workorders = workorders;
+  $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkorderDetailController', function (mediator, workflows, workorder, results, workers) {
+.controller('WorkorderDetailController', function ($scope, mediator, workflows, workorder, results, workers) {
   var self = this;
+  $scope.selected.id = workorder.id;
 
   self.workorder = workorder;
   self.workflow = workflows[workorder.workflowId];
