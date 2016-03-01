@@ -90,16 +90,22 @@ angular.module('app.worker', [
   this.workers = workers;
 })
 
-.controller('WorkerDetailController', function (mediator, worker) {
-  this.worker = worker;
+.controller('WorkerDetailController', function ($state, mediator, worker, userClient) {
+  var self = this;
+  self.worker = worker;
   var bannerUrl = worker.banner || worker.avatar;
-  this.style = {
+  self.style = {
     'background-image': 'url(' + bannerUrl + ')',
     'background-position': worker.banner ? 'center center' : 'top center',
     'background-size': worker.banner ? 'auto' : 'contain',
     'background-repeat': 'no-repeat'
   }
   console.log('style', this.style);
+  self.delete = function() {
+    userClient.delete(self.worker).then(function() {
+      $state.go('app.worker', null, {reload: true});
+    })
+  }
 })
 
 .controller('WorkerFormController', function ($state, mediator, worker, userClient) {
@@ -120,12 +126,6 @@ angular.module('app.worker', [
         })
       }
     }
-  }
-
-  self.delete = function() {
-    userClient.delete(self.worker).then(function() {
-      $state.go('app.worker', null, {reload: true});
-    })
   }
 })
 

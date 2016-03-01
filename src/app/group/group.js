@@ -95,16 +95,22 @@ angular.module('app.group', [
   this.groups = groups;
 })
 
-.controller('groupDetailController', function (mediator, group, users, membership) {
-  this.group = group;
+.controller('groupDetailController', function ($state, mediator, group, users, membership, groupClient) {
+  var self = this;
+  self.group = group;
   var groupMembership = membership.filter(function(_membership) {
     return _membership.group == group.id
   });
-  this.members = users.filter(function(user) {
+  self.members = users.filter(function(user) {
     return _.some(groupMembership, function(_membership) {
       return _membership.user == user.id;
     })
   });
+  self.delete = function() {
+    groupClient.delete(self.group).then(function() {
+      $state.go('app.group', null, {reload: true});
+    })
+  }
 })
 
 .controller('groupFormController', function ($state, mediator, group, groupClient) {
@@ -125,11 +131,6 @@ angular.module('app.group', [
       }
     }
   };
-  self.delete = function() {
-    groupClient.delete(self.group).then(function() {
-      $state.go('app.group', null, {reload: true});
-    })
-  }
 })
 
 ;
