@@ -320,6 +320,15 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
 }
 
 
+// Main column
+.wfm-maincol-scroll{
+  overflow-y: auto;
+  height: calc(100vh - 128px);
+  &.wfm-maincol-scroll_with-menu{
+    height: calc(100vh - 177px);
+  }
+}
+
 // Inner column
 .inner-column{
   md-list{

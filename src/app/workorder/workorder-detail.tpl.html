@@ -26,21 +26,27 @@
   </div>
 </md-toolbar>
 
+<div class="wfm-maincol-scroll">
+
 <workorder workorder="ctrl.workorder" assignee="ctrl.assignee"></workorder>
 
-<md-toolbar class="content-toolbar">
-  <div class="md-toolbar-tools">
-    Workflow: {{ctrl.workflow.title}}
-  </div>
-</md-toolbar>
+<md-card>
+  <md-progress-linear md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+  <md-card-title>
+    <md-card-title-text>
+      <span class="md-headline">Workflow: {{ctrl.workflow.title}}</span>
+    </md-card-title-text>
+  </md-card-title>
+  <md-card-content>
+    <p class="md-body-1" ng-if="ctrl.results | isEmpty">
+      No workflow submissions.
+    </p>
+    <workflow-results workorder="ctrl.workorder" results="ctrl.results" workflow="ctrl.workflow" steps="ctrl.workflow.steps"></workflow-results>
+  </md-card-content>
+</md-card>
 
-<md-list ng-if="ctrl.results | isEmpty">
-  <md-list-item>
-    <span style="font-style: italic">No workflow submissions.</span>
-  </md-list-item>
-</md-list>
+</div><!-- wfm-maincol-scroll -->
 
-<workflow-results workorder="ctrl.workorder" results="ctrl.results" workflow="ctrl.workflow" steps="ctrl.workflow.steps"></workflow-results>
 
 <md-button class="md-fab" aria-label="New Workorder" ui-sref="app.workorder.new">
   <md-icon md-font-set="material-icons">add</md-icon>

@@ -24,11 +24,10 @@
 
  <md-tabs md-dynamic-height md-border-bottom>
   <md-tab label="Information">
-    <md-content>
+    <md-content class="wfm-maincol-scroll wfm-maincol-scroll_with-menu">
       <div class="user-info-header" ng-style="ctrl.style">
         <h1 class="md-display-1">{{ctrl.worker.name}}</h1>
       </div>
-
       <md-list>
         <md-list-item class="md-2-line" >
           <md-icon md-font-set="material-icons">person</md-icon>
@@ -68,12 +67,11 @@
 
         <md-subheader class="md-no-sticky">Notes</md-subheader>
         <p class="md-body-1" layout-padding layout-margin>{{ctrl.worker.notes}}</p>
-
       </md-content>
     </md-tab>
 
     <md-tab label="Workorders">
-      <md-content>
+      <md-content class="wfm-maincol-scroll wfm-maincol-scroll_with-menu">
 
         <md-list>
           <md-list-item ng-click="ctrl.selectWorkorder($event, workorder)" class="md-3-line workorder-item">
@@ -131,7 +129,7 @@
     </md-tab>
 
     <md-tab label="Messages">
-      <md-content class="messages">
+      <md-content class="messages wfm-maincol-scroll wfm-maincol-scroll_with-menu">
           <md-list>
             <md-list-item class="md-3-line new">
               <img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" class="md-avatar" alt="Daisy" />
