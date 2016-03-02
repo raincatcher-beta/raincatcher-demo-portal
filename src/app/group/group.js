@@ -95,7 +95,7 @@ angular.module('app.group', [
   this.groups = groups;
 })
 
-.controller('groupDetailController', function ($state, mediator, group, users, membership, groupClient) {
+.controller('groupDetailController', function ($state, $mdDialog, mediator, group, users, membership, groupClient) {
   var self = this;
   self.group = group;
   var groupMembership = membership.filter(function(_membership) {
@@ -106,11 +106,23 @@ angular.module('app.group', [
       return _membership.user == user.id;
     })
   });
-  self.delete = function() {
-    groupClient.delete(self.group).then(function() {
-      $state.go('app.group', null, {reload: true});
-    })
-  }
+  self.delete = function($event, group) {
+    event.preventDefault();
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete group #'+group.id+'?')
+          .textContent(group.name)
+          .ariaLabel('Delete Group')
+          .targetEvent(event)
+          .ok('Proceed')
+          .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+      groupClient.delete(group).then(function() {
+        $state.go('app.group', null, {reload: true});
+      }, function(err) {
+        throw err;
+      })
+    });
+  };
 })
 
 .controller('groupFormController', function ($state, mediator, group, groupClient) {

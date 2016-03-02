@@ -137,7 +137,7 @@ angular.module('app.workorder', [
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkorderDetailController', function ($scope, $state, mediator, workorderManager, workflows, workorder, results, workers) {
+.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflows, workorder, results, workers) {
   var self = this;
   $scope.selected.id = workorder.id;
 
@@ -158,11 +158,22 @@ angular.module('app.workorder', [
   };
 
   self.delete = function(event, workorder) {
-    workorderManager.delete(workorder).then(function() {
-      $state.go('app.workorder', null, {reload: true});
-    }, function(err) {
-      throw err;
-    })
+    event.preventDefault();
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete workorder #'+workorder.id+'?')
+          .textContent(workorder.title)
+          .ariaLabel('Delete Workorder')
+          .targetEvent(event)
+          .ok('Proceed')
+          .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+      return workorderManager.delete(workorder)
+      .then(function() {
+        $state.go('app.workorder', null, {reload: true});
+      }, function(err) {
+        throw err;
+      })
+    });
   }
 })
 

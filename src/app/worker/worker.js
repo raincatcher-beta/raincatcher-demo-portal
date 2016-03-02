@@ -90,7 +90,7 @@ angular.module('app.worker', [
   this.workers = workers;
 })
 
-.controller('WorkerDetailController', function ($state, mediator, worker, userClient) {
+.controller('WorkerDetailController', function ($state, $mdDialog, mediator, worker, userClient) {
   var self = this;
   self.worker = worker;
   var bannerUrl = worker.banner || worker.avatar;
@@ -101,10 +101,23 @@ angular.module('app.worker', [
     'background-repeat': 'no-repeat'
   }
   console.log('style', this.style);
-  self.delete = function() {
-    userClient.delete(self.worker).then(function() {
-      $state.go('app.worker', null, {reload: true});
-    })
+  self.delete = function(event, worker) {
+    event.preventDefault();
+    var confirm = $mdDialog.confirm()
+          .title('Would you like to delete worker #'+worker.id+'?')
+          .textContent(worker.name)
+          .ariaLabel('Delete Worker')
+          .targetEvent(event)
+          .ok('Proceed')
+          .cancel('Cancel');
+    $mdDialog.show(confirm).then(function() {
+      userClient.delete(worker)
+      .then(function() {
+        $state.go('app.worker', null, {reload: true});
+      }, function(err) {
+        throw err;
+      })
+    });
   }
 })
 
