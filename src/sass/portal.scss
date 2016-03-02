@@ -242,7 +242,7 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     overflow: auto;
     .workflow-actions{
       margin-top: 40px;
-      position: static;
+      position: absolute;
       box-shadow: none;
       border-top: 1px solid $divider-text-color;
     }
