@@ -69,29 +69,8 @@ angular.module('app.workorder', [
             workers: function(userClient) {
               return userClient.list();
             },
-            results: function($stateParams, appformClient, resultManager) {
-              return resultManager.list()
-              .then(function(results) {
-                return resultManager.filter(results, $stateParams.workorderId);
-              })
-              .then(function(results) {
-                if (_.isEmpty(results)) {
-                  return results;
-                }
-                var appformResults = _.filter(results, function(result) {
-                  return !! result.step.formId;
-                });
-                if (_.isEmpty(appformResults)) {
-                  return results;
-                }
-                var submissionIds = _.map(appformResults, function(result) {
-                  return result.submission.submissionId;
-                });
-                return appformClient.getSubmissions(submissionIds)
-                .then(function() {
-                  return results;
-                })
-              });
+            result: function($stateParams, resultManager) {
+              return resultManager.getByWorkorderId($stateParams.workorderId);
             }
           }
         }
@@ -137,13 +116,13 @@ angular.module('app.workorder', [
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflows, workorder, results, workers) {
+.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflows, workorder, result, workers) {
   var self = this;
   $scope.selected.id = workorder.id;
 
   self.workorder = workorder;
   self.workflow = workflows[workorder.workflowId];
-  self.results = results;
+  self.result = result;
   var assignee = workers.filter(function(worker) {
     return worker.id = workorder.assignee
   })

@@ -38,10 +38,10 @@
     </md-card-title-text>
   </md-card-title>
   <md-card-content>
-    <p class="md-body-1" ng-if="ctrl.results | isEmpty">
+    <p class="md-body-1" ng-if="! ctrl.result.stepResults || ctrl.result.stepResults | isEmpty">
       No workflow submissions.
     </p>
-    <workflow-results workorder="ctrl.workorder" results="ctrl.results" workflow="ctrl.workflow" steps="ctrl.workflow.steps"></workflow-results>
+    <workflow-result result="ctrl.result" workflow="ctrl.workflow"></workflow-result>
   </md-card-content>
 </md-card>
 
