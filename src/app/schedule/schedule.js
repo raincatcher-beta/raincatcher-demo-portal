@@ -61,7 +61,7 @@ angular.module('app.schedule', [
     if (workorders) {
       workorders.forEach(function(workorder) {
         var duration = 3; // hours
-        var hour = new Date(workorder.finishTimestamp).getHours();
+        var hour = new Date(workorder.startTimestamp).getHours();
         var timeslot = self.timegrid[workorder.assignee][hour];
         if (timeslot) {
           self.timegrid[workorder.assignee][hour] = {
