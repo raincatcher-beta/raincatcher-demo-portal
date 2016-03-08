@@ -24,7 +24,7 @@
 <workorder workorder="ctrl.workorder" status="ctrl.result.status" assignee="ctrl.assignee"></workorder>
 
 <md-card>
-  <md-progress-linear md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>
+  <md-progress-linear md-mode="determinate" ng-value="ctrl.progress"></md-progress-linear>
   <md-card-title>
     <md-card-title-text>
       <span class="md-headline">Workflow: {{ctrl.workflow.title}}</span>

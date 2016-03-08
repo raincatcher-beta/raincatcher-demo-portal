@@ -130,7 +130,7 @@ angular.module('app.workorder', [
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflows, workorder, result, workers) {
+.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflowManager, workflows, workorder, result, workers) {
   var self = this;
   $scope.selected.id = workorder.id;
 
@@ -143,7 +143,11 @@ angular.module('app.workorder', [
   if (assignee.length) {
     self.assignee = assignee[0];
   }
-  self.steps = self.workflow.steps;
+
+  var nextStepIndex = workflowManager.nextStepIndex(self.workflow.steps, self.result);
+  var numSteps = self.workflow.steps.length;
+  self.progress = (100 * (nextStepIndex + 1) / numSteps).toPrecision(3);
+  console.log(nextStepIndex, numSteps, self.progress);
 
   self.beginWorkflow = function(event, workorder) {
     mediator.publish('workflow:begin', workorder.id);
