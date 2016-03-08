@@ -9,13 +9,6 @@
       Work order ID: {{ctrl.workorder.id}}
     </h3>
 
-    <md-button class="md-icon-button" aria-label="{{ctrl.workorder.status}}">
-      <md-tooltip>
-        {{ctrl.workorder.status}}
-      </md-tooltip>
-      <workorder-status status="ctrl.workorder.status"></workorder-status>
-    </md-button>
-
     <span flex></span>
     <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.workorder.edit({workorderId: ctrl.workorder.id})">
       <md-icon md-font-set="material-icons">edit</md-icon>
@@ -28,7 +21,7 @@
 
 <div class="wfm-maincol-scroll">
 
-<workorder workorder="ctrl.workorder" assignee="ctrl.assignee"></workorder>
+<workorder workorder="ctrl.workorder" status="ctrl.result.status" assignee="ctrl.assignee"></workorder>
 
 <md-card>
   <md-progress-linear md-mode="determinate" value="{{vm.determinateValue}}"></md-progress-linear>

@@ -28,6 +28,16 @@ angular.module('app.workorder', [
         resultManager: function(resultSync) {
           return resultSync.managerPromise;
         },
+        resultMap: function(resultManager) {
+          return resultManager.list()
+          .then(function(results) {
+            var map = {};
+            results.forEach(function(result) {
+              map[result.workorderId] = result;
+            });
+            return map;
+          })
+        }
       },
       views: {
         column2: {
@@ -69,8 +79,8 @@ angular.module('app.workorder', [
             workers: function(userClient) {
               return userClient.list();
             },
-            result: function($stateParams, resultManager) {
-              return resultManager.getByWorkorderId($stateParams.workorderId);
+            result: function(workorder, resultMap) {
+              return resultMap[workorder.id];
             }
           }
         }
@@ -88,6 +98,9 @@ angular.module('app.workorder', [
             },
             workers: function(userClient) {
               return userClient.list();
+            },
+            result: function(workorder, resultMap) {
+              return resultMap[workorder.id];
             }
           }
         }
@@ -110,9 +123,10 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderListController', function ($scope, workorders) {
+.controller('WorkorderListController', function ($scope, workorders, resultMap) {
   var self = this;
   self.workorders = workorders;
+  self.resultMap = resultMap;
   $scope.$parent.selected = {id: null};
 })
 
@@ -170,12 +184,13 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderFormController', function ($state, mediator, workorderManager, workorder, workflows, workers) {
+.controller('WorkorderFormController', function ($state, mediator, workorderManager, workorder, workflows, workers, result) {
   var self = this;
 
   self.workorder = workorder;
   self.workflows = workflows;
   self.workers = workers;
+  self.result = result;
 
   mediator.subscribe('workorder:edited', function(workorder) {
     return workorderManager.update(workorder).then(function(_workorder) {
