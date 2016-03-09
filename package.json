@@ -37,6 +37,7 @@
     "fh-wfm-mediator": ">=0.0.6",
     "fh-wfm-result": "0.0.1",
     "fh-wfm-risk-assessment": "^0.0.2",
+    "fh-wfm-schedule": "0.0.1",
     "fh-wfm-sync": "0.0.2",
     "fh-wfm-user": "0.0.1",
     "fh-wfm-vehicle-inspection": "^0.0.2",

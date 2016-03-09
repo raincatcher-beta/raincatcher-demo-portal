@@ -20,6 +20,7 @@ angular.module('app', [
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
 , require('fh-wfm-map')
+, require('fh-wfm-schedule')
 
 , require('./auth/auth')
 , require('./workorder/workorder')
