@@ -38,10 +38,17 @@ angular.module('app.schedule', [
     })
 })
 
-.controller('scheduleController', function (workorders, workers) {
+.controller('scheduleController', function (mediator, workorderManager, workorders, workers) {
   var self = this;
   self.workorders = workorders;
   self.workers = workers;
+  mediator.subscribe('wfm:schedule:workorder', function(workorder) {
+    workorderManager.update(workorder).then(function(updatedWorkorder) {
+      mediator.publish('done:wfm:schedule:workorder:' + workorder.id, updatedWorkorder);
+    }, function(error) {
+      console.error(error);
+    });
+  })
 })
 
 ;
