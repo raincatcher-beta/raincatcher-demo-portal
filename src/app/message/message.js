@@ -18,7 +18,7 @@ angular.module('app.message', [
 .config(function($stateProvider) {
   $stateProvider
      .state('app.message', {
-      url: '/message/list',
+      url: '/messages',
       views: {
         column2: {
           templateUrl: 'app/message/message-list.tpl.html',
@@ -43,12 +43,20 @@ angular.module('app.message', [
         }
       }
     })
-    .state('app.message.edit', {
-      url: '/message/:messageId/edit',
+    .state('app.message.new', {
+      url: '/new',
       views: {
         'content@app': {
-          templateUrl: 'app/message/message-edit.tpl.html',
-          controller: 'messageFormController as ctrl',
+          templateUrl: 'app/message/message-new.tpl.html',
+          controller: 'messageNewController as ctrl',
+          resolve: {
+            message: function(messageManager) {
+              return messageManager.new();
+            },
+            workers: function(userClient) {
+              return userClient.list();
+            }
+          }
         }
       }
     });
@@ -74,4 +82,15 @@ angular.module('app.message', [
 .controller('messageFormController', function (mediator) {
 })
 
+.controller('messageNewController', function ($scope, $state, mediator, messageManager, workers) {
+  var self = this;
+  self.workers = workers;
+  mediator.subscribe('message:created', function(message) {
+    message.sender = $scope.profileData;
+    return messageManager.create(message).then(function(_message) {
+      $state.go('app.message', {workers: workers}, {reload: true});
+    })
+  });
+})
 ;
+module.exports = 'app.message';
