@@ -7,6 +7,7 @@
 
 var d3 = require('d3')
 var c3 = require('c3')
+var _ = require('lodash');
 
 module.exports = 'app.analytics';
 
@@ -22,6 +23,14 @@ angular.module('app.analytics', [
       data: {
         columns: 2
       },
+      resolve: {
+        workorders: function(workorderManager) {
+          return workorderManager.list();
+        },
+        workers: function(userClient) {
+          return userClient.list();
+        }
+      },
       views: {
         content: {
           templateUrl: 'app/analytics/analytics.tpl.html',
@@ -31,7 +40,7 @@ angular.module('app.analytics', [
     })
 })
 
-.controller('analyticsController', function () {
+.controller('analyticsController', function (workorders, workers) {
   var barChart = c3.generate({
     bindto: '#bar-chart',
     size: {
@@ -52,18 +61,34 @@ angular.module('app.analytics', [
     }
   });
 
+  var workerMap = {};
+  workers.forEach(function(worker) {
+    workerMap[worker.id] = worker;
+  });
+
+  var workorderCounts = {};
+  workorders.forEach(function(workorder) {
+    workorderCounts[workorder.assignee] = workorderCounts[workorder.assignee] || 0;
+    workorderCounts[workorder.assignee]++;
+  });
+
+  var columns = [];
+  _.forIn(workorderCounts, function(count, workerid) {
+    var worker = workerMap[workerid];
+    var name = worker ? worker.name : 'Unassigned';
+    var column = [name, count];
+    columns.push(column);
+  });
+
+  console.log(columns);
+
   var pieChart = c3.generate({
     bindto: '#pie-chart',
     size: {
       width: 450
     },
     data: {
-        // iris data from R
-        columns: [
-            ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
-            ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
-            ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8],
-        ],
+        columns: columns,
         type : 'pie',
         onclick: function (d, i) { console.log("onclick", d, i); },
         onmouseover: function (d, i) { console.log("onmouseover", d, i); },
