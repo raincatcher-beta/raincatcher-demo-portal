@@ -87,7 +87,16 @@ angular.module('app.worker', [
 })
 
 .controller('WorkerListController', function (mediator, workers) {
-  this.workers = workers;
+  var self = this;
+  self.workers = workers;
+
+  self.applyFilter = function(term) {
+    term = term.toLowerCase();
+    self.workers = workers.filter(function(worker) {
+      return String(worker.id).indexOf(term) !== -1
+        || String(worker.name).toLowerCase().indexOf(term) !== -1;
+    });
+  };
 })
 
 .controller('WorkerDetailController', function ($state, $mdDialog, mediator, worker, userClient) {
