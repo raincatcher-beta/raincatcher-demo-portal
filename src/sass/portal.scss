@@ -141,12 +141,14 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
 .wfm-scheduler-toolbar{
   md-datepicker{
     background: transparent;
+    margin-right: -16px
   }
 }
 
 .wfm-scheduler-worker{
   border-right: 1px solid $divider-text-color;
   md-list-item{
+    padding-top: 1px;
     border-bottom: 1px solid $divider-text-color;
   }
   p{
@@ -165,7 +167,6 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
       vertical-align: middle;
     }
     th{
-//      height: 62px;
       font-weight: 400;
       font-size: 14px;
       line-height: 36px;
@@ -199,13 +200,14 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
     display: block;
     margin-top: 10px;
     margin-right: 10px;
+    width: 90%!important;
   }
 }
 
 .wfm-toolbar-sm{
   color: $secondary-text-color;
   background: $divider-text-color;
-  padding: 0 16px;
+  padding: 2px 16px 1px 16px;
   h3{
     margin: 0;
     line-height: 36px;
