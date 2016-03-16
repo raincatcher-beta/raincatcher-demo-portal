@@ -11,6 +11,13 @@
       </h3>
     </div>
   </md-toolbar>
+
+
+  <form action="#" class="persistent-search">
+    <label for="search"><i class="material-icons">search</i></label>
+    <input type="text" id="search" placeholder="Search">
+  </form>
+
   <md-list>
     <md-list-item  ng-repeat="form in ctrl.forms" ng-click="ctrl.selectForm($event, form)" class="md-3-line" ng-class="{active: ctrl.selectedFormId === form._id}">
       <div class="md-list-item-text">

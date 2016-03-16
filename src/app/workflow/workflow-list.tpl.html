@@ -11,6 +11,11 @@
     </div>
   </md-toolbar>
 
+  <form action="#" class="persistent-search">
+    <label for="search"><i class="material-icons">search</i></label>
+    <input type="text" id="search" placeholder="Search">
+  </form>
+
   <md-list>
     <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" ng-class="{active: ctrl.selectedWorkflowId === workflow.id}" >
       <div class="md-list-item-text">
