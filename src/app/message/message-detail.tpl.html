@@ -1,42 +1,7 @@
-<!--
- CONFIDENTIAL
- Copyright 2016 Red Hat, Inc. and/or its affiliates.
- This is unpublished proprietary source code of Red Hat.
--->
-<md-toolbar class="content-toolbar">
-  <div class="md-toolbar-tools">
-    <h3>
-      Subject of the message goes here
-    </h3>
-    <span flex></span>
-    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.message.edit({messageId: ctrl.message.id})">
-      <md-icon md-font-set="material-icons">delete</md-icon>
-    </md-button>
-  </div>
-</md-toolbar>
-
-
-<md-button class="md-fab" aria-label="New Message">
+<message-detail message="ctrl.message"></message-detail>
+<md-button class="md-fab" aria-label="New Message" ui-sref="app.message.new">
   <md-icon md-font-set="material-icons">edit</md-icon>
   <md-tooltip md-visible="demo.showTooltip" md-direction="left">
     New Message
   </md-tooltip>
 </md-button>
-
-<div class="wfm-maincol-scroll">
-  <div class="message" layout-padding layout-margin>
-    <div class="message-header md-body-1">
-      To:
-      <span class="wfm-chip">
-        <span class="wfm-chip-picture">
-          <img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/adellecharles/128.jpg" class="md-avatar" alt="Daisy" />
-        </span>
-        <span class="wfm-chip-name">Name</span>
-      </span>
-      <div class="time-stamp">11:38 AM (3 hours ago)</div>
-    </div>
-
-    <md-divider></md-divider>
-    <p class="md-body-1">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  </div>
-</div>

@@ -39,9 +39,14 @@ angular.module('app.message', [
       views: {
         'content@app': {
           templateUrl: 'app/message/message-detail.tpl.html',
-          controller: 'messageDetailController as ctrl'
+          controller: 'messageDetailController as ctrl',
+          resolve: {
+            message: function($stateParams, messageManager) {
+              return messageManager.read($stateParams.messageId)
+            }
         }
       }
+    }
     })
     .state('app.message.new', {
       url: '/new',
@@ -75,8 +80,10 @@ angular.module('app.message', [
   self.messages = messages;
 })
 
-.controller('messageDetailController', function (mediator) {
-  this.toNames = ['Trever']
+.controller('messageDetailController', function (message) {
+  var self = this;
+  self.message = message;
+  message.status = "read";
 })
 
 .controller('messageFormController', function (mediator) {
@@ -90,6 +97,9 @@ angular.module('app.message', [
     return messageManager.create(message).then(function(_message) {
       $state.go('app.message', {workers: workers}, {reload: true});
     })
+  });
+  $scope.$on("$destroy", function() {
+    mediator.remove('message:created');
   });
 })
 ;
