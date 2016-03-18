@@ -50,6 +50,9 @@ angular.module('app', [
         workorderManager: function(workorderSync) {
           return workorderSync.createManager();
         },
+        workflowManager: function(workflowSync) {
+          return workflowSync.createManager();
+        },
         messageManager: function(messageSync) {
           return messageSync.createManager();
         },
