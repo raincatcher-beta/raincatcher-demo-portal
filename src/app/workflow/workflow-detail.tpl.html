@@ -8,6 +8,13 @@
     <h3>
       {{ctrl.workflow.id}} {{ctrl.workflow.title}}
     </h3>
+    <span flex></span>
+    <md-button class="md-icon-button" aria-label="Edit" ui-sref="app.workflow.edit({workflowId: ctrl.workflow.id})">
+      <md-icon md-font-set="material-icons">edit</md-icon>
+    </md-button>
+    <md-button class="md-icon-button" aria-label="Delete" ng-click="ctrl.delete($event, ctrl.workflow)">
+      <md-icon md-font-set="material-icons">delete</md-icon>
+    </md-button>
   </div>
 </md-toolbar>
 
@@ -28,10 +35,68 @@
   <div id="stepList" ng-model="ctrl.workflow.steps" as-sortable="dragControlListeners">
     <md-card ng-repeat="step in ctrl.workflow.steps" as-sortable-item>
       <md-card-content as-sortable-item-handle>
-        <h2 class="md-title">Step Name</h2>
-        <pre>{{step | json}}</pre>
-<!--       <p>Real text goes on a paragraph</p> -->
+        <h2 class="md-title">{{step.name}}</h2>
+        <md-list>
+          <md-list-item class="md-2-line" >
+            <md-icon md-font-set="material-icons">label</md-icon>
+            <div class="md-list-item-text">
+              <h3>{{step.code}}</h3>
+              <p>Code</p>
+            </div>
+          </md-list-item>
+          <md-divider></md-divider>
+          <md-divider></md-divider>
+          <div ng-show="step.formId">
+            <md-list-item class="md-2-line">
+              <md-icon md-font-set="material-icons">label</md-icon>
+              <div class="md-list-item-text">
+                <h3>{{step.formId}}</h3>
+                <p>FormId</p>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+          </div>
+        </md-list>
+        <div ng-show="step.templates">
+          <div ng-show="step.templates.view">
+            <md-list-item class="md-2-line">
+              <md-icon md-font-set="material-icons">label</md-icon>
+              <div class="md-list-item-text">
+                <h3>{{step.templates.view}}</h3>
+                <p>Template view</p>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+          </div>
+          <div ng-show="step.templates.form">
+            <md-list-item class="md-2-line">
+              <md-icon md-font-set="material-icons">label</md-icon>
+              <div class="md-list-item-text">
+                <h3>{{step.templates.form}}</h3>
+                <p>Template form</p>
+              </div>
+            </md-list-item>
+            <md-divider></md-divider>
+        </div>
+        </div>
+      </md-list>
+        <md-button class="md-fab worflow-steps-actions" aria-label="Edit Step" ui-sref="app.workflow.step({workflowId: ctrl.workflow.id, code:step.code})">
+          <md-icon md-font-set="material-icons">create</md-icon>
+        </md-button>
+        <md-button class="md-fab worflow-steps-actions" aria-label="Delete Step" ng-click="ctrl.deleteStep($event, step, ctrl.workflow)">
+          <md-icon md-font-set="material-icons">delete sweep</md-icon>
+        </md-button>
       </md-card-content>
     </md-card>
+    <md-card>
+      <md-card-content>
+        <h2 class="md-title">Add new step</h2>
+        <workflow-step-form workflow="ctrl.workflow"></worflow-step-form>
+
+      </md-card-content>
+    </md-card>
+    <md-button class="md-fab" aria-label="Add Workflow" ui-sref="app.workflow.add">
+      <md-icon md-font-set="material-icons">add</md-icon>
+    </md-button>
   </div>
 </div>

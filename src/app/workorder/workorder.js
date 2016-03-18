@@ -118,8 +118,9 @@ angular.module('app.workorder', [
   });
   mediator.subscribe('workflow:selected', function(workflow) {
     $state.go('app.workflow.detail', {
-      workflowId: workflow.id
-    });
+      workflowId: workflow.id || workflow._localuid },
+      { reload: true }
+    );
   });
 })
 
