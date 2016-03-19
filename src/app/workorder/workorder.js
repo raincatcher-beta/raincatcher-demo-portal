@@ -136,7 +136,12 @@ angular.module('app.workorder', [
   $scope.selected.id = workorder.id;
 
   self.workorder = workorder;
-  self.workflow = workflows[workorder.workflowId];
+  var workflow = workflows.filter(function(workflow) {
+    return workflow.id = workorder.workflowId
+  });
+  if (workflow.length) {
+    self.workflow = workflow[0];
+  }
   self.result = result;
   var assignee = workers.filter(function(worker) {
     return worker.id = workorder.assignee
