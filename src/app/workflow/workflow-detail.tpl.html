@@ -36,13 +36,22 @@
     <md-card ng-repeat="step in ctrl.workflow.steps" as-sortable-item>
       <md-card-content as-sortable-item-handle>
       <workflow-step-detail step="step"></workflow-step-detail>
-        <md-button class="md-fab worflow-steps-actions" aria-label="Edit Step" ui-sref="app.workflow.step({workflowId: ctrl.workflow.id, code:step.code})">
+    </md-card-content>
+
+
+      <md-card-actions layout="row" layout-align="end center">
+
+        <md-button class="md-icon-button" aria-label="Edit Step" ui-sref="app.workflow.step({workflowId: ctrl.workflow.id, code:step.code})">
           <md-icon md-font-set="material-icons">create</md-icon>
         </md-button>
-        <md-button class="md-fab worflow-steps-actions" aria-label="Delete Step" ng-click="ctrl.deleteStep($event, step, ctrl.workflow)">
+        <md-button class="md-icon-button" aria-label="Delete Step" ng-click="ctrl.deleteStep($event, step, ctrl.workflow)">
           <md-icon md-font-set="material-icons">delete sweep</md-icon>
         </md-button>
-      </md-card-content>
+
+      </md-card-actions>
+
+
+
     </md-card>
     <md-card>
       <md-card-content>
