@@ -137,7 +137,7 @@ angular.module('app.workorder', [
 
   self.workorder = workorder;
   var workflow = workflows.filter(function(workflow) {
-    return workflow.id = workorder.workflowId
+    return String(workflow.id) === String(workorder.workflowId);
   });
   if (workflow.length) {
     self.workflow = workflow[0];
