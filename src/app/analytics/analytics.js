@@ -41,6 +41,9 @@ angular.module('app.analytics', [
 })
 
 .controller('analyticsController', function (workorders, workers) {
+  var self = this;
+  self.workorders = workorders;
+  self.workers = workers;
   var barChart = c3.generate({
     bindto: '#bar-chart',
     size: {
@@ -58,41 +61,6 @@ angular.module('app.analytics', [
       width: {
         ratio: .8
       }
-    }
-  });
-
-  var workerMap = {};
-  workers.forEach(function(worker) {
-    workerMap[worker.id] = worker;
-  });
-
-  var workorderCounts = {};
-  workorders.forEach(function(workorder) {
-    workorderCounts[workorder.assignee] = workorderCounts[workorder.assignee] || 0;
-    workorderCounts[workorder.assignee]++;
-  });
-
-  var columns = [];
-  _.forIn(workorderCounts, function(count, workerid) {
-    var worker = workerMap[workerid];
-    var name = worker ? worker.name : 'Unassigned';
-    var column = [name, count];
-    columns.push(column);
-  });
-
-  console.log(columns);
-
-  var pieChart = c3.generate({
-    bindto: '#pie-chart',
-    size: {
-      width: 450
-    },
-    data: {
-        columns: columns,
-        type : 'pie',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
     }
   });
 

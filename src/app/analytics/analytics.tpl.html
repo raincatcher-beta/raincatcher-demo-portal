@@ -21,17 +21,7 @@ Analytics.
       </md-card-content>
     </md-card>
   </div>
-  <div flex>
-    <md-card>
-      <div id="pie-chart"></div>
-      <md-card-content>
-        <h2 class="md-title">Workorders by assignee</h2>
-        <p>
-          This pie chart represents the number of workorders assigned to each worker.
-        </p>
-      </md-card-content>
-    </md-card>
-  </div>
+  <analytics-piechart workers="ctrl.workers" workorders="ctrl.workorders"></analytics-piechart>
   <div flex hide-sm>
     <md-card>
       <div id="area-chart"></div>

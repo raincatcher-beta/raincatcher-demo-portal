@@ -22,6 +22,7 @@ angular.module('app', [
 , require('fh-wfm-vehicle-inspection')
 , require('fh-wfm-map')
 , require('fh-wfm-schedule')
+, require('fh-wfm-analytics')
 
 , require('./auth/auth')
 , require('./workorder/workorder')
