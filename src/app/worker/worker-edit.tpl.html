@@ -19,6 +19,8 @@
   <md-icon md-font-set="material-icons">add</md-icon>
 </md-button>
 
+<div class="wfm-maincol-scroll">
+
 <form name="workerForm" ng-submit="ctrl.done(workerForm.$valid)" novalidate layout-padding layout-margin>
 
   <md-input-container class="md-block">
@@ -75,3 +77,4 @@
 
   <md-button type="submit" class="md-raised md-primary">{{ctrl.worker.id || ctrl.worker.id === 0 ? 'Update' : 'Create'}} Worker</md-button>
 </form>
+</div>

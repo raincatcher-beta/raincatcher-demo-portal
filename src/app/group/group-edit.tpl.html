@@ -19,6 +19,7 @@
   <md-icon md-font-set="material-icons">add</md-icon>
 </md-button>
 
+<div class="wfm-maincol-scroll">
 <form name="groupForm" ng-submit="ctrl.done(groupForm.$valid)" novalidate layout-padding layout-margin>
 
   <md-input-container class="md-block">
@@ -40,3 +41,4 @@
 
   <md-button type="submit" class="md-raised md-primary">{{ctrl.group.id || ctrl.group.id === 0 ? 'Update' : 'Create'}} Group</md-button>
 </form>
+</div>
