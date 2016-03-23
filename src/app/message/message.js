@@ -92,14 +92,11 @@ angular.module('app.message', [
 .controller('messageNewController', function ($scope, $state, mediator, messageManager, workers) {
   var self = this;
   self.workers = workers;
-  mediator.subscribe('message:created', function(message) {
+  mediator.subscribeForScope('message:created', $scope, function(message) {
     message.sender = $scope.profileData;
     return messageManager.create(message).then(function(_message) {
       $state.go('app.message', {workers: workers}, {reload: true});
     })
-  });
-  $scope.$on("$destroy", function() {
-    mediator.remove('message:created');
   });
 })
 ;

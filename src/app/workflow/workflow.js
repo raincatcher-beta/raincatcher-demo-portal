@@ -91,6 +91,18 @@ angular.module('app.workflow', [
     });
 })
 
+.run(function($state, mediator) {
+  mediator.subscribe('workflow:selected', function(workflow) {
+    $state.go('app.workflow.detail', {
+      workflowId: workflow.id || workflow._localuid },
+      { reload: true }
+    );
+  });
+  mediator.subscribe('workflow:list', function(workflow) {
+    $state.go('app.workflow', null, {reload: true});
+  });
+})
+
 .controller('WorkflowListController', function (mediator, workflows, $stateParams) {
   var self = this;
   self.workflows = workflows;
@@ -166,7 +178,7 @@ angular.module('app.workflow', [
   var self = this;
   self.workflow = workflow;
 
-  mediator.subscribe('workflow:created', function(workflow) {
+  mediator.subscribeForScope('workflow:created', $scope, function(workflow) {
     workflowManager.create(workflow).then(function(_workflow) {
       mediator.publish('workflow:selected', _workflow);
     });
@@ -174,12 +186,12 @@ angular.module('app.workflow', [
 
 })
 
-.controller('WorkflowFormController', function ($state, mediator, workflow, workflowManager) {
+.controller('WorkflowFormController', function ($scope, $state, mediator, workflow, workflowManager) {
   var self = this;
 
   self.workflow = workflow;
 
-  mediator.subscribe('workflow:edited', function(workflow) {
+  mediator.subscribeForScope('workflow:edited', $scope, function(workflow) {
     workflowManager.update(workflow).then(function(_workflow) {
       $state.go('app.workflow.detail',
       {workflowId: _workflow.id},
@@ -190,14 +202,15 @@ angular.module('app.workflow', [
     })
   });
 })
-.controller('WorkflowStepFormController', function ($stateParams, mediator, workflow, workflowManager) {
+
+.controller('WorkflowStepFormController', function ($scope, $state, $stateParams, mediator, workflow, workflowManager) {
   var self = this;
 
   self.workflow = workflow;
   self.step = workflow.steps.filter(function(item) {
     return item.code == $stateParams.code;
   })[0];
-  mediator.subscribe('workflow:edited', function(workflow) {
+  mediator.subscribeForScope('workflow:edited', $scope, function(workflow) {
     workflowManager.update(workflow).then(function(_workflow) {
       $state.go('app.workflow.detail',
       {workflowId: _workflow.id},

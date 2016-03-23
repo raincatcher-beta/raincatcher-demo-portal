@@ -116,11 +116,8 @@ angular.module('app.workorder', [
       { reload: true }
     );
   });
-  mediator.subscribe('workflow:selected', function(workflow) {
-    $state.go('app.workflow.detail', {
-      workflowId: workflow.id || workflow._localuid },
-      { reload: true }
-    );
+  mediator.subscribe('workorder:list', function(workflow) {
+    $state.go('app.workorder', null, {reload: true});
   });
 })
 
@@ -180,21 +177,21 @@ angular.module('app.workorder', [
   }
 })
 
-.controller('WorkorderNewController', function(workorder, workflows, mediator, workorderManager, workers) {
+.controller('WorkorderNewController', function($scope, workorder, workflows, mediator, workorderManager, workers) {
   var self = this;
 
   self.workorder = workorder;
   self.workflows = workflows;
   self.workers = workers;
 
-  mediator.subscribe('workorder:created', function(workorder) {
+  mediator.subscribeForScope('workorder:created', $scope, function(workorder) {
     workorderManager.create(workorder).then(function(_workorder) {
       mediator.publish('workorder:selected', _workorder);
     });
   });
 })
 
-.controller('WorkorderFormController', function ($state, mediator, workorderManager, workorder, workflows, workers, result) {
+.controller('WorkorderFormController', function ($scope, $state, mediator, workorderManager, workorder, workflows, workers, result) {
   var self = this;
 
   self.workorder = workorder;
@@ -202,7 +199,7 @@ angular.module('app.workorder', [
   self.workers = workers;
   self.result = result;
 
-  mediator.subscribe('workorder:edited', function(workorder) {
+  mediator.subscribeForScope('workorder:edited', $scope, function(workorder) {
     return workorderManager.update(workorder).then(function(_workorder) {
       mediator.publish('workorder:selected', _workorder);
     })
