@@ -141,7 +141,7 @@ angular.module('app.workorder', [
   }
   self.result = result;
   var assignee = workers.filter(function(worker) {
-    return worker.id = workorder.assignee
+    return String(worker.id) === String(workorder.assignee);
   })
   if (assignee.length) {
     self.assignee = assignee[0];
