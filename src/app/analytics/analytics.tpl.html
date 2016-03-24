@@ -6,36 +6,7 @@
 Analytics.
 
 <div layout="row">
-  <div flex>
-    <md-card>
-      <div id="bar-chart"></div>
-      <md-card-content>
-        <h2 class="md-title">Bar Chart</h2>
-        <p>
-          Lorem ipsum dolor sit amet, usu cu atomorum periculis sententiae.
-          Usu elitr nihil inermis ne, diceret debitis albucius mel id.
-          Zril meliore sit ea, eu congue detracto duo.
-          Iudico senserit qualisque ex quo, ad duo tollit denique.
-          Et quod porro contentiones pro, posse libris noster eu duo.
-        </p>
-      </md-card-content>
-    </md-card>
-  </div>
+  <analytics-barchart workorders="ctrl.workorders"></analytics-barchart>
   <analytics-piechart workers="ctrl.workers" workorders="ctrl.workorders"></analytics-piechart>
-  <div flex hide-sm>
-    <md-card>
-      <div id="area-chart"></div>
-      <md-card-content>
-        <h2 class="md-title">Area Chart</h2>
-        <p>
-          Ei nemore melius mea, vix at ullum menandri.
-          Eum in nullam vulputate, euismod antiopam vis cu, ad saepe tation per.
-          Mei oratio salutatus et. Ne sea dictas corrumpit.
-          Vero debitis no est, legendos constituto et vis, cum et putant scaevola.
-          Usu reformidans comprehensam te.
-
-        </p>
-      </md-card-content>
-    </md-card>
-  </div>
+  <analytics-areachart workers="ctrl.workers" workorders="ctrl.workorders"></analytics-areachart>
 </div>

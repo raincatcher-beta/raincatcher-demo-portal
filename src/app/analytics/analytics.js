@@ -44,24 +44,13 @@ angular.module('app.analytics', [
   var self = this;
   self.workorders = workorders;
   self.workers = workers;
-  var barChart = c3.generate({
-    bindto: '#bar-chart',
-    size: {
-      width: 450
-    },
-    data: {
-      columns: [
-        ['data1', 30, 200, 100],
-        ['data2', 130, 100, 140],
-        ['data3', 130, 150, 200]
-      ],
-      type: 'bar'
-    },
-    bar: {
-      width: {
-        ratio: .8
-      }
-    }
+
+  //add fake data for bar charts
+  self.workorders.forEach(function(workorder) {
+    var estimated  = Math.floor((Math.random() * 10) + 15);
+    var real = Math.floor((Math.random() * 10) + 15);
+    workorder.estimatedHours = estimated;
+    workorder.effectiveHours = real;
   });
 
   var areaChart = c3.generate({
