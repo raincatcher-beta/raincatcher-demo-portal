@@ -107,12 +107,12 @@ angular.module('app.group', [
     })
   });
   self.delete = function($event, group) {
-    event.preventDefault();
+    $event.preventDefault();
     var confirm = $mdDialog.confirm()
           .title('Would you like to delete group #'+group.id+'?')
           .textContent(group.name)
           .ariaLabel('Delete Group')
-          .targetEvent(event)
+          .targetEvent($event)
           .ok('Proceed')
           .cancel('Cancel');
     $mdDialog.show(confirm).then(function() {
