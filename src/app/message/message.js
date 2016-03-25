@@ -70,20 +70,23 @@ angular.module('app.message', [
 .run(function($state, mediator) {
   mediator.subscribe('message:selected', function(message) {
     $state.go('app.message.detail', {
-      messageId: message.id
-    });
+      messageId: message.id || message._localuid },
+      { reload: true }
+    );
   });
 })
 
-.controller('MessageListController', function (messages) {
+.controller('MessageListController', function ($scope, messages) {
   var self = this;
+  $scope.$parent.selected = {id: null};
   self.messages = messages;
 })
 
-.controller('messageDetailController', function (message) {
+.controller('messageDetailController', function ($scope, message) {
   var self = this;
   self.message = message;
   message.status = "read";
+  $scope.selected.id = message.id;
 })
 
 .controller('messageFormController', function (mediator) {
