@@ -17,7 +17,7 @@
 </form>
 
 <md-list>
-  <md-list-item class="md-2-line" ng-click="navigateTo('app.group.detail', {groupId: group.id})" ng-repeat="group in ctrl.groups">
+  <md-list-item class="md-2-line" ng-click="navigateTo('app.group.detail', {groupId: group.id})" ng-repeat="group in ctrl.groups" ng-class="{active: selected.id === group.id}">
     <div class="md-list-item-text">
       <h3>{{group.name}}</h3>
     </div>

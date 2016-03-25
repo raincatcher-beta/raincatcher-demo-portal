@@ -17,7 +17,7 @@
 </form>
 
 <md-list>
-  <md-list-item class="md-2-line" ng-click="navigateTo('app.worker.detail', {workerId: user.id})" ng-repeat="user in ctrl.workers">
+  <md-list-item class="md-2-line" ng-click="navigateTo('app.worker.detail', {workerId: user.id})"  ng-repeat="user in ctrl.workers" ng-class="{active: selected.id === user.id}">
     <img alt="user.name" ng-src="{{user.avatar}}" class="md-avatar" />
     <div class="md-list-item-text">
       <h3>{{user.name}}</h3>

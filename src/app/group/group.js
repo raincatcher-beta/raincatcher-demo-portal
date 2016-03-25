@@ -91,13 +91,15 @@ angular.module('app.group', [
   });
 })
 
-.controller('groupListController', function (mediator, groups) {
+.controller('groupListController', function ($scope, mediator, groups) {
   this.groups = groups;
+  $scope.$parent.selected = {id: null};
 })
 
-.controller('groupDetailController', function ($state, $mdDialog, mediator, group, users, membership, groupClient) {
+.controller('groupDetailController', function ($scope, $state, $mdDialog, mediator, group, users, membership, groupClient) {
   var self = this;
   self.group = group;
+  $scope.selected.id = group.id;
   var groupMembership = membership.filter(function(_membership) {
     return _membership.group == group.id
   });

@@ -17,7 +17,7 @@
   </form>
 
   <md-list>
-    <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" ng-class="{active: ctrl.selectedWorkflowId === workflow.id}" >
+    <md-list-item ng-repeat="workflow in ctrl.workflows" ng-click="ctrl.selectWorkflow($event, workflow)" ng-class="{active: selected.id === workflow.id}" >
       <div class="md-list-item-text">
         <p>
           <span ng-if="workflow.id">{{workflow.id}}</span>

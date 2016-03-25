@@ -103,10 +103,11 @@ angular.module('app.workflow', [
   });
 })
 
-.controller('WorkflowListController', function (mediator, workflows, $stateParams) {
+.controller('WorkflowListController', function ($scope, mediator, workflows, $stateParams) {
   var self = this;
   self.workflows = workflows;
   self.selectedWorkflowId = $stateParams.workflowId;
+  $scope.$parent.selected = {id: null};
   self.selectWorkflow = function(event, workflow) {
     self.selectedWorkflowId = workflow.id;
     mediator.publish('workflow:selected', workflow);
@@ -115,6 +116,7 @@ angular.module('app.workflow', [
 
 .controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow) {
   var self = this;
+  $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
     containment: '#stepList'
   }

@@ -86,10 +86,10 @@ angular.module('app.worker', [
   });
 })
 
-.controller('WorkerListController', function (mediator, workers) {
+.controller('WorkerListController', function ($scope, mediator, workers) {
   var self = this;
   self.workers = workers;
-
+  $scope.$parent.selected = {id: null};
   self.applyFilter = function(term) {
     term = term.toLowerCase();
     self.workers = workers.filter(function(worker) {
@@ -99,9 +99,10 @@ angular.module('app.worker', [
   };
 })
 
-.controller('WorkerDetailController', function ($state, $mdDialog, mediator, worker, userClient) {
+.controller('WorkerDetailController', function ($scope, $state, $mdDialog, mediator, worker, userClient) {
   var self = this;
   self.worker = worker;
+  $scope.selected.id = worker.id;
   var bannerUrl = worker.banner || worker.avatar;
   self.style = {
     'background-image': 'url(' + bannerUrl + ')',
