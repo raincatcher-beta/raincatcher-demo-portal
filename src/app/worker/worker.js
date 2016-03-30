@@ -39,6 +39,12 @@ angular.module('app.worker', [
       resolve: {
         worker: function($stateParams, userClient) {
           return userClient.read($stateParams.workerId);
+        },
+        workorders: function($stateParams, workorderManager) {
+          return workorderManager.list();
+        },
+        messages: function($stateParams, messageManager) {
+          return messageManager.list();
         }
       },
       views: {
@@ -99,9 +105,15 @@ angular.module('app.worker', [
   };
 })
 
-.controller('WorkerDetailController', function ($scope, $state, $mdDialog, mediator, worker, userClient) {
+.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, userClient) {
   var self = this;
   self.worker = worker;
+  self.workorders = workorders.filter(function(workorder) {
+    return String(workorder.assignee) === String($stateParams.workerId);
+  });
+  self.messages =  messages.filter(function(message) {
+    return String(message.receiverId) === String($stateParams.workerId);
+  });
   $scope.selected.id = worker.id;
   var bannerUrl = worker.banner || worker.avatar;
   self.style = {
@@ -128,7 +140,21 @@ angular.module('app.worker', [
         throw err;
       })
     });
+  },
+  self.selectWorkorder = function(workorder) {
+    $state.go(
+      'app.workorder.detail',
+      { workorderId: workorder.id || workorder._localuid },
+      { reload: true }
+    );
+  },
+  self.selectMessage =  function(message) {
+    $state.go('app.message.detail', {
+      messageId: message.id || message._localuid },
+      { reload: true }
+    );
   }
+
 })
 
 .controller('WorkerFormController', function ($state, mediator, worker, userClient) {
