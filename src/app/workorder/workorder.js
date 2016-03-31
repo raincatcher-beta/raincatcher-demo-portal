@@ -109,14 +109,14 @@ angular.module('app.workorder', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('workorder:selected', function(workorder) {
+  mediator.subscribe('wfm:workorder:selected', function(workorder) {
     $state.go(
       'app.workorder.detail',
       { workorderId: workorder.id || workorder._localuid },
       { reload: true }
     );
   });
-  mediator.subscribe('workorder:list', function(workflow) {
+  mediator.subscribe('wfm:workorder:list', function(workflow) {
     $state.go('app.workorder', null, {reload: true});
   });
 })
@@ -153,7 +153,7 @@ angular.module('app.workorder', [
   console.log(nextStepIndex, numSteps, self.progress);
 
   self.beginWorkflow = function(event, workorder) {
-    mediator.publish('workflow:begin', workorder.id);
+    mediator.publish('wfm:workflow:begin', workorder.id);
     event.preventDefault();
   };
 
@@ -184,9 +184,9 @@ angular.module('app.workorder', [
   self.workflows = workflows;
   self.workers = workers;
 
-  mediator.subscribeForScope('workorder:created', $scope, function(workorder) {
+  mediator.subscribeForScope('wfm:workorder:created', $scope, function(workorder) {
     workorderManager.create(workorder).then(function(_workorder) {
-      mediator.publish('workorder:selected', _workorder);
+      mediator.publish('wfm:workorder:selected', _workorder);
     });
   });
 })
@@ -199,9 +199,9 @@ angular.module('app.workorder', [
   self.workers = workers;
   self.result = result;
 
-  mediator.subscribeForScope('workorder:edited', $scope, function(workorder) {
+  mediator.subscribeForScope('wfm:workorder:updated', $scope, function(workorder) {
     return workorderManager.update(workorder).then(function(_workorder) {
-      mediator.publish('workorder:selected', _workorder);
+      mediator.publish('wfm:workorder:selected', _workorder);
     })
   });
 })

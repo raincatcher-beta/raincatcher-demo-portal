@@ -68,7 +68,7 @@ angular.module('app.message', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('message:selected', function(message) {
+  mediator.subscribe('wfm:message:selected', function(message) {
     $state.go('app.message.detail', {
       messageId: message.id || message._localuid },
       { reload: true }
@@ -95,7 +95,7 @@ angular.module('app.message', [
 .controller('messageNewController', function ($scope, $state, mediator, messageManager, workers) {
   var self = this;
   self.workers = workers;
-  mediator.subscribeForScope('message:created', $scope, function(message) {
+  mediator.subscribeForScope('wfm:message:created', $scope, function(message) {
     message.sender = $scope.profileData;
     return messageManager.create(message).then(function(_message) {
       $state.go('app.message', {workers: workers}, {reload: true});

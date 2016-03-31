@@ -60,7 +60,7 @@ angular.module('app.file', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('file:selected', function(file) {
+  mediator.subscribe('wfm:file:selected', function(file) {
     $state.go('app.file.detail', {
       fileUid: file.uid},
       { reload: true }
