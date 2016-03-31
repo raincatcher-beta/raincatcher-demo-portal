@@ -23,8 +23,8 @@ angular.module('app.file', [
           return fileClient.list();
         },
         workerMap: function(userClient) {
-          return userClient.list().then(function(files) {
-            return files.reduce(function(map, worker) {
+          return userClient.list().then(function(workers) {
+            return workers.reduce(function(map, worker) {
               map[worker.id] = worker;
               return map;
             }, {});
@@ -46,7 +46,7 @@ angular.module('app.file', [
       resolve: {
         file: function($stateParams, files) {
           return files.filter(function(file) {
-            return file.uid = $stateParams.fileUid;
+            return file.uid === $stateParams.fileUid;
           })[0];
         }
       },
