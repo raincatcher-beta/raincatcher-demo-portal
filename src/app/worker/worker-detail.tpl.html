@@ -112,4 +112,18 @@
         </md-list-item>
       </md-content>
     </md-tab>
+    <md-tab label="Files">
+      <md-content class="messages wfm-maincol-scroll wfm-maincol-scroll_with-menu">
+        <md-list>
+          <md-list-item class="md-2-line" ng-click="navigateTo('app.file.detail', {fileUid: file.uid})" ng-repeat="file in ctrl.files" ng-class="{active: selected.id === file.id}">
+            <div class="md-list-item-text">
+              <h3>{{file.name}}</h3>
+              <p>{{ctrl.workerMap[file.owner].name}}</p>
+              <img wfm-img uid="file.uid" style="width:150px">
+            </div>
+            <md-divider></md-divider>
+          </md-list-item>
+        </md-list>
+      </md-content>
+    </md-tab>
   </md-tabs>

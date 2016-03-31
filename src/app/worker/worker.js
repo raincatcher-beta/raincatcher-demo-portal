@@ -41,10 +41,25 @@ angular.module('app.worker', [
           return userClient.read($stateParams.workerId);
         },
         workorders: function($stateParams, workorderManager) {
-          return workorderManager.list();
+          return workorderManager.list().then(function(workorders) {
+            return workorders.filter(function(workorder) {
+              return String(workorder.assignee) === String($stateParams.workerId);
+            });
+          });
         },
         messages: function($stateParams, messageManager) {
-          return messageManager.list();
+          return messageManager.list().then(function(messages){
+            return messages.filter(function(message) {
+             return String(message.receiverId) === String($stateParams.workerId);
+           });
+          });
+        },
+        files: function($stateParams, fileClient) {
+          return fileClient.list().then(function(files){
+            return files.filter(function(file) {
+             return String(file.owner) === String($stateParams.workerId);
+           });
+          })
         }
       },
       views: {
@@ -105,15 +120,12 @@ angular.module('app.worker', [
   };
 })
 
-.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, userClient) {
+.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, userClient) {
   var self = this;
   self.worker = worker;
-  self.workorders = workorders.filter(function(workorder) {
-    return String(workorder.assignee) === String($stateParams.workerId);
-  });
-  self.messages =  messages.filter(function(message) {
-    return String(message.receiverId) === String($stateParams.workerId);
-  });
+  self.workorders = workorders;
+  self.messages =  messages;
+  self.files = files;
   $scope.selected.id = worker.id;
   var bannerUrl = worker.banner || worker.avatar;
   self.style = {
