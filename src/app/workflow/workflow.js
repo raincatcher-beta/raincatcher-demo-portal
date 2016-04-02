@@ -98,7 +98,7 @@ angular.module('app.workflow', [
       { reload: true }
     );
   });
-  mediator.subscribe('workflow:list', function(workflow) {
+  mediator.subscribe('wfm:workflow:list', function(workflow) {
     $state.go('app.workflow', null, {reload: true});
   });
 })
