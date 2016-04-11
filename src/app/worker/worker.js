@@ -100,10 +100,13 @@ angular.module('app.worker', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('worker:selected', function(worker) {
+  mediator.subscribe('wfm:worker:selected', function(worker) {
     $state.go('app.worker.detail', {
       workerId: worker.id
     });
+  });
+  mediator.subscribe('wfm:worker:list', function(worker) {
+    $state.go('app.worker', null, {reload: true});
   });
 })
 
@@ -111,13 +114,6 @@ angular.module('app.worker', [
   var self = this;
   self.workers = workers;
   $scope.$parent.selected = {id: null};
-  self.applyFilter = function(term) {
-    term = term.toLowerCase();
-    self.workers = workers.filter(function(worker) {
-      return String(worker.id).indexOf(term) !== -1
-        || String(worker.name).toLowerCase().indexOf(term) !== -1;
-    });
-  };
 })
 
 .controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, userClient) {
@@ -127,14 +123,6 @@ angular.module('app.worker', [
   self.messages =  messages;
   self.files = files;
   $scope.selected.id = worker.id;
-  var bannerUrl = worker.banner || worker.avatar;
-  self.style = {
-    'background-image': 'url(' + bannerUrl + ')',
-    'background-position': worker.banner ? 'center center' : 'top center',
-    'background-size': worker.banner ? 'auto' : 'contain',
-    'background-repeat': 'no-repeat'
-  }
-  console.log('style', this.style);
   self.delete = function(event, worker) {
     event.preventDefault();
     var confirm = $mdDialog.confirm()
@@ -169,25 +157,21 @@ angular.module('app.worker', [
 
 })
 
-.controller('WorkerFormController', function ($state, mediator, worker, userClient) {
+.controller('WorkerFormController', function ($state, $scope, mediator, worker, userClient) {
   var self = this;
   self.worker = worker;
-
-  self.done = function(valid) {
-    if (valid) {
-      if (self.worker.id || self.worker.id === 0) {
-        userClient.update(self.worker)
+  mediator.subscribeForScope('wfm:worker:updated', $scope, function(worker) {
+    return userClient.update(worker)
         .then(function() {
           $state.go('app.worker.detail', {workerId: self.worker.id}, {reload: true});
         })
-      } else {
-        userClient.create(self.worker)
+    });
+  mediator.subscribeForScope('wfm:worker:created', $scope, function(worker) {
+    return userClient.create(worker)
         .then(function(createdWorker) {
           $state.go('app.worker.detail', {workerId: createdWorker.id}, {reload: true});
         })
-      }
-    }
-  }
+    });
 })
 
 ;

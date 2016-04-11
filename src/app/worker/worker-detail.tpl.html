@@ -23,51 +23,8 @@
 </md-button>
 
  <md-tabs md-dynamic-height md-border-bottom>
-  <md-tab label="Information">
-    <md-content class="wfm-maincol-scroll wfm-maincol-scroll_with-menu">
-      <div class="user-info-header" ng-style="ctrl.style">
-        <h1 class="md-display-1">{{ctrl.worker.name}}</h1>
-      </div>
-      <md-list>
-        <md-list-item class="md-2-line" >
-          <md-icon md-font-set="material-icons">person</md-icon>
-          <div class="md-list-item-text">
-            <h3>{{ctrl.worker.username}}</h3>
-            <p>Username</p>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-
-        <md-list-item class="md-2-line" >
-          <md-icon md-font-set="material-icons">phone</md-icon>
-          <div class="md-list-item-text">
-            <h3>{{ctrl.worker.phone}}</h3>
-            <p>Phone Number</p>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-
-        <md-list-item class="md-2-line" >
-          <md-icon md-font-set="material-icons">email</md-icon>
-          <div class="md-list-item-text">
-            <h3>{{ctrl.worker.email}}</h3>
-            <p>Email</p>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-
-        <md-list-item class="md-2-line" >
-          <md-icon md-font-set="material-icons">portrait</md-icon>
-          <div class="md-list-item-text">
-            <h3>{{ctrl.worker.position}}</h3>
-            <p>Position</p>
-          </div>
-          <md-divider></md-divider>
-        </md-list-item>
-
-        <md-subheader class="md-no-sticky">Notes</md-subheader>
-        <p class="md-body-1" layout-padding layout-margin>{{ctrl.worker.notes}}</p>
-      </md-content>
+    <md-tab label="Information">
+      <worker worker="ctrl.worker"></worker>
     </md-tab>
 
     <md-tab label="Workorders">

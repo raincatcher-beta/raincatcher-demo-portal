@@ -84,10 +84,13 @@ angular.module('app.group', [
 })
 
 .run(function($state, mediator) {
-  mediator.subscribe('group:selected', function(group) {
+  mediator.subscribe('wfm:group:selected', function(group) {
     $state.go('app.group.detail', {
       groupId: group.id
     });
+  });
+  mediator.subscribe('wfm:group:list', function(group) {
+    $state.go('app.group', null, {reload: true});
   });
 })
 
@@ -127,24 +130,21 @@ angular.module('app.group', [
   };
 })
 
-.controller('groupFormController', function ($state, mediator, group, groupClient) {
+.controller('groupFormController', function ($state, $scope, mediator, group, groupClient) {
   var self = this;
-  self.group = angular.copy(group);
-  self.done = function(valid) {
-    if (valid) {
-      if (self.group.id || self.group.id === 0) {
-        groupClient.update(self.group)
+  self.group = group;
+  mediator.subscribeForScope('wfm:group:updated', $scope, function(group) {
+    return groupClient.update(group)
         .then(function() {
           $state.go('app.group.detail', {groupId: self.group.id}, {reload: true});
         })
-      } else {
-        groupClient.create(self.group)
-        .then(function(createdGroup) {
-          $state.go('app.group.detail', {groupId: createdGroup.id}, {reload: true});
+    });
+  mediator.subscribeForScope('wfm:group:created', $scope, function(group) {
+    return groupClient.create(group)
+        .then(function(createdgroup) {
+          $state.go('app.group.detail', {groupId: createdgroup.id}, {reload: true});
         })
-      }
-    }
-  };
+    });
 })
 
 ;
