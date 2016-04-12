@@ -60,6 +60,12 @@ angular.module('app.worker', [
              return String(file.owner) === String($stateParams.workerId);
            });
           })
+        },
+        membership: function(membershipClient) {
+          return membershipClient.list();
+        },
+        groups: function(groupClient) {
+          return groupClient.list();
         }
       },
       views: {
@@ -74,6 +80,12 @@ angular.module('app.worker', [
       resolve: {
         worker: function($stateParams, userClient) {
           return userClient.read($stateParams.workerId);
+        },
+        groups: function(groupClient) {
+          return groupClient.list();
+        },
+        membership: function(membershipClient) {
+          return membershipClient.list();
         }
       },
       views: {
@@ -88,6 +100,12 @@ angular.module('app.worker', [
       resolve: {
         worker: function() {
           return {};
+        },
+        groups: function(groupClient) {
+          return groupClient.list();
+        },
+        membership: function(membershipClient) {
+          return membershipClient.list();
         }
       },
       views: {
@@ -116,13 +134,21 @@ angular.module('app.worker', [
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, userClient) {
+.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, membership, groups, userClient) {
   var self = this;
   self.worker = worker;
   self.workorders = workorders;
   self.messages =  messages;
   self.files = files;
   $scope.selected.id = worker.id;
+
+  var userMembership = membership.filter(function(_membership) {
+    return _membership.user == worker.id
+  })[0];
+  self.group = groups.filter(function(group) {
+      return userMembership.group == group.id;
+  })[0];
+
   self.delete = function(event, worker) {
     event.preventDefault();
     var confirm = $mdDialog.confirm()
@@ -157,19 +183,43 @@ angular.module('app.worker', [
 
 })
 
-.controller('WorkerFormController', function ($state, $scope, mediator, worker, userClient) {
+.controller('WorkerFormController', function ($state, $scope, mediator, worker, groups, membership, userClient, membershipClient) {
   var self = this;
   self.worker = worker;
+  self.groups = groups;
+  //if we are updating let's assign the group
+  if(worker.id || worker.id === 0) {
+    var userMembership = membership.filter(function(_membership) {
+      return _membership.user == worker.id
+    })[0];
+    self.worker.group = groups.filter(function(group) {
+        return userMembership.group == group.id;
+    })[0].id;
+  }
+
   mediator.subscribeForScope('wfm:worker:updated', $scope, function(worker) {
     return userClient.update(worker)
-        .then(function() {
-          $state.go('app.worker.detail', {workerId: self.worker.id}, {reload: true});
+        .then(function(updatedWorker) {
+          //retrieve the existing membership
+          var userMembership = membership.filter(function(_membership) {
+            return _membership.user == worker.id
+          })[0];
+          userMembership.group = updatedWorker.group;
+          return membershipClient.update(userMembership)
+            .then(function(updatedMembership) {
+              $state.go('app.worker.detail', {workerId: updatedMembership.user}, {reload: true});
+            });
         })
     });
   mediator.subscribeForScope('wfm:worker:created', $scope, function(worker) {
     return userClient.create(worker)
         .then(function(createdWorker) {
-          $state.go('app.worker.detail', {workerId: createdWorker.id}, {reload: true});
+          return membershipClient.create({
+            group : createdWorker.group,
+            user: createdWorker.id
+          }).then(function (createdMembership) {
+              $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
+            })
         })
     });
 })
