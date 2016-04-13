@@ -955,7 +955,7 @@
     },
     "fh-js-sdk": {
       "version": "2.14.4",
-      "from": "git+https://github.com/feedhenry/fh-js-sdk.git",
+      "from": "git+https://github.com/feedhenry/fh-js-sdk.git#7e61408a19b1a547c8d95a71290caaf86523adb0",
       "resolved": "git+https://github.com/feedhenry/fh-js-sdk.git#7e61408a19b1a547c8d95a71290caaf86523adb0",
       "dependencies": {
         "type-of": {
@@ -986,67 +986,19 @@
       "resolved": "https://registry.npmjs.org/fh-wfm-analytics/-/fh-wfm-analytics-0.0.3.tgz"
     },
     "fh-wfm-appform": {
-      "version": "0.0.11",
-      "from": "https://registry.npmjs.org/fh-wfm-appform/-/fh-wfm-appform-0.0.11.tgz",
-      "resolved": "https://registry.npmjs.org/fh-wfm-appform/-/fh-wfm-appform-0.0.11.tgz",
+      "version": "0.0.12",
+      "from": "fh-wfm-appform@0.0.12",
       "dependencies": {
-        "fh-wfm-component-signature": {
-          "version": "0.0.7",
-          "from": "fh-wfm-component-signature@0.0.7",
-          "dependencies": {
-            "fh-wfm-template-build": {
-              "version": "0.0.4",
-              "from": "https://registry.npmjs.org/fh-wfm-template-build/-/fh-wfm-template-build-0.0.4.tgz",
-              "resolved": "https://registry.npmjs.org/fh-wfm-template-build/-/fh-wfm-template-build-0.0.4.tgz",
-              "dependencies": {
-                "minimist": {
-                  "version": "1.2.0",
-                  "from": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
-                },
-                "ng-html2js": {
-                  "version": "2.0.0",
-                  "from": "https://registry.npmjs.org/ng-html2js/-/ng-html2js-2.0.0.tgz",
-                  "resolved": "https://registry.npmjs.org/ng-html2js/-/ng-html2js-2.0.0.tgz",
-                  "dependencies": {
-                    "optimist": {
-                      "version": "0.6.1",
-                      "from": "https://registry.npmjs.org/optimist/-/optimist-0.6.1.tgz",
-                      "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.6.1.tgz",
-                      "dependencies": {
-                        "wordwrap": {
-                          "version": "0.0.3",
-                          "from": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.3.tgz",
-                          "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.3.tgz"
-                        },
-                        "minimist": {
-                          "version": "0.0.10",
-                          "from": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz",
-                          "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
-                        }
-                      }
-                    }
-                  }
-                },
-                "node-watch": {
-                  "version": "0.3.5",
-                  "from": "https://registry.npmjs.org/node-watch/-/node-watch-0.3.5.tgz",
-                  "resolved": "https://registry.npmjs.org/node-watch/-/node-watch-0.3.5.tgz"
-                }
-              }
-            },
-            "lodash": {
-              "version": "3.10.1",
-              "from": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz",
-              "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
-            }
-          }
+        "fh-wfm-signature": {
+          "version": "0.0.8",
+          "from": "fh-wfm-signature@0.0.8",
+          "resolved": "https://registry.npmjs.org/fh-wfm-signature/-/fh-wfm-signature-0.0.8.tgz"
         }
       }
     },
     "fh-wfm-camera": {
       "version": "0.0.4",
-      "from": "fh-wfm-camera@*"
+      "from": "fh-wfm-camera@0.0.4"
     },
     "fh-wfm-file": {
       "version": "0.0.4",
@@ -4330,61 +4282,13 @@
       }
     },
     "fh-wfm-risk-assessment": {
-      "version": "0.0.7",
-      "from": "https://registry.npmjs.org/fh-wfm-risk-assessment/-/fh-wfm-risk-assessment-0.0.7.tgz",
-      "resolved": "https://registry.npmjs.org/fh-wfm-risk-assessment/-/fh-wfm-risk-assessment-0.0.7.tgz",
+      "version": "0.0.8",
+      "from": "fh-wfm-risk-assessment@0.0.8",
       "dependencies": {
-        "fh-wfm-component-signature": {
-          "version": "0.0.7",
-          "from": "fh-wfm-component-signature@0.0.7",
-          "dependencies": {
-            "fh-wfm-template-build": {
-              "version": "0.0.4",
-              "from": "https://registry.npmjs.org/fh-wfm-template-build/-/fh-wfm-template-build-0.0.4.tgz",
-              "resolved": "https://registry.npmjs.org/fh-wfm-template-build/-/fh-wfm-template-build-0.0.4.tgz",
-              "dependencies": {
-                "minimist": {
-                  "version": "1.2.0",
-                  "from": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz",
-                  "resolved": "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz"
-                },
-                "ng-html2js": {
-                  "version": "2.0.0",
-                  "from": "https://registry.npmjs.org/ng-html2js/-/ng-html2js-2.0.0.tgz",
-                  "resolved": "https://registry.npmjs.org/ng-html2js/-/ng-html2js-2.0.0.tgz",
-                  "dependencies": {
-                    "optimist": {
-                      "version": "0.6.1",
-                      "from": "https://registry.npmjs.org/optimist/-/optimist-0.6.1.tgz",
-                      "resolved": "https://registry.npmjs.org/optimist/-/optimist-0.6.1.tgz",
-                      "dependencies": {
-                        "wordwrap": {
-                          "version": "0.0.3",
-                          "from": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.3.tgz",
-                          "resolved": "https://registry.npmjs.org/wordwrap/-/wordwrap-0.0.3.tgz"
-                        },
-                        "minimist": {
-                          "version": "0.0.10",
-                          "from": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz",
-                          "resolved": "https://registry.npmjs.org/minimist/-/minimist-0.0.10.tgz"
-                        }
-                      }
-                    }
-                  }
-                },
-                "node-watch": {
-                  "version": "0.3.5",
-                  "from": "https://registry.npmjs.org/node-watch/-/node-watch-0.3.5.tgz",
-                  "resolved": "https://registry.npmjs.org/node-watch/-/node-watch-0.3.5.tgz"
-                }
-              }
-            },
-            "lodash": {
-              "version": "3.10.1",
-              "from": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz",
-              "resolved": "https://registry.npmjs.org/lodash/-/lodash-3.10.1.tgz"
-            }
-          }
+        "fh-wfm-signature": {
+          "version": "0.0.8",
+          "from": "fh-wfm-signature@0.0.8",
+          "resolved": "https://registry.npmjs.org/fh-wfm-signature/-/fh-wfm-signature-0.0.8.tgz"
         }
       }
     },
