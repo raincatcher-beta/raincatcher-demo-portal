@@ -64,15 +64,22 @@ angular.module('app', [
           return userClient.getProfile();
         }
       },
-      controller: function($scope, $state, mediator, profileData){
+      controller: function($scope, $state, $mdSidenav, mediator, profileData){
         console.log('profileData', profileData);
         $scope.profileData = profileData;
         mediator.subscribe('wfm:auth:profile:change', function(_profileData) {
           $scope.profileData = _profileData;
         });
         $scope.$state = $state;
+        $scope.toggleSidenav = function(event, menuId) {
+          $mdSidenav(menuId).toggle();
+          event.stopPropagation();
+        };
         $scope.navigateTo = function(state, params) {
           if (state) {
+            if ($mdSidenav('left').isOpen()) {
+              $mdSidenav('left').close();
+            };
             $state.go(state, params);
           }
         }
