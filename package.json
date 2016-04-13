@@ -34,6 +34,7 @@
     "fh-js-sdk": "git+https://github.com/feedhenry/fh-js-sdk.git",
     "fh-wfm-analytics": "0.0.3",
     "fh-wfm-appform": "0.0.11",
+    "fh-wfm-camera": "0.0.4",
     "fh-wfm-file": "0.0.4",
     "fh-wfm-map": "0.0.4",
     "fh-wfm-mediator": "0.0.11",

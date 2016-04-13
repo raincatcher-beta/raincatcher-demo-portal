@@ -24,6 +24,7 @@ angular.module('app', [
 , require('fh-wfm-map')
 , require('fh-wfm-schedule')
 , require('fh-wfm-analytics')
+, require('fh-wfm-camera')
 
 , require('./auth/auth')
 , require('./workorder/workorder')
