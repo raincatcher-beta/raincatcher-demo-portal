@@ -6,7 +6,7 @@
 'use strict';
 
 var angular = require('angular');
-require('../lib/feedhenry');
+require('feedhenry');
 
 angular.module('app', [
   require('angular-ui-router')
