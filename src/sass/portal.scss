@@ -53,6 +53,24 @@ md-toolbar.md-warn > md-tabs.md-default-theme, md-tabs > md-tabs-wrapper > md-ta
   }
 }
 
+// wfm-file-list ==========
+
+.wfm-file-list{
+  md-icon {margin-top: 0!important}
+  md-list-item{
+    display: flex;
+    align-items: center;
+    .md-list-item-text{
+      margin: 8px 0;
+      display: flex;
+      align-items: center;
+      img{
+        max-height: 70px;
+        margin: 8px 10px 8px 0;
+      }
+    }
+  }
+}
 
 // Chip
 
@@ -194,9 +212,9 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
 // Main column
 .wfm-maincol-scroll{
   overflow-y: auto;
-  height: calc(100vh - 128px);
+  height: calc(100vh - 131px);
   &.wfm-maincol-scroll_with-menu{
-    height: calc(100vh - 177px);
+    height: calc(100vh - 179px);
   }
 }
 
@@ -205,7 +223,7 @@ md-list-item.active .md-button, md-list-item.active .md-button:hover{
   md-list{
     background: rgba(0,0,0,.05);
     overflow-y: auto;
-    height: calc(100vh - 178px);
+    height: calc(100vh - 180px);
   }
   md-list-item.active .md-button, md-list-item.active .md-button:hover{
   background: #fff!important;
