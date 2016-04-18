@@ -48,8 +48,17 @@ module.exports = function (grunt) {
     copy: {
       static: {
         files: [
-          {expand: true, cwd: '<%= app.src %>/', src: ['**/*.html'], dest: '<%= app.dist %>', filter: 'isFile'},
-          {expand: true, cwd: '<%= app.src %>/', src: ['**/*.json'], dest: '<%= app.dist %>', filter: 'isFile'},
+          {
+            expand: true,
+            cwd: '<%= app.src %>/',
+            src: [
+              '**/*.html',
+              '**/*.png',
+              '**/*.json'
+            ],
+            dest: '<%= app.dist %>',
+            filter: 'isFile'
+          }
         ],
       },
       css: {
