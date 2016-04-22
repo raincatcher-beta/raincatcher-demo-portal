@@ -43,7 +43,9 @@ angular.module('app.group', [
       url: '/group/:groupId',
       resolve: {
         group: function($stateParams, groups) {
-          return groups[$stateParams.groupId];
+          return groups.filter(function(group) {
+            return String(group.id) === String($stateParams.groupId);
+          })[0];
         }
       },
       views: {
@@ -57,7 +59,9 @@ angular.module('app.group', [
       url: '/group/:groupId/edit',
       resolve: {
         group: function($stateParams, groups) {
-          return groups[$stateParams.groupId];
+          return groups.filter(function(group) {
+            return String(group.id) === String($stateParams.groupId);
+          })[0];
         }
       },
       views: {
