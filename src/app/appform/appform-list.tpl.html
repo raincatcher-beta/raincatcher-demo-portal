@@ -15,7 +15,7 @@
 
   <form action="#" class="persistent-search">
     <label for="search"><i class="material-icons">search</i></label>
-    <input type="text" id="search" placeholder="Search">
+    <input type="text" id="search" placeholder="Search" ng-model="searchValue" ng-change="ctrl.applyFilter(searchValue)">
   </form>
 
   <md-list>

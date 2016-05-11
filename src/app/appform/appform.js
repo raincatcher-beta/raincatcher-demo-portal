@@ -54,6 +54,17 @@ angular.module('app.appform', ['ui.router'])
     self.selectedFormId = form._id;
     $state.go('app.appform.detail', {formId: form._id});
   };
+
+  self.applyFilter = function(term) {
+    term = term.toLowerCase();
+    self.forms = forms.filter(function(form) {
+      return String(form.name).toLowerCase().indexOf(term) !== -1
+        || String(form.description).toLowerCase().indexOf(term) !== -1
+        || String(form._id).indexOf(term) !== -1;
+    });
+  };
+
+
 })
 
 ;
