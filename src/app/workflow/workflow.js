@@ -118,7 +118,17 @@ angular.module('app.workflow', [
   var self = this;
   $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
-    containment: '#stepList'
+    containment: '#stepList',
+    orderChanged :  function (event) {
+      workflowManager.update(workflow).then(function(_workflow) {
+        $state.go('app.workflow.detail',
+         {workflowId: _workflow.id},
+         { reload: true }
+       );
+      }, function(error) {
+        console.log(error);
+      })
+    }
   }
   self.workflow = workflow;
 
