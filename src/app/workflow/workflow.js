@@ -42,6 +42,9 @@ angular.module('app.workflow', [
           resolve: {
             workflow: function($stateParams, workflowManager) {
               return workflowManager.read($stateParams.workflowId);
+            },
+            forms: function(appformClient) {
+              return appformClient.list();
             }
           }
         }
@@ -84,6 +87,9 @@ angular.module('app.workflow', [
           resolve: {
             workflow: function($stateParams, workflowManager) {
               return workflowManager.read($stateParams.workflowId);
+            },
+            forms: function(appformClient) {
+              return appformClient.list();
             }
           }
         }
@@ -122,7 +128,8 @@ angular.module('app.workflow', [
   };
 })
 
-.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow) {
+
+.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow, forms) {
   var self = this;
   $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
@@ -139,7 +146,7 @@ angular.module('app.workflow', [
     }
   }
   self.workflow = workflow;
-
+  self.forms = forms;
   self.delete = function(event, workflow) {
     event.preventDefault();
     var confirm = $mdDialog.confirm()
@@ -224,10 +231,11 @@ angular.module('app.workflow', [
   });
 })
 
-.controller('WorkflowStepFormController', function ($scope, $state, $stateParams, mediator, workflow, workflowManager) {
+.controller('WorkflowStepFormController', function ($scope, $state, $stateParams, mediator, workflow, workflowManager, forms) {
   var self = this;
 
   self.workflow = workflow;
+  self.forms = forms;
   self.step = workflow.steps.filter(function(item) {
     return item.code == $stateParams.code;
   })[0];
