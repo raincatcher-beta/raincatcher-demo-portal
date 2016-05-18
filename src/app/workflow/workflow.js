@@ -183,11 +183,12 @@ angular.module('app.workflow', [
     });
   };
 
-  mediator.subscribe('wfm:workflow:updated', function(workflow) {
+  mediator.subscribeForScope('wfm:workflow:updated', $scope, function(workflow) {
     workflowManager.update(workflow).then(function(_workflow) {
-      $state.go('app.workflow.detail', {
-        workflowId: _workflow.id
-      });
+      $state.go('app.workflow.detail',
+        {workflowId: _workflow.id},
+        { reload: true }
+       );
     }, function(error) {
       console.log(error);
     })
