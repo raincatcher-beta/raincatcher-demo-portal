@@ -112,6 +112,14 @@ angular.module('app.workflow', [
     self.selectedWorkflowId = workflow.id;
     mediator.publish('wfm:workflow:selected', workflow);
   };
+
+  self.applyFilter = function(term) {
+    term = term.toLowerCase();
+    self.workflows = workflows.filter(function(workflow) {
+      return String(workflow.title).toLowerCase().indexOf(term) !== -1
+        || String(workflow.id).indexOf(term) !== -1;
+    });
+  };
 })
 
 .controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow) {
