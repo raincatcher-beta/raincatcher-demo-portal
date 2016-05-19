@@ -43,13 +43,8 @@ angular.module('app.workflow', [
             workflow: function($stateParams, workflowManager) {
               return workflowManager.read($stateParams.workflowId);
             },
-<<<<<<< HEAD
             forms: function(appformClient) {
               return appformClient.list();
-=======
-            workorders: function(workorderManager) {
-              return workorderManager.list();
->>>>>>> 88afe68... Add extra warning if workflow is used
             }
           }
         }
@@ -133,7 +128,7 @@ angular.module('app.workflow', [
   };
 })
 
-.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow, workorders) {
+.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workorderManager, workflow, forms) {
   var self = this;
   $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
@@ -153,31 +148,35 @@ angular.module('app.workflow', [
   self.forms = forms;
   self.delete = function(event, workflow) {
     event.preventDefault();
-    var title;
-    var workorder = workorders.filter(function(workorder) {
-      return String(workorder.workflowId) === String(workflow.id);
-    })
-    if (workorder.length) {
-      title = "Workflow is used at least by 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?";
-    }
-    else {
-      title = "Would you like to delete workflow #"+workflow.id+"?";
-    }
-    var confirm = $mdDialog.confirm()
-          .title(title)
-          .textContent(workflow.title)
-          .ariaLabel('Delete workflow')
-          .targetEvent(event)
-          .ok('Proceed')
-          .cancel('Cancel');
-    $mdDialog.show(confirm).then(function() {
-      return workflowManager.delete(workflow)
-      .then(function() {
-        $state.go('app.workflow', null, {reload: true});
-      }, function(err) {
-        throw err;
+    var title,
+        confirm;
+    workorderManager.list().then(function(workorders){
+      var workorder = workorders.filter(function(workorder) {
+        return String(workorder.workflowId) === String(workflow.id);
       })
-    });
+      if (workorder.length) {
+        title = "Workflow is used at least by 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?";
+      }
+      else {
+        title = "Would you like to delete workflow #"+workflow.id+"?";
+      }
+      confirm = $mdDialog.confirm()
+            .title(title)
+            .textContent(workflow.title)
+            .ariaLabel('Delete workflow')
+            .targetEvent(event)
+            .ok('Proceed')
+            .cancel('Cancel');
+    }).then(function() {
+      $mdDialog.show(confirm).then(function() {
+        return workflowManager.delete(workflow)
+        .then(function() {
+          $state.go('app.workflow', null, {reload: true});
+        }, function(err) {
+          throw err;
+        })
+      });
+    })
   };
 
   self.deleteStep = function(event, step, workflow) {
