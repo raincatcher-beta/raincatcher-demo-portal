@@ -168,16 +168,17 @@ angular.module('app.workflow', [
             .ok('Proceed')
             .cancel('Cancel');
     }).then(function() {
-      $mdDialog.show(confirm).then(function() {
+          $mdDialog.show(confirm)
+        })
+      .then(function() {
         return workflowManager.delete(workflow)
-        .then(function() {
+        })
+      .then(function() {
           $state.go('app.workflow', null, {reload: true});
         }, function(err) {
           throw err;
-        })
-      });
-    })
-  };
+        });
+      };
 
   self.deleteStep = function(event, step, workflow) {
     event.preventDefault();
