@@ -148,28 +148,26 @@ angular.module('app.workflow', [
   self.forms = forms;
   self.delete = function(event, workflow) {
     event.preventDefault();
-    var title,
-        confirm;
-    workorderManager.list().then(function(workorders){
-      var workorder = workorders.filter(function(workorder) {
-        return String(workorder.workflowId) === String(workflow.id);
-      })
-      if (workorder.length) {
-        title = "Workflow is used at least by 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?";
-      }
-      else {
-        title = "Would you like to delete workflow #"+workflow.id+"?";
-      }
-      confirm = $mdDialog.confirm()
-            .title(title)
-            .textContent(workflow.title)
-            .ariaLabel('Delete workflow')
-            .targetEvent(event)
-            .ok('Proceed')
-            .cancel('Cancel');
-    }).then(function() {
-          $mdDialog.show(confirm)
+    workorderManager.list()
+      .then(function(workorders){
+        var workorder = workorders.filter(function(workorder) {
+          return String(workorder.workflowId) === String(workflow.id);
         })
+        var title = (workorder.length)
+          ? "Workflow is used at least by at least 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?"
+          : "Would you like to delete workflow #"+workflow.id+"?";
+        var confirm = $mdDialog.confirm()
+          .title(title)
+          .textContent(workflow.title)
+          .ariaLabel('Delete workflow')
+          .targetEvent(event)
+          .ok('Proceed')
+          .cancel('Cancel');
+        return confirm;
+      })
+      .then(function(confirm) {
+        return $mdDialog.show(confirm)
+      })
       .then(function() {
         return workflowManager.delete(workflow)
         })
