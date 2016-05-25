@@ -145,9 +145,11 @@ angular.module('app.worker', [
   var userMembership = membership.filter(function(_membership) {
     return _membership.user == worker.id
   })[0];
-  self.group = groups.filter(function(group) {
-      return userMembership.group == group.id;
-  })[0];
+  if(userMembership){
+    self.group = groups.filter(function(group) {
+        return userMembership.group == group.id;
+    })[0];
+  }
 
   self.delete = function(event, worker) {
     event.preventDefault();
@@ -192,9 +194,11 @@ angular.module('app.worker', [
     var userMembership = membership.filter(function(_membership) {
       return _membership.user == worker.id
     })[0];
-    self.worker.group = groups.filter(function(group) {
-        return userMembership.group == group.id;
-    })[0].id;
+    if(userMembership){
+      self.worker.group = groups.filter(function(group) {
+          return userMembership.group == group.id;
+      })[0].id;
+    }
   }
 
   mediator.subscribeForScope('wfm:worker:updated', $scope, function(worker) {
@@ -204,11 +208,22 @@ angular.module('app.worker', [
           var userMembership = membership.filter(function(_membership) {
             return _membership.user == worker.id
           })[0];
-          userMembership.group = updatedWorker.group;
-          return membershipClient.update(userMembership)
-            .then(function(updatedMembership) {
-              $state.go('app.worker.detail', {workerId: updatedMembership.user}, {reload: true});
-            });
+          if(userMembership){
+            userMembership.group = updatedWorker.group;
+            return membershipClient.update(userMembership)
+              .then(function(updatedMembership) {
+                $state.go('app.worker.detail', {workerId: updatedMembership.user}, {reload: true});
+              });
+          }
+          else {
+            return membershipClient.create({
+              group : updatedWorker.group,
+              user: updatedWorker.id
+            }).then(function (createdMembership) {
+                $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
+              })
+          }
+
         })
     });
   mediator.subscribeForScope('wfm:worker:created', $scope, function(worker) {
