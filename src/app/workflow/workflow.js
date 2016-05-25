@@ -128,8 +128,7 @@ angular.module('app.workflow', [
   };
 })
 
-
-.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workflow, forms) {
+.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workorderManager, workflow, forms) {
   var self = this;
   $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
@@ -149,22 +148,35 @@ angular.module('app.workflow', [
   self.forms = forms;
   self.delete = function(event, workflow) {
     event.preventDefault();
-    var confirm = $mdDialog.confirm()
-          .title('Would you like to delete workflow #'+workflow.id+'?')
+    workorderManager.list()
+      .then(function(workorders){
+        var workorder = workorders.filter(function(workorder) {
+          return String(workorder.workflowId) === String(workflow.id);
+        })
+        var title = (workorder.length)
+          ? "Workflow is used at least by at least 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?"
+          : "Would you like to delete workflow #"+workflow.id+"?";
+        var confirm = $mdDialog.confirm()
+          .title(title)
           .textContent(workflow.title)
           .ariaLabel('Delete workflow')
           .targetEvent(event)
           .ok('Proceed')
           .cancel('Cancel');
-    $mdDialog.show(confirm).then(function() {
-      return workflowManager.delete(workflow)
-      .then(function() {
-        $state.go('app.workflow', null, {reload: true});
-      }, function(err) {
-        throw err;
+        return confirm;
       })
-    });
-  };
+      .then(function(confirm) {
+        return $mdDialog.show(confirm)
+      })
+      .then(function() {
+        return workflowManager.delete(workflow)
+        })
+      .then(function() {
+          $state.go('app.workflow', null, {reload: true});
+        }, function(err) {
+          throw err;
+        });
+      };
 
   self.deleteStep = function(event, step, workflow) {
     event.preventDefault();
