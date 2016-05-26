@@ -117,20 +117,30 @@ angular.module('app.group', [
   });
   self.delete = function($event, group) {
     $event.preventDefault();
-    var confirm = $mdDialog.confirm()
-          .title('Would you like to delete group #'+group.id+'?')
-          .textContent(group.name)
-          .ariaLabel('Delete Group')
-          .targetEvent($event)
-          .ok('Proceed')
-          .cancel('Cancel');
-    $mdDialog.show(confirm).then(function() {
-      groupClient.delete(group).then(function() {
-        $state.go('app.group', null, {reload: true});
-      }, function(err) {
-        throw err;
-      })
-    });
+    if(self.members.length > 0) {
+      var alert = $mdDialog.confirm()
+            .title('Operation not possible')
+            .textContent('Group can not be deleted if it contains members.')
+            .ok('Ok')
+            .targetEvent($event);
+      $mdDialog.show(alert);
+    }
+    else {
+      var confirm = $mdDialog.confirm()
+            .title('Would you like to delete group #'+group.id+'?')
+            .textContent(group.name)
+            .ariaLabel('Delete Group')
+            .targetEvent($event)
+            .ok('Proceed')
+            .cancel('Cancel');
+      $mdDialog.show(confirm).then(function() {
+        groupClient.delete(group).then(function() {
+          $state.go('app.group', null, {reload: true});
+        }, function(err) {
+          throw err;
+        })
+      });
+    }
   };
 })
 
