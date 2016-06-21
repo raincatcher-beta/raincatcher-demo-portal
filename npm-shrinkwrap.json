@@ -3320,6 +3320,11 @@
       "version": "4.1.0",
       "from": "rx@>=4.1.0 <5.0.0",
       "resolved": "https://registry.npmjs.org/rx/-/rx-4.1.0.tgz"
+    },
+    "shortid": {
+      "version": "2.2.6",
+      "from": "shortid@2.2.6",
+      "resolved": "https://registry.npmjs.org/shortid/-/shortid-2.2.6.tgz"
     }
   }
 }
