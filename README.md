@@ -1,8 +1,8 @@
-# FeedHenry WFM Portal
+# FeedHenry WFM Portal [![Build Status](https://travis-ci.org/feedhenry-staff/wfm-portal.png)](https://travis-ci.org/feedhenry-staff/wfm-portal)
 
 This is a reference/demo implementation of the Portal Client application of a WFM project.
 
-This repository should be used in conjonction with these following repos :
+This repository should be used in conjunction with these following repos:
 
 - [Cloud Demo App](https://github.com/feedhenry-staff/wfm-cloud)
 - [Mobile Client Demo App](https://github.com/feedhenry-staff/wfm-mobile)
