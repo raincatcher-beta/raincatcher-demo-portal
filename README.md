@@ -4,9 +4,9 @@ This is a reference/demo implementation of the Portal Client application of a WF
 
 This repository should be used in conjunction with these following repos:
 
-- [Cloud Demo App](https://github.com/feedhenry-staff/wfm-cloud)
-- [Mobile Client Demo App](https://github.com/feedhenry-staff/wfm-mobile)
-- [WFM Auth Service](https://github.com/feedhenry-staff/wfm-auth)
+- [Cloud Demo App](https://github.com/feedhenry-raincatcher/raincatcher-demo-cloud)
+- [Mobile Client Demo App](https://github.com/feedhenry-raincatcher/raincatcher-demo-mobile)
+- [WFM Auth Service](https://github.com/feedhenry-raincatcher/raincatcher-demo-auth)
 
 ## Setup (locally)
 
