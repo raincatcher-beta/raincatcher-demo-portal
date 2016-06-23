@@ -1,4 +1,4 @@
-# FeedHenry WFM Portal [![Build Status](https://travis-ci.org/feedhenry-staff/wfm-portal.png)](https://travis-ci.org/feedhenry-staff/wfm-portal)
+# FeedHenry WFM Portal [![Build Status](https://travis-ci.org/feedhenry-raincatcher/raincatcher-demo-portal.png)](https://travis-ci.org/feedhenry-raincatcher/raincatcher-demo-portal)
 
 This is a reference/demo implementation of the Portal Client application of a WFM project.
 
