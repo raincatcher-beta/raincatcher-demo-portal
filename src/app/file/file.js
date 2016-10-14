@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = 'app.file';
 
 angular.module('app.file', [
@@ -29,7 +27,7 @@ angular.module('app.file', [
       views: {
         column2: {
           templateUrl: 'app/file/file-list.tpl.html',
-          controller: 'FileListController as ctrl',
+          controller: 'FileListController as ctrl'
         },
         'content': {
           templateUrl: 'app/file/empty.tpl.html'
@@ -51,7 +49,7 @@ angular.module('app.file', [
           controller: 'FileController as ctrl'
         }
       }
-    })
+    });
 })
 
 .run(function($state, mediator) {
@@ -63,14 +61,14 @@ angular.module('app.file', [
   });
 })
 
-.controller('FileListController', function ($scope, files, workerMap) {
+.controller('FileListController', function($scope, files, workerMap) {
   var self = this;
   $scope.$parent.selected = {id: null};
   self.files = files;
   self.workerMap = workerMap;
 })
 
-.controller('FileController', function ($scope, file, workerMap) {
+.controller('FileController', function($scope, file, workerMap) {
   var self = this;
   $scope.$parent.selected = {id: file.id};
   self.file = file;

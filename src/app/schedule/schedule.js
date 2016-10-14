@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 module.exports = 'app.schedule';
 
 angular.module('app.schedule', [
@@ -30,10 +28,10 @@ angular.module('app.schedule', [
           controller: 'scheduleController as ctrl'
         }
       }
-    })
+    });
 })
 
-.controller('scheduleController', function (mediator, workorderManager, workorders, workers) {
+.controller('scheduleController', function(mediator, workorderManager, workorders, workers) {
   var self = this;
   self.workorders = workorders;
   self.workers = workers;
@@ -43,7 +41,7 @@ angular.module('app.schedule', [
     }, function(error) {
       console.error(error);
     });
-  })
+  });
 })
 
 ;

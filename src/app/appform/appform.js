@@ -1,9 +1,8 @@
 'use strict';
-var _ = require('lodash');
 
 angular.module('app.appform', ['ui.router'])
 
-.config(function ($stateProvider) {
+.config(function($stateProvider) {
   $stateProvider
     .state('app.appform.detail', {
       url: '/appform/:formId',

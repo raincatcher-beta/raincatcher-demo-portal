@@ -163,6 +163,10 @@ module.exports = function (grunt) {
     clean: {
       dist: ['<%= app.dist %>'],
       server: '.tmp'
+    },
+
+    eslint: {
+      src: ['application.js', 'src/**/*.js']
     }
   });
 

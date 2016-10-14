@@ -3,7 +3,7 @@
 module.exports = 'app.auth';
 
 angular.module('app.auth', [
-  'ui.router',
+  'ui.router'
 , 'wfm.core.mediator'
 ])
 
@@ -31,10 +31,10 @@ angular.module('app.auth', [
       views: {
         'content@app': {
           templateUrl: 'app/auth/profile.tpl.html',
-          controller: 'ProfileCtrl as ctrl',
+          controller: 'ProfileCtrl as ctrl'
         }
       }
-    })
+    });
 })
 
 .controller('LoginCtrl', function($state, $rootScope, userClient, hasSession) {
@@ -52,13 +52,13 @@ angular.module('app.auth', [
         self.loginMessages.error = true;
       });
     }
-  }
+  };
 
   self.loginMessages = {success: false, error: false};
 
   self.login = function(valid) {
     if (!valid) {
-      return
+      return;
     }
     userClient.auth(self.username, self.password)
     .then(function() {
@@ -78,7 +78,7 @@ angular.module('app.auth', [
       self.loginMessages.error = true;
       console.error(err);
     });
-  }
+  };
 
   self.logout = function() {
     userClient.clearSession()
@@ -88,7 +88,7 @@ angular.module('app.auth', [
     }, function(err) {
       console.err(err);
     });
-  }
+  };
 })
 
 .controller('ProfileCtrl', function() {

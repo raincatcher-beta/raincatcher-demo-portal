@@ -16,7 +16,7 @@ app.use(express.static(__dirname + '/www'));
 // });
 
 // Used for App health checking
-app.get('/sys/info/ping', function(req, res, next) {
+app.get('/sys/info/ping', function(req, res) {
   res.end('"OK"');
 });
 

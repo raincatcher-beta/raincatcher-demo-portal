@@ -30,7 +30,7 @@ angular.module('app.group', [
           controller: 'groupListController as ctrl'
         },
         'content': {
-          templateUrl: 'app/group/empty.tpl.html',
+          templateUrl: 'app/group/empty.tpl.html'
         }
       }
     })
@@ -62,7 +62,7 @@ angular.module('app.group', [
       views: {
         'content@app': {
           templateUrl: 'app/group/group-edit.tpl.html',
-          controller: 'groupFormController as ctrl',
+          controller: 'groupFormController as ctrl'
         }
       }
     })
@@ -70,13 +70,13 @@ angular.module('app.group', [
       url: '/new',
       resolve: {
         group: function() {
-          return {}
+          return {};
         }
       },
       views: {
         'content@app': {
           templateUrl: 'app/group/group-edit.tpl.html',
-          controller: 'groupFormController as ctrl',
+          controller: 'groupFormController as ctrl'
         }
       }
     });
@@ -88,39 +88,38 @@ angular.module('app.group', [
       groupId: group.id
     });
   });
-  mediator.subscribe('wfm:group:list', function(group) {
+  mediator.subscribe('wfm:group:list', function() {
     $state.go('app.group', null, {reload: true});
   });
 })
 
-.controller('groupListController', function ($scope, mediator, groups) {
+.controller('groupListController', function($scope, mediator, groups) {
   this.groups = groups;
   $scope.$parent.selected = {id: null};
 })
 
-.controller('groupDetailController', function ($scope, $state, $mdDialog, mediator, group, users, membership, groupClient) {
+.controller('groupDetailController', function($scope, $state, $mdDialog, mediator, group, users, membership, groupClient) {
   var self = this;
   self.group = group;
   $scope.selected.id = group.id;
   var groupMembership = membership.filter(function(_membership) {
-    return _membership.group == group.id
+    return _membership.group === group.id;
   });
   self.members = users.filter(function(user) {
     return _.some(groupMembership, function(_membership) {
-      return _membership.user == user.id;
-    })
+      return _membership.user === user.id;
+    });
   });
   self.delete = function($event, group) {
     $event.preventDefault();
-    if(self.members.length > 0) {
+    if (self.members.length > 0) {
       var alert = $mdDialog.confirm()
             .title('Operation not possible')
             .textContent('Group can not be deleted if it contains members.')
             .ok('Ok')
             .targetEvent($event);
       $mdDialog.show(alert);
-    }
-    else {
+    } else {
       var confirm = $mdDialog.confirm()
             .title('Would you like to delete group #'+group.id+'?')
             .textContent(group.name)
@@ -133,27 +132,27 @@ angular.module('app.group', [
           $state.go('app.group', null, {reload: true});
         }, function(err) {
           throw err;
-        })
+        });
       });
     }
   };
 })
 
-.controller('groupFormController', function ($state, $scope, mediator, group, groupClient) {
+.controller('groupFormController', function($state, $scope, mediator, group, groupClient) {
   var self = this;
   self.group = group;
   mediator.subscribeForScope('wfm:group:updated', $scope, function(group) {
     return groupClient.update(group)
         .then(function() {
           $state.go('app.group.detail', {groupId: self.group.id}, {reload: true});
-        })
-    });
+        });
+  });
   mediator.subscribeForScope('wfm:group:created', $scope, function(group) {
     return groupClient.create(group)
         .then(function(createdgroup) {
           $state.go('app.group.detail', {groupId: createdgroup.id}, {reload: true});
-        })
-    });
+        });
+  });
 })
 
 ;

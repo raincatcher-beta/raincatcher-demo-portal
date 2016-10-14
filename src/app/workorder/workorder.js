@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 require('angular-messages');
 
 angular.module('app.workorder', [
@@ -31,16 +30,16 @@ angular.module('app.workorder', [
               map[result.workorderId] = result;
             });
             return map;
-          })
+          });
         }
       },
       views: {
         column2: {
           templateUrl: 'app/workorder/workorder-list.tpl.html',
-          controller: 'WorkorderListController as workorderListController',
+          controller: 'WorkorderListController as workorderListController'
         },
         'content': {
-          templateUrl: 'app/workorder/empty.tpl.html',
+          templateUrl: 'app/workorder/empty.tpl.html'
         }
       }
     })
@@ -69,7 +68,7 @@ angular.module('app.workorder', [
           controller: 'WorkorderDetailController as ctrl',
           resolve: {
             workorder: function($stateParams, appformClient, workorderManager) {
-              return workorderManager.read($stateParams.workorderId)
+              return workorderManager.read($stateParams.workorderId);
             },
             workers: function(userClient) {
               return userClient.list();
@@ -111,19 +110,19 @@ angular.module('app.workorder', [
       { reload: true }
     );
   });
-  mediator.subscribe('wfm:workorder:list', function(workflow) {
+  mediator.subscribe('wfm:workorder:list', function() {
     $state.go('app.workorder', null, {reload: true});
   });
 })
 
-.controller('WorkorderListController', function ($scope, workorders, resultMap) {
+.controller('WorkorderListController', function($scope, workorders, resultMap) {
   var self = this;
   self.workorders = workorders;
   self.resultMap = resultMap;
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkorderDetailController', function ($scope, $state, $mdDialog, mediator, workorderManager, workflowManager, workflows, workorder, result, workers) {
+.controller('WorkorderDetailController', function($scope, $state, $mdDialog, mediator, workorderManager, workflowManager, workflows, workorder, result, workers) {
   var self = this;
   $scope.selected.id = workorder.id;
 
@@ -137,7 +136,7 @@ angular.module('app.workorder', [
   self.result = result;
   var assignee = workers.filter(function(worker) {
     return String(worker.id) === String(workorder.assignee);
-  })
+  });
   if (assignee.length) {
     self.assignee = assignee[0];
   }
@@ -167,9 +166,9 @@ angular.module('app.workorder', [
         $state.go('app.workorder', null, {reload: true});
       }, function(err) {
         throw err;
-      })
+      });
     });
-  }
+  };
 })
 
 .controller('WorkorderNewController', function($scope, workorder, workflows, mediator, workorderManager, workers) {
@@ -186,7 +185,7 @@ angular.module('app.workorder', [
   });
 })
 
-.controller('WorkorderFormController', function ($scope, $state, mediator, workorderManager, workorder, workflows, workers, result) {
+.controller('WorkorderFormController', function($scope, $state, mediator, workorderManager, workorder, workflows, workers, result) {
   var self = this;
 
   self.workorder = workorder;
@@ -197,7 +196,7 @@ angular.module('app.workorder', [
   mediator.subscribeForScope('wfm:workorder:updated', $scope, function(workorder) {
     return workorderManager.update(workorder).then(function(_workorder) {
       mediator.publish('wfm:workorder:selected', _workorder);
-    })
+    });
   });
 })
 

@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 require('angular-messages');
 
 module.exports = 'app.message';
@@ -13,22 +12,22 @@ angular.module('app.message', [
 .config(function($stateProvider) {
   $stateProvider
      .state('app.message', {
-      url: '/messages',
-      views: {
-        column2: {
-          templateUrl: 'app/message/message-list.tpl.html',
-          controller: 'MessageListController as messageListController',
-          resolve: {
-            messages: function(messageManager) {
-              return messageManager.list();
-            }
-          }
-        },
-        'content': {
-          templateUrl: 'app/message/empty.tpl.html',
-        }
-      }
-    })
+       url: '/messages',
+       views: {
+         column2: {
+           templateUrl: 'app/message/message-list.tpl.html',
+           controller: 'MessageListController as messageListController',
+           resolve: {
+             messages: function(messageManager) {
+               return messageManager.list();
+             }
+           }
+         },
+         'content': {
+           templateUrl: 'app/message/empty.tpl.html'
+         }
+       }
+     })
     .state('app.message.detail', {
       url: '/message/:messageId',
       views: {
@@ -37,11 +36,11 @@ angular.module('app.message', [
           controller: 'messageDetailController as ctrl',
           resolve: {
             message: function($stateParams, messageManager) {
-              return messageManager.read($stateParams.messageId)
+              return messageManager.read($stateParams.messageId);
             }
+          }
         }
       }
-    }
     })
     .state('app.message.new', {
       url: '/new',
@@ -71,30 +70,30 @@ angular.module('app.message', [
   });
 })
 
-.controller('MessageListController', function ($scope, messages) {
+.controller('MessageListController', function($scope, messages) {
   var self = this;
   $scope.$parent.selected = {id: null};
   self.messages = messages;
 })
 
-.controller('messageDetailController', function ($scope, message) {
+.controller('messageDetailController', function($scope, message) {
   var self = this;
   self.message = message;
   message.status = "read";
   $scope.selected.id = message.id;
 })
 
-.controller('messageFormController', function (mediator) {
+.controller('messageFormController', function() {
 })
 
-.controller('messageNewController', function ($scope, $state, mediator, messageManager, workers) {
+.controller('messageNewController', function($scope, $state, mediator, messageManager, workers) {
   var self = this;
   self.workers = workers;
   mediator.subscribeForScope('wfm:message:created', $scope, function(message) {
     message.sender = $scope.profileData;
-    return messageManager.create(message).then(function(_message) {
+    return messageManager.create(message).then(function() {
       $state.go('app.message', {workers: workers}, {reload: true});
-    })
+    });
   });
 })
 ;
