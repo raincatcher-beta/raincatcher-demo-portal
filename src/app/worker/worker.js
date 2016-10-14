@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 require('angular-messages');
 
 module.exports = 'app.worker';
@@ -22,10 +21,10 @@ angular.module('app.worker', [
       views: {
         column2: {
           templateUrl: 'app/worker/worker-list.tpl.html',
-          controller: 'WorkerListController as ctrl',
+          controller: 'WorkerListController as ctrl'
         },
         'content': {
-          templateUrl: 'app/worker/empty.tpl.html',
+          templateUrl: 'app/worker/empty.tpl.html'
         }
       }
     })
@@ -43,18 +42,18 @@ angular.module('app.worker', [
           });
         },
         messages: function($stateParams, messageManager) {
-          return messageManager.list().then(function(messages){
+          return messageManager.list().then(function(messages) {
             return messages.filter(function(message) {
-             return String(message.receiverId) === String($stateParams.workerId);
-           });
+              return String(message.receiverId) === String($stateParams.workerId);
+            });
           });
         },
         files: function($stateParams, fileClient) {
-          return fileClient.list().then(function(files){
+          return fileClient.list().then(function(files) {
             return files.filter(function(file) {
-             return String(file.owner) === String($stateParams.workerId);
-           });
-          })
+              return String(file.owner) === String($stateParams.workerId);
+            });
+          });
         },
         membership: function(membershipClient) {
           return membershipClient.list();
@@ -86,7 +85,7 @@ angular.module('app.worker', [
       views: {
         'content@app': {
           templateUrl: 'app/worker/worker-edit.tpl.html',
-          controller: 'WorkerFormController as ctrl',
+          controller: 'WorkerFormController as ctrl'
         }
       }
     })
@@ -106,7 +105,7 @@ angular.module('app.worker', [
       views: {
         'content@app': {
           templateUrl: 'app/worker/worker-edit.tpl.html',
-          controller: 'WorkerFormController as ctrl',
+          controller: 'WorkerFormController as ctrl'
         }
       }
     });
@@ -118,18 +117,18 @@ angular.module('app.worker', [
       workerId: worker.id
     });
   });
-  mediator.subscribe('wfm:worker:list', function(worker) {
+  mediator.subscribe('wfm:worker:list', function() {
     $state.go('app.worker', null, {reload: true});
   });
 })
 
-.controller('WorkerListController', function ($scope, mediator, workers) {
+.controller('WorkerListController', function($scope, mediator, workers) {
   var self = this;
   self.workers = workers;
   $scope.$parent.selected = {id: null};
 })
 
-.controller('WorkerDetailController', function ($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, membership, groups, userClient) {
+.controller('WorkerDetailController', function($scope, $state, $stateParams, $mdDialog, mediator, worker, workorders, messages, files, membership, groups, userClient) {
   var self = this;
   self.worker = worker;
   self.workorders = workorders;
@@ -138,11 +137,11 @@ angular.module('app.worker', [
   $scope.selected.id = worker.id;
 
   var userMembership = membership.filter(function(_membership) {
-    return _membership.user == worker.id
+    return _membership.user === worker.id;
   })[0];
-  if(userMembership){
+  if (userMembership) {
     self.group = groups.filter(function(group) {
-        return userMembership.group == group.id;
+      return userMembership.group === group.id;
     })[0];
   }
 
@@ -161,7 +160,7 @@ angular.module('app.worker', [
         $state.go('app.worker', null, {reload: true});
       }, function(err) {
         throw err;
-      })
+      });
     });
   },
   self.selectWorkorder = function(workorder) {
@@ -176,22 +175,22 @@ angular.module('app.worker', [
       messageId: message.id || message._localuid },
       { reload: true }
     );
-  }
+  };
 
 })
 
-.controller('WorkerFormController', function ($state, $scope, mediator, worker, groups, membership, userClient, membershipClient) {
+.controller('WorkerFormController', function($state, $scope, mediator, worker, groups, membership, userClient, membershipClient) {
   var self = this;
   self.worker = worker;
   self.groups = groups;
   //if we are updating let's assign the group
-  if(worker.id || worker.id === 0) {
+  if (worker.id || worker.id === 0) {
     var userMembership = membership.filter(function(_membership) {
-      return _membership.user == worker.id
+      return _membership.user === worker.id;
     })[0];
-    if(userMembership){
+    if (userMembership) {
       self.worker.group = groups.filter(function(group) {
-          return userMembership.group == group.id;
+        return userMembership.group === group.id;
       })[0].id;
     }
   }
@@ -201,37 +200,36 @@ angular.module('app.worker', [
         .then(function(updatedWorker) {
           //retrieve the existing membership
           var userMembership = membership.filter(function(_membership) {
-            return _membership.user == worker.id
+            return _membership.user === worker.id;
           })[0];
-          if(userMembership){
+          if (userMembership) {
             userMembership.group = updatedWorker.group;
             return membershipClient.update(userMembership)
               .then(function(updatedMembership) {
                 $state.go('app.worker.detail', {workerId: updatedMembership.user}, {reload: true});
               });
-          }
-          else {
+          } else {
             return membershipClient.create({
               group : updatedWorker.group,
               user: updatedWorker.id
-            }).then(function (createdMembership) {
-                $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
-              })
+            }).then(function(createdMembership) {
+              $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
+            });
           }
 
-        })
-    });
+        });
+  });
   mediator.subscribeForScope('wfm:worker:created', $scope, function(worker) {
     return userClient.create(worker)
         .then(function(createdWorker) {
           return membershipClient.create({
             group : createdWorker.group,
             user: createdWorker.id
-          }).then(function (createdMembership) {
-              $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
-            })
-        })
-    });
+          }).then(function(createdMembership) {
+            $state.go('app.worker.detail', {workerId: createdMembership.user}, {reload: true});
+          });
+        });
+  });
 })
 
 ;

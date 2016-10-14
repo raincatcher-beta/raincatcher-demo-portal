@@ -1,13 +1,11 @@
 'use strict';
 
-var d3 = require('d3')
-var c3 = require('c3')
-var _ = require('lodash');
+var c3 = require('c3');
 
 module.exports = 'app.analytics';
 
 angular.module('app.analytics', [
-  'ui.router',
+  'ui.router'
 , 'wfm.core.mediator'
 ])
 
@@ -32,10 +30,10 @@ angular.module('app.analytics', [
           controller: 'analyticsController as ctrl'
         }
       }
-    })
+    });
 })
 
-.controller('analyticsController', function (workorders, workers) {
+.controller('analyticsController', function(workorders, workers) {
   var self = this;
   self.workorders = workorders;
   self.workers = workers;
@@ -48,7 +46,7 @@ angular.module('app.analytics', [
     workorder.effectiveHours = real;
   });
 
-  var areaChart = c3.generate({
+  c3.generate({
     bindto: '#area-chart',
     size: {
       width: 450
@@ -58,12 +56,12 @@ angular.module('app.analytics', [
         ['data1', 300, 350, 300, 0, 0, 0],
         ['data2', 130, 100, 140, 200, 150, 50]
       ],
-    types: {
-      data1: 'area',
-      data2: 'area-spline'
+      types: {
+        data1: 'area',
+        data2: 'area-spline'
+      }
     }
-  }
-});
+  });
 
 })
 

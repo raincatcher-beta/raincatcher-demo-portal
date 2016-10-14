@@ -24,7 +24,7 @@ angular.module('app.workflow', [
           }
         },
         'content': {
-          templateUrl: 'app/workflow/empty.tpl.html',
+          templateUrl: 'app/workflow/empty.tpl.html'
         }
       }
     })
@@ -56,8 +56,8 @@ angular.module('app.workflow', [
               return workflowManager.new();
             }
           }
-          }
         }
+      }
     })
     .state('app.workflow.edit', {
       url: '/workflow/:workflowId/edit',
@@ -99,12 +99,12 @@ angular.module('app.workflow', [
       { reload: true }
     );
   });
-  mediator.subscribe('wfm:workflow:list', function(workflow) {
+  mediator.subscribe('wfm:workflow:list', function() {
     $state.go('app.workflow', null, {reload: true});
   });
 })
 
-.controller('WorkflowListController', function ($scope, mediator, workflows, $stateParams) {
+.controller('WorkflowListController', function($scope, mediator, workflows, $stateParams) {
   var self = this;
   self.workflows = workflows;
   self.selectedWorkflowId = $stateParams.workflowId;
@@ -123,12 +123,12 @@ angular.module('app.workflow', [
   };
 })
 
-.controller('WorkflowDetailController', function ($scope, $state, $mdDialog, mediator, workflowManager, workorderManager, workflow, forms) {
+.controller('WorkflowDetailController', function($scope, $state, $mdDialog, mediator, workflowManager, workorderManager, workflow, forms) {
   var self = this;
   $scope.selected.id = workflow.id;
   $scope.dragControlListeners = {
     containment: '#stepList',
-    orderChanged :  function (event) {
+    orderChanged :  function() {
       workflowManager.update(workflow).then(function(_workflow) {
         $state.go('app.workflow.detail',
          {workflowId: _workflow.id},
@@ -136,18 +136,18 @@ angular.module('app.workflow', [
        );
       }, function(error) {
         console.log(error);
-      })
+      });
     }
-  }
+  };
   self.workflow = workflow;
   self.forms = forms;
   self.delete = function(event, workflow) {
     event.preventDefault();
     workorderManager.list()
-      .then(function(workorders){
+      .then(function(workorders) {
         var workorder = workorders.filter(function(workorder) {
           return String(workorder.workflowId) === String(workflow.id);
-        })
+        });
         var title = (workorder.length)
           ? "Workflow is used at least by at least 1 workorder, are you sure you want to delete workflow #'"+workflow.id+"?"
           : "Would you like to delete workflow #"+workflow.id+"?";
@@ -161,17 +161,17 @@ angular.module('app.workflow', [
         return confirm;
       })
       .then(function(confirm) {
-        return $mdDialog.show(confirm)
+        return $mdDialog.show(confirm);
       })
       .then(function() {
-        return workflowManager.delete(workflow)
-        })
+        return workflowManager.delete(workflow);
+      })
       .then(function() {
-          $state.go('app.workflow', null, {reload: true});
-        }, function(err) {
-          throw err;
-        });
-      };
+        $state.go('app.workflow', null, {reload: true});
+      }, function(err) {
+        throw err;
+      });
+  };
 
   self.deleteStep = function(event, step, workflow) {
     event.preventDefault();
@@ -193,7 +193,7 @@ angular.module('app.workflow', [
        );
       }, function(error) {
         console.log(error);
-      })
+      });
     });
   };
 
@@ -205,11 +205,11 @@ angular.module('app.workflow', [
        );
     }, function(error) {
       console.log(error);
-    })
+    });
   });
 })
 
-.controller('WorkflowAddController', function ($scope, mediator, workflowManager, workflow ) {
+.controller('WorkflowAddController', function($scope, mediator, workflowManager, workflow ) {
   var self = this;
   self.workflow = workflow;
 
@@ -221,7 +221,7 @@ angular.module('app.workflow', [
 
 })
 
-.controller('WorkflowFormController', function ($scope, $state, mediator, workflow, workflowManager) {
+.controller('WorkflowFormController', function($scope, $state, mediator, workflow, workflowManager) {
   var self = this;
 
   self.workflow = workflow;
@@ -234,17 +234,17 @@ angular.module('app.workflow', [
     );
     }, function(error) {
       console.log(error);
-    })
+    });
   });
 })
 
-.controller('WorkflowStepFormController', function ($scope, $state, $stateParams, mediator, workflow, workflowManager, forms) {
+.controller('WorkflowStepFormController', function($scope, $state, $stateParams, mediator, workflow, workflowManager, forms) {
   var self = this;
 
   self.workflow = workflow;
   self.forms = forms;
   self.step = workflow.steps.filter(function(item) {
-    return item.code == $stateParams.code;
+    return item.code === $stateParams.code;
   })[0];
   mediator.subscribeForScope('wfm:workflow:updated', $scope, function(workflow) {
     workflowManager.update(workflow).then(function(_workflow) {
@@ -254,7 +254,7 @@ angular.module('app.workflow', [
     );
     }, function(error) {
       console.log(error);
-    })
+    });
   });
 })
 

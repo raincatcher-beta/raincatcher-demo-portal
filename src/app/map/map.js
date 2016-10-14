@@ -3,7 +3,7 @@
 module.exports = 'app.map';
 
 angular.module('app.map', [
-  'ui.router',
+  'ui.router'
 , 'wfm.core.mediator'
 ])
 
@@ -26,10 +26,10 @@ angular.module('app.map', [
         }
       }
 
-    })
+    });
 })
 
-.controller('mapController', function ($window, $document, $timeout, workorders) {
+.controller('mapController', function($window, $document, $timeout, workorders) {
   this.center = [49.27, -123.08];
   this.workorders = workorders;
 })

@@ -1,7 +1,7 @@
 'use strict';
 angular.module('app.home', ['ui.router'])
 
-.config(function ($stateProvider) {
+.config(function($stateProvider) {
   $stateProvider
     .state('app.home', {
       url: '/home',

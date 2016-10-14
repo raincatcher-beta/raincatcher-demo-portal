@@ -59,7 +59,7 @@ angular.module('app', [
           return userClient.getProfile();
         }
       },
-      controller: function($scope, $state, $mdSidenav, mediator, profileData){
+      controller: function($scope, $state, $mdSidenav, mediator, profileData) {
         console.log('profileData', profileData);
         $scope.profileData = profileData;
         mediator.subscribe('wfm:auth:profile:change', function(_profileData) {
@@ -74,10 +74,10 @@ angular.module('app', [
           if (state) {
             if ($mdSidenav('left').isOpen()) {
               $mdSidenav('left').close();
-            };
+            }
             $state.go(state, params);
           }
-        }
+        };
       }
     });
 })
@@ -97,17 +97,17 @@ angular.module('app', [
     return null;
   });
 
-  $rootScope.$on('$stateChangeStart', function(e, toState, toParams, fromState, fromParams) {
-    if(toState.name !== "app.login"){
+  $rootScope.$on('$stateChangeStart', function(e, toState, toParams) {
+    if (toState.name !== "app.login") {
       userClient.hasSession().then(function(hasSession) {
-        if(!hasSession) {
+        if (!hasSession) {
           e.preventDefault();
           $rootScope.toState = toState;
           $rootScope.toParams = toParams;
           $state.go('app.login');
         }
       });
-    };
+    }
   });
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
     console.error('State change error: ', error, {
