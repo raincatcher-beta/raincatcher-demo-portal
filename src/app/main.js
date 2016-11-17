@@ -55,6 +55,9 @@ angular.module('app', [
         messageManager: function(messageSync) {
           return messageSync.createManager();
         },
+        resultManager: function(resultSync) {
+          return resultSync.createManager();
+        },
         profileData: function(userClient) {
           return userClient.getProfile();
         }
