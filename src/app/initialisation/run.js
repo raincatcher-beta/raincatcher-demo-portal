@@ -51,14 +51,7 @@ function createWFMInitialisationPromises($rootScope, $q, mediator, userClient) {
     $rootScope.ready = true;
     console.log(initPromises.length, 'init promises resolved.');
     mediator.remove('promise:init', initListener.id);
-
-    //Verifying the user session.
-    userClient.verify().then(function(sessionValid) {
-      //If the session is not valid, clear the local session data.
-      if (!sessionValid) {
-        userClient.clearSession();
-      }
-    });
+    userClient.clearSession();
 
     return null;
   });
@@ -104,6 +97,7 @@ function verifyLoginOnStateChange($rootScope, $state, userClient) {
     event.preventDefault();
   });
 }
+
 
 angular.module('app').run(["$rootScope", "$q", "mediator", "userClient", createWFMInitialisationPromises])
   .run(["$state", "mediator", "syncPool", subscribeToUserChange])
