@@ -5,7 +5,8 @@ require('feedhenry');
 
 angular.module('app', [
   require('angular-ui-router')
-, require('angular-material')
+, require('angular-material'),
+  require('./feedhenry')
 , require('fh-wfm-mediator')
 , require('fh-wfm-workorder')
 , require('fh-wfm-result')
@@ -33,6 +34,8 @@ angular.module('app', [
 , require('./schedule/schedule')
 , require('./map/map')
 , require('./analytics/analytics')
+  //Settings view
+  , require('./settings')
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
