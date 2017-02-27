@@ -18,11 +18,10 @@ angular.module('app', [
 , require('fh-wfm-user')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
-, require('fh-wfm-map')
+, require('fh-wfm-map')()
 , require('fh-wfm-schedule')
 , require('fh-wfm-analytics')
 , require('fh-wfm-camera')
-
 , require('./auth/auth')
 , require('./workorder/workorder')
 , require('./workflow/workflow')
@@ -33,7 +32,7 @@ angular.module('app', [
 , require('./message/message')
 , require('./file/file')
 , require('./schedule/schedule')
-, require('./map/map')
+
 , require('./analytics/analytics')
 , require('./settings')
 ]);
