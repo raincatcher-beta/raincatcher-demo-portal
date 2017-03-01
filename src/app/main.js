@@ -1,12 +1,12 @@
 'use strict';
 
 var angular = require('angular');
-require('feedhenry');
+require('fh-js-sdk/dist/feedhenry-forms.js');
 
 angular.module('app', [
   require('angular-ui-router'),
   require('angular-material'),
-  require('./feedhenry'), 
+  require('./feedhenry'),
   require('fh-wfm-mediator'),
   require('fh-wfm-sync'),
   require('fh-wfm-workorder'),
