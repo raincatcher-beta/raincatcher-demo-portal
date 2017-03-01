@@ -3,6 +3,8 @@
 var angular = require('angular');
 require('feedhenry');
 
+var mapModule = require('fh-wfm-map');
+
 angular.module('app', [
   require('angular-ui-router')
 , require('angular-material'),
@@ -18,7 +20,7 @@ angular.module('app', [
 , require('fh-wfm-user')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
-, require('fh-wfm-map')()
+, mapModule()
 , require('fh-wfm-schedule')
 , require('fh-wfm-analytics')
 , require('fh-wfm-camera')
