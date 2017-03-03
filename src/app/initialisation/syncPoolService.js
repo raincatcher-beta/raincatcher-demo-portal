@@ -59,6 +59,7 @@ function SyncPoolService($q, mediator, workorderSync, workflowSync, resultSync, 
           var map = {};
           managers.forEach(function(managerWrapper) {
             map[managerWrapper.manager.datasetId] = managerWrapper;
+            managerWrapper.start();
           });
           map.workorders.manager.publishRecordDeltaReceived(mediator);
           return map;
