@@ -14,10 +14,9 @@ module.exports = function (grunt) {
 
   var browserifyConfg = {
     alias: {
-      'feedhenry': './src/lib/feedhenry.js'
     },
     external: [
-      'feedhenry', 'lodash', 'q', 'rx', 'async', 'c3', 'd3', 'mediator-js', 'angular', 'angular-ui-router', 'angular-material', 'angular-messages', 'ng-sortable'
+      'lodash', 'q', 'rx', 'async', 'c3', 'd3', 'mediator-js', 'angular', 'angular-ui-router', 'angular-material', 'angular-messages', 'ng-sortable'
     ]
   }
 
@@ -167,6 +166,15 @@ module.exports = function (grunt) {
 
     eslint: {
       src: ['application.js', 'src/**/*.js']
+    },
+
+    mochify: {
+      options: {
+        reporter: 'spec'
+      },
+      unit: {
+        src: ['src/app/**/*-spec.js']
+      }
     }
   });
 
@@ -185,6 +193,8 @@ module.exports = function (grunt) {
       'build', 'connect:livereload', 'watch'
     ]);
   });
+
+  grunt.registerTask('test', ['eslint', 'mochify:unit']);
 
   grunt.registerTask('build', ['clean:dist', 'sass', 'copy', 'clean:server', 'browserify']);
 
