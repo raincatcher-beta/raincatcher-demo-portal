@@ -14,10 +14,9 @@ module.exports = function (grunt) {
 
   var browserifyConfg = {
     alias: {
-      'feedhenry': './src/lib/feedhenry.js'
     },
     external: [
-      'feedhenry', 'lodash', 'q', 'rx', 'async', 'c3', 'd3', 'mediator-js', 'angular', 'angular-ui-router', 'angular-material', 'angular-messages', 'ng-sortable'
+      'lodash', 'q', 'rx', 'async', 'c3', 'd3', 'mediator-js', 'angular', 'angular-ui-router', 'angular-material', 'angular-messages', 'ng-sortable'
     ]
   }
 
