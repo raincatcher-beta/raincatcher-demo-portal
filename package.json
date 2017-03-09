@@ -1,6 +1,6 @@
 {
   "name": "wfm2",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "description": "A WFM2 PoC using the mediator pattern",
   "repository": "https://github.com/feedhenry-raincatcher/raincatcher-demo-portal.git",
   "engines": {
@@ -37,13 +37,13 @@
     "fh-wfm-appform": "0.0.25",
     "fh-wfm-camera": "0.0.10",
     "fh-wfm-file": "0.0.9",
-    "fh-wfm-map": "0.0.11",
+    "fh-wfm-map": "0.0.12-alpha.1",
     "fh-wfm-mediator": "0.3.1",
     "fh-wfm-message": "0.1.0",
     "fh-wfm-result": "0.1.1",
     "fh-wfm-risk-assessment": "0.0.16",
     "fh-wfm-schedule": "0.0.13",
-    "fh-wfm-sync": "0.1.0",
+    "fh-wfm-sync": "0.1.1",
     "fh-wfm-user": "0.3.1",
     "fh-wfm-vehicle-inspection": "0.0.14",
     "fh-wfm-workflow": "0.1.1",
@@ -58,8 +58,8 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.8",
-    "browserify": "^14.1.0",
+    "angular-mocks": "1.6.1",
+    "browserify": "14.1.0",
     "browserify-ngannotate": "^2.0.0",
     "browserify-shim": "3.8.13",
     "grunt": "0.4.5",
