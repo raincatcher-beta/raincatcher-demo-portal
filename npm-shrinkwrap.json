@@ -797,7 +797,7 @@
                 },
                 "inherits": {
                   "version": "2.0.3",
-                  "from": "inherits@>=2.0.1 <2.1.0",
+                  "from": "inherits@>=2.0.3 <3.0.0",
                   "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz"
                 },
                 "isarray": {
@@ -893,9 +893,9 @@
       "resolved": "https://registry.npmjs.org/fh-wfm-schedule/-/fh-wfm-schedule-0.0.13.tgz"
     },
     "fh-wfm-sync": {
-      "version": "0.1.0",
-      "from": "fh-wfm-sync@0.1.0",
-      "resolved": "https://registry.npmjs.org/fh-wfm-sync/-/fh-wfm-sync-0.1.0.tgz"
+      "version": "0.1.1",
+      "from": "fh-wfm-sync@0.1.1",
+      "resolved": "https://registry.npmjs.org/fh-wfm-sync/-/fh-wfm-sync-0.1.1.tgz"
     },
     "fh-wfm-user": {
       "version": "0.5.0",
@@ -2953,9 +2953,9 @@
       }
     },
     "fh-wfm-workorder-angular": {
-      "version": "0.1.0",
-      "from": "fh-wfm-workorder-angular@0.1.0",
-      "resolved": "https://registry.npmjs.org/fh-wfm-workorder-angular/-/fh-wfm-workorder-angular-0.1.0.tgz",
+      "version": "0.1.1",
+      "from": "fh-wfm-workorder-angular@0.1.1",
+      "resolved": "https://registry.npmjs.org/fh-wfm-workorder-angular/-/fh-wfm-workorder-angular-0.1.1.tgz",
       "dependencies": {
         "angular-animate": {
           "version": "1.6.2",
