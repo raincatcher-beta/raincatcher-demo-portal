@@ -37,7 +37,6 @@ angular.module('app', [
   require('./message/message'),
   require('./file/file'),
   require('./schedule/schedule'),
-  require('./map/map'),
   require('./analytics/analytics'),
   require('./settings')
 ]);
