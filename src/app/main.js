@@ -47,7 +47,6 @@ angular.module('app', [
   detailStateMount: "app.file.detail"
 })
 , require('./schedule/schedule')
-, require('./map/map')
 , require('./analytics/analytics')
 , require('./settings')
 ]);
