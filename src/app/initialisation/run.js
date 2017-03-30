@@ -1,4 +1,10 @@
 var angular = require('angular');
+var $fh = require('fh-js-sdk');
+
+var workorderCoreModule = require('fh-wfm-workorder/lib/client');
+var workflowCoreModule = require('fh-wfm-workflow/lib/client');
+var resultCoreModule = require('fh-wfm-result/lib/client');
+var fileCore = require('fh-wfm-file/lib/client');
 
 /**
  * Script to subscribe to the `wfm:auth:profile:change` topic.
@@ -98,7 +104,21 @@ function verifyLoginOnStateChange($rootScope, $state, userClient) {
   });
 }
 
+/**
+ *
+ * Initialising the core modules.
+ *
+ * @param {Mediator} mediator
+ */
+function initCoreModules(mediator) {
+  workorderCoreModule(mediator);
+  workflowCoreModule(mediator);
+  resultCoreModule(mediator);
+  fileCore(mediator,{},$fh);
+}
 
-angular.module('app').run(["$rootScope", "$q", "mediator", "userClient", createWFMInitialisationPromises])
+angular.module('app')
+  .run(["mediator", initCoreModules])
+  .run(["$rootScope", "$q", "mediator", "userClient", createWFMInitialisationPromises])
   .run(["$state", "mediator", "syncPool", subscribeToUserChange])
   .run(["$rootScope", "$state", "userClient", verifyLoginOnStateChange]);
