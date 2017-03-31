@@ -28,9 +28,9 @@ angular.module('app', [
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
 , mapModule({
-	viewId: 'content',
-	data: { columns: 2 }
-}),
+  viewId: 'content',
+  data: { columns: 2 }
+})
 , require('fh-wfm-schedule')
 , require('fh-wfm-analytics')
 , require('fh-wfm-camera')
