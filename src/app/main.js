@@ -3,6 +3,8 @@
 var angular = require('angular');
 require('fh-js-sdk/dist/feedhenry-forms.js');
 
+var mapModule = require('fh-wfm-map');
+
 angular.module('app', [
   require('angular-ui-router'),
   require('angular-material'),
@@ -25,7 +27,10 @@ angular.module('app', [
 , require('fh-wfm-user')
 , require('fh-wfm-risk-assessment')
 , require('fh-wfm-vehicle-inspection')
-, require('fh-wfm-map')
+, mapModule({
+  viewId: 'content',
+  data: { columns: 2 }
+})
 , require('fh-wfm-schedule')
 , require('fh-wfm-analytics')
 , require('fh-wfm-camera')
@@ -42,7 +47,6 @@ angular.module('app', [
   detailStateMount: "app.file.detail"
 })
 , require('./schedule/schedule')
-, require('./map/map')
 , require('./analytics/analytics')
 , require('./settings')
 ]);
