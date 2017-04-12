@@ -2,6 +2,7 @@
 
 var angular = require('angular');
 require('fh-js-sdk/dist/feedhenry-forms.js');
+require('./debugLogsEnablers');
 
 var mapModule = require('fh-wfm-map');
 
