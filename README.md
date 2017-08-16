@@ -1,5 +1,7 @@
 # FeedHenry RainCatcher Portal [![Build Status](https://travis-ci.org/feedhenry-raincatcher/raincatcher-demo-portal.png)](https://travis-ci.org/feedhenry-raincatcher/raincatcher-demo-portal)
 
+> **Note:** This repository is no longer used. All active development was moved to new [raincatcher-core](https://github.com/feedhenry-raincatcher/raincatcher-core) repository.
+
 This is a reference/demo implementation of the Portal Client application of a RainCatcher project.
 
 This repository should be used in conjunction with these following repos:
